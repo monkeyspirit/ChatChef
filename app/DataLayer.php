@@ -15,7 +15,6 @@ class DataLayer
         $user->birthday = $birthday;
         $user->email = $email;
         $user->password = md5($password);
-        $user->role = 0;
         $user->ban = 0;
         $user->save();
     }
