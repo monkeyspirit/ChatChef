@@ -262,6 +262,11 @@ class DataLayer
           DB::update('UPDATE `user` SET `isEditor` = ? WHERE `user`.`id` = ?;',[0, $user_id]);
           DB::update('UPDATE `user` SET `isModerator` = ? WHERE `user`.`id` = ?;',[0, $user_id]);
         }
+        else if($role == 3){
+          DB::update('UPDATE `user` SET `isAdmin` = ? WHERE `user`.`id` = ?;',[0, $user_id]);
+          DB::update('UPDATE `user` SET `isEditor` = ? WHERE `user`.`id` = ?;',[0, $user_id]);
+          DB::update('UPDATE `user` SET `isModerator` = ? WHERE `user`.`id` = ?;',[1, $user_id]);  
+        }
     }
 
     public function  banUser($user_id){
