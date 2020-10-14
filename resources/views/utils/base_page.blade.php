@@ -259,8 +259,8 @@ $dl = new \App\DataLayer();
 
                                                 @endif
                                             @else
-                                                swal("There is an error!", "The username or the password is wrong.", "error");
-                                                return false;
+                                                swal("C'è un errore!", "Il nome utente o la password sono sbagliati.", "error");
+                                                    return false;
                                             @endif
 
 
@@ -354,8 +354,8 @@ $dl = new \App\DataLayer();
 
                                                 @endif
                                             @else
-                                                swal("Check the username!", "This username was already taken.", "error");
-                                            return false;
+                                                swal("Controlla il nome utente!", "Questo nome utente è già stato utilizzato.", "error");
+                                                    return false;
                                             @endif
 
                                         }
@@ -372,8 +372,8 @@ $dl = new \App\DataLayer();
                                                     return false;
                                                 @endif
                                             @else
-                                                swal("Check the password!", "Passwords do not match.", "error");
-                                                return false;
+                                                swal("Controlla la password!", "Le password non coincidono.", "error");
+                                                    return false;
                                             @endif
 
                                         }
