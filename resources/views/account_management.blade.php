@@ -158,6 +158,21 @@ $all_user = $dl->getAllUsername();
                                                     }
                                                     
                                                 }
+                                                 else if(($dl->getUserbyUsername($user_s->username))->isModerator){
+                                                    if(session()->has('language')){
+                                                        if(session('language')=="it" || session('language')=="en"){
+                                                            $role_name = "Moderatore";
+                                                        }
+                                                        else{
+                                                        	$role_name = "Moderator";
+                                                    	}
+
+                                                    }
+                                                    else{
+                                                        $role_name = "Moderatore";
+                                                    }
+                                                    
+                                                }
                                                 else {
                                                       if(session()->has('language')){
                                                           if(session('language')=="it"){
@@ -176,6 +191,7 @@ $all_user = $dl->getAllUsername();
                                             <option value="0">@lang('labels.normalUser')</option>
                                             <option value="1">@lang('labels.admin')</option>
                                             <option value="2">@lang('labels.editor')</option>
+                                             <option value="3">@lang('labels.moderator')</option>
                                         </select>
                                     </div>
 
