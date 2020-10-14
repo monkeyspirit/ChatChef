@@ -55,6 +55,7 @@ return [
     'normalUser' => 'Normal user',
     'admin' => 'Admin',
     'editor' => 'Editor',
+    'moderator' => 'Moderator',
     'unban' => 'Unban this user',
     'ban' => 'Ban this user',
     'insertComment' => 'Insert a comment',
