@@ -130,10 +130,10 @@ $all_user = $dl->getAllUsername();
                                             if(($dl->getUserbyUsername($user_s->username))->isAdmin){
                                                
                                                     if(session()->has('language')){
-                                                        if(session('language')=="it" || session('language')=="en"){
+                                                        if(session('language')=="it"){
                                                             $role_name = "Admin";
                                                         }
-                                                        else{
+                                                         elseif(session('language')=="en"){
                                                 			$role_name = "Admin";
                                               			}
                                                     }
@@ -145,10 +145,10 @@ $all_user = $dl->getAllUsername();
                                             }
                                             else if(($dl->getUserbyUsername($user_s->username))->isEditor){
                                                     if(session()->has('language')){
-                                                        if(session('language')=="it" || session('language')=="en"){
+                                                        if(session('language')=="it"){
                                                             $role_name = "Editor";
                                                         }
-                                                        else{
+                                                         elseif(session('language')=="en"){
                                                         	$role_name = "Editor";
                                                     	}
 
@@ -160,10 +160,10 @@ $all_user = $dl->getAllUsername();
                                                 }
                                                  else if(($dl->getUserbyUsername($user_s->username))->isModerator){
                                                     if(session()->has('language')){
-                                                        if(session('language')=="it" || session('language')=="en"){
+                                                        if(session('language')=="it"){
                                                             $role_name = "Moderatore";
                                                         }
-                                                        else{
+                                                         elseif(session('language')=="en"){
                                                         	$role_name = "Moderator";
                                                     	}
 
