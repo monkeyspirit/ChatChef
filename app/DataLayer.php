@@ -247,7 +247,21 @@ class DataLayer
     }
 
     public function  editUserRole($user_id, $role){
-        DB::update('UPDATE `user` SET `role` = ? WHERE `user`.`id` = ?;',[$role, $user_id]);
+        if($role == 1){
+          DB::update('UPDATE `user` SET `isAdmin` = ? WHERE `user`.`id` = ?;',[1, $user_id]);
+          DB::update('UPDATE `user` SET `isEditor` = ? WHERE `user`.`id` = ?;',[0, $user_id]);
+          DB::update('UPDATE `user` SET `isModerator` = ? WHERE `user`.`id` = ?;',[0, $user_id]);
+        }
+        else if($role == 2){
+          DB::update('UPDATE `user` SET `isAdmin` = ? WHERE `user`.`id` = ?;',[1, $user_id]);
+          DB::update('UPDATE `user` SET `isEditor` = ? WHERE `user`.`id` = ?;',[0, $user_id]);
+          DB::update('UPDATE `user` SET `isModerator` = ? WHERE `user`.`id` = ?;',[0, $user_id]);
+        }
+        else if($role == 0){
+          DB::update('UPDATE `user` SET `isAdmin` = ? WHERE `user`.`id` = ?;',[0, $user_id]);
+          DB::update('UPDATE `user` SET `isEditor` = ? WHERE `user`.`id` = ?;',[0, $user_id]);
+          DB::update('UPDATE `user` SET `isModerator` = ? WHERE `user`.`id` = ?;',[0, $user_id]);
+        }
     }
 
     public function  banUser($user_id){
