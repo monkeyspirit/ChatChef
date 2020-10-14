@@ -54,6 +54,7 @@ return [
     'normalUser' => 'Utente normale',
     'admin' => 'Admin',
     'editor' => 'Editor',
+    'moderator' => 'Moderatore',
     'unban' => 'Togli il ban a questo utente',
     'ban' => 'Banna questo utente',
     'insertComment' => 'Inserisci un commento',
