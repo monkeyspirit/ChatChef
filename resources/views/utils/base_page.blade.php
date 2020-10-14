@@ -105,12 +105,12 @@ $dl = new \App\DataLayer();
                             <button class="btn btn-outline-secondary-my dropdown-toggle" type="button"
                                     id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
                                     aria-expanded="false">
-                                <a href="{{route('setLang',['lang'=>'en'])}}"><img
-                                        src="{{asset('image/flags/uk.jpg')}}" class="flag-icon"></a>
+                                <a href="{{route('setLang',['lang'=>'it'])}}"><img
+                                        src="{{asset('image/flags/it.jpg')}}" class="flag-icon"></a>
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="{{route('setLang',['lang'=>'it'])}}"><img
-                                        src="{{asset('image/flags/it.jpg')}}" class="flag-icon"> Italiano</a>
+                                <a class="dropdown-item" href="{{route('setLang',['lang'=>'en'])}}"><img
+                                        src="{{asset('image/flags/uk.jpg')}}" class="flag-icon"> Italiano</a>
 
                             </div>
                         </div>
