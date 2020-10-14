@@ -127,48 +127,50 @@ $all_user = $dl->getAllUsername();
                                             <?php
                                             $role_name = "";
 
-                                            switch (($dl->getUserbyUsername($user_s->username))->role){
-
-                                                case 0: {
-                                                    if(session()->has('language')){
-                                                        if(session('language')=="it"){
-                                                            $role_name = "Utente Normale";
-                                                        }
-                                                        elseif(session('language')=="en"){
-                                                            $role_name = "Normal user";
-                                                        }
-                                                    }
-                                                    else{
-                                                        $role_name = "Normal user";
-                                                    }
-
-                                                    break;
-                                                }
-                                                case 1: {
+                                            if(($dl->getUserbyUsername($user_s->username))->isAdmin){
+                                               
                                                     if(session()->has('language')){
                                                         if(session('language')=="it" || session('language')=="en"){
                                                             $role_name = "Admin";
                                                         }
+                                                        else{
+                                                			$role_name = "Admin";
+                                              			}
                                                     }
-                                                    else{
+                                                	else{
                                                         $role_name = "Admin";
                                                     }
 
-                                                    break;
-                                                }
-                                                case 2: {
+                                                    
+                                            }
+                                            else if(($dl->getUserbyUsername($user_s->username))->isEditor){
                                                     if(session()->has('language')){
                                                         if(session('language')=="it" || session('language')=="en"){
                                                             $role_name = "Editor";
                                                         }
+                                                        else{
+                                                        	$role_name = "Editor";
+                                                    	}
 
                                                     }
                                                     else{
                                                         $role_name = "Editor";
                                                     }
-                                                    break;
+                                                    
                                                 }
-                                            }
+                                                else {
+                                                      if(session()->has('language')){
+                                                          if(session('language')=="it"){
+                                                              $role_name = "Utente Normale";
+                                                          }
+                                                          elseif(session('language')=="en"){
+                                                              $role_name = "Normal user";
+                                                          }
+                                                      }
+                                                      else{
+                                                          $role_name = "Utente Normale";
+                                                      }
+                                                }    
                                             ?>
                                             <option disabled selected>{{$role_name}}</option>
                                             <option value="0">@lang('labels.normalUser')</option>
