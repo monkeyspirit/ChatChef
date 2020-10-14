@@ -195,7 +195,7 @@ $all_user = $dl->getAllUsername();
                                         </select>
                                     </div>
 
-                                    <button <?php if($user_s->username == $user->username){ echo "disabled"; }?> name="{{$id}}" class="btn btn-outline-primary change">Change role</button>
+                                    <button <?php if($user_s->username == $user->username){ echo "disabled"; }?> name="{{$id}}" class="btn btn-outline-primary change">@lang('labels.changerole')</button>
                                 </div>
                             </td>
                             @if(($dl->getUserbyUsername($user_s->username))->ban)
