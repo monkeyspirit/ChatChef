@@ -124,7 +124,8 @@ return [
                                 change on first login.',
     'sendMail' => 'A mail has been send to your mailbox with the new password.',
     'allRecipes' => 'All Recipes',
-    'searchBytag' => 'Search by type'
+    'searchBytag' => 'Search by type',
+    'changerole' => 'Change role'
 
 
 
