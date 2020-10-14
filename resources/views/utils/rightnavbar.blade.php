@@ -40,11 +40,13 @@ foreach ($recipes_all as $recipe) {
 <a class="dropdown-item <?php if($active == "1"){ echo "active";} ?> " href="{{route('account_all_recipes')}}">@lang('labels.recipeAll') <span class="badge badge-success">{{$count_approved}}</span> <span class="badge badge-danger">{{$count_denied}}</span></a>
 <a class="dropdown-item <?php if($active == "2"){ echo "active";} ?>" href="{{route('account_favorites')}}">@lang('labels.recipeFav')</a>
 <a class="dropdown-item <?php if($active == "3"){ echo "active";} ?>" href="{{route('account_settings')}}">@lang('labels.settings')</a>
-@if(($dl->getUserbyUsername($loggedName))->role == 1)
-    <a class="dropdown-item <?php if($active == "4"){ echo "active";} ?>" href="{{route('approved')}}">@lang('labels.revised') <span class="badge badge-primary">{{$count_wainting}}</span></a>
+@if(($dl->getUserbyUsername($loggedName))->isModerator)
+	<a class="dropdown-item <?php if($active == "4"){ echo "active";} ?>" href="{{route('approved')}}">@lang('labels.revised') <span class="badge badge-primary">{{$count_wainting}}</span></a>
+@endif
+@if(($dl->getUserbyUsername($loggedName))->isAdmin)
     <a class="dropdown-item <?php if($active == "5"){ echo "active";} ?>" href="{{route('account_management')}}">@lang('labels.accountManagement')</a>
 @endif
-@if(($dl->getUserbyUsername($loggedName))->role == 2)
+@if(($dl->getUserbyUsername($loggedName))->isEditor)
     <a class="dropdown-item <?php if($active == "6"){ echo "active";} ?>" href="{{route('review')}}">@lang('labels.recentlyAdded') <span class="badge badge-primary">{{$count_added}}</span></a>
 @endif
 
