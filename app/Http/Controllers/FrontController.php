@@ -65,7 +65,7 @@ class FrontController extends Controller
                     if($recipe->approved == 1 || $recipe->approved == 3){
                         return view('recipe_view')->with('logged',true)->with('loggedName', $_SESSION['loggedName'])->with('id', $id);
                     }
-                    else if($recipe->approved == 0 && ($dl->getUserbyUsername($_SESSION['loggedName']))->role == 1) {
+                    else if($recipe->approved == 0 && ($dl->getUserbyUsername($_SESSION['loggedName']))->isAdmin) {
                         return view('recipe_view')->with('logged',true)->with('loggedName', $_SESSION['loggedName'])->with('id', $id);
                     }
                     else if($recipe->user_id == ($dl->getUserIDbyUsername($_SESSION['loggedName']))) {
@@ -119,7 +119,7 @@ class FrontController extends Controller
 
         if(isset($_SESSION['logged'])) {
             $user = $dl->getUserbyUsername($_SESSION['loggedName']);
-            if ($user->id == $rec->user_id || $user->role == 2){
+            if ($user->id == $rec->user_id || $user->isEditor){
                 return view('edit_recipe')->with('logged',true)->with('loggedName', $_SESSION['loggedName'])->with('id', $id);
             }
             else{
@@ -177,7 +177,7 @@ class FrontController extends Controller
         if(isset($_SESSION['logged'])) {
 
             $user = $dl->getUserbyUsername($_SESSION['loggedName']);
-            if($user->role==1){
+            if($user->isAdmin){
                 return view('approved')->with('logged',true)->with('loggedName', $_SESSION['loggedName']);
             }
             return view('error_view')->with('logged',true)->with('loggedName', $_SESSION['loggedName']);
@@ -193,7 +193,7 @@ class FrontController extends Controller
 
         if(isset($_SESSION['logged'])) {
             $user = $dl->getUserbyUsername($_SESSION['loggedName']);
-            if($user->role==2){
+            if($user->isEditor){
                 return view('review')->with('logged',true)->with('loggedName', $_SESSION['loggedName']);
             }
             return view('error_view')->with('logged',true)->with('loggedName', $_SESSION['loggedName']);
@@ -210,7 +210,7 @@ class FrontController extends Controller
 
         if(isset($_SESSION['logged'])) {
             $user = $dl->getUserbyUsername($_SESSION['loggedName']);
-            if($user->role==1){
+            if($user->isAdmin){
                 return view('account_management')->with('logged',true)->with('loggedName', $_SESSION['loggedName']);
             }
             return view('error_view')->with('logged',true)->with('loggedName', $_SESSION['loggedName']);
