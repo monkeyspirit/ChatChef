@@ -123,7 +123,8 @@ return [
                                 cambiare al primo accesso.',
     'sendMail' => 'Una mail è stata inviata alla tua casella di posta con la nuova password.',
     'allRecipes' => 'Tutte le ricette',
-    'searchBytag' => 'Ricerca per tipo'
+    'searchBytag' => 'Ricerca per tipo',
+    'changerole' => 'Cambia ruolo'
 
 
 ];
