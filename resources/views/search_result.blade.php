@@ -10,9 +10,6 @@ foreach ($recipes_all as $recipe_ok) {
     }
 }
 
-$list_ingredients = $dl->getAllIngredients();
-
-$list_tags = array("First dish","Main course","Dessert","Appetizer", "Side dish" ,"Meat", "Fish", "Vegetarian", "Vegan", "Gluten Free", "Without allergens");
 
 $recipes_searched = array();
 $id = json_decode($array);
