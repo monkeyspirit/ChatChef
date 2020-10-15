@@ -66,13 +66,15 @@ foreach ($recipes_all as $recipe) {
                 <a class="dropdown-item " href="{{route('account_all_recipes')}}">@lang('labels.recipeAll') <span class="badge badge-success">{{$count_approved}}</span> <span class="badge badge-danger">{{$count_denied}}</span></a>
                 <a class="dropdown-item " href="{{route('account_favorites')}}">@lang('labels.recipeFav')</a>
                 <a class="dropdown-item " href="{{route('account_settings')}}">@lang('labels.settings')</a>
-                @if(($dl->getUserbyUsername($loggedName))->role == 1)
-                    <a class="dropdown-item active" href="{{route('approved')}}">@lang('labels.revised') <span class="badge badge-primary">{{$count_waiting}}</span></a>
+                 @if(($dl->getUserbyUsername($loggedName))->isModerator)
+	 				<a class="dropdown-item active" href="{{route('approved')}}">@lang('labels.revised') <span class="badge badge-primary">{{$count_waiting}}</span></a>
+                @endif
+                @if(($dl->getUserbyUsername($loggedName))->isAdmin)
                     <a class="dropdown-item " href="{{route('account_management')}}">@lang('labels.accountManagement')</a>
                 @endif
-                @if(($dl->getUserbyUsername($loggedName))->role == 2)
-                    <a class="dropdown-item " href="{{route('review')}}">@lang('labels.recentlyAdded') <span class="badge badge-primary">{{$count_added}}</span></a>
-                @endif
+                @if(($dl->getUserbyUsername($loggedName))->isEditor)
+                   <a class="dropdown-item " href="{{route('review')}}">@lang('labels.recentlyAdded') <span class="badge badge-primary">{{$count_added}}</span></a>
+				@endif
                 <!-- -->
                 <a class="dropdown-item" href="{{route('logout_home')}}">@lang('labels.logout')</a>
             </div>
