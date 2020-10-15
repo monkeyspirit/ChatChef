@@ -23,7 +23,7 @@ for($i=1; $i<$number_ing; $i++) {
         }
     }
     else{
-        $ingredients_u[$i] = $array_ing_en[$ingredients_u[$i]];
+        $ingredients_u[$i] = $array_ing_it[$ingredients_u[$i]];
     }
 
 }
@@ -57,7 +57,7 @@ for($i=1; $i<$number_tag; $i++) {
         }
     }
     else{
-        $tags[$i] = $array_tag_en[$tags[$i]];
+        $tags[$i] = $array_tag_it[$tags[$i]];
     }
 
 }
@@ -93,10 +93,10 @@ if($logged){
         $istheauthor = true;
     }
     $user_role = $dl->getUserbyUsername($loggedName);
-    if($user_role->role == 2){
+    if($user_role->isEditor){
         $isAEditor = true;
     }
-    if($user_role->role == 1 && $recipe->approved==0){
+    if($user_role->isModerator && $recipe->approved==0){
         $isRewier = true;
     }
 }
