@@ -65,7 +65,7 @@ class FrontController extends Controller
                     if($recipe->approved == 1 || $recipe->approved == 3){
                         return view('recipe_view')->with('logged',true)->with('loggedName', $_SESSION['loggedName'])->with('id', $id);
                     }
-                    else if($recipe->approved == 0 && ($dl->getUserbyUsername($_SESSION['loggedName']))->isAdmin) {
+                    else if($recipe->approved == 0 && ($dl->getUserbyUsername($_SESSION['loggedName']))->isModerator) {
                         return view('recipe_view')->with('logged',true)->with('loggedName', $_SESSION['loggedName'])->with('id', $id);
                     }
                     else if($recipe->user_id == ($dl->getUserIDbyUsername($_SESSION['loggedName']))) {
@@ -177,7 +177,7 @@ class FrontController extends Controller
         if(isset($_SESSION['logged'])) {
 
             $user = $dl->getUserbyUsername($_SESSION['loggedName']);
-            if($user->isAdmin){
+            if($user->isModerator){
                 return view('approved')->with('logged',true)->with('loggedName', $_SESSION['loggedName']);
             }
             return view('error_view')->with('logged',true)->with('loggedName', $_SESSION['loggedName']);
