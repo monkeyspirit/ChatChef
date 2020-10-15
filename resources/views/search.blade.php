@@ -12,7 +12,22 @@ foreach ($recipes_all as $recipe_ok) {
 
 $list_ingredients = $dl->getAllIngredients();
 
-$list_tags = array("First dish","Main course","Dessert","Appetizer", "Side dish" ,"Meat", "Fish", "Vegetarian", "Vegan", "Gluten Free", "Without allergens");
+$list_tags = array();
+$list_tags_en = array("1"=>"First dish","2" => "Main", "3" => "Dessert", "4" => "Appetizer", "5" => "Side dish", "6" => "Meat", "7" => "Fish", "8" => "Vegetarian", "9" => "Vegan", "10" => "Gluten Free", "11" => "Without allergens");
+$list_tags_it = array("1"=>"Primo","2" => "Secondo", "3" => "Dolce", "4" => "Antipasto", "5" => "Contorno", "6" => "Carne", "7" => "Pesce", "8" => "Vegetariano", "9" => "Vegano", "10" => "Senza glutine", "11" => "Senza allergeni");
+
+
+    if(session()->has('language')){
+        if(session('language')=="it"){
+            $list_tags = $list_tags_it;
+        }
+        elseif (session('language')=="en"){
+            $list_tags = $list_tags_en;
+        }
+    }
+    else{
+        $list_tags = $list_tags_it;
+    }
 
 $users = $dl->getAllUsername();
 
