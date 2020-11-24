@@ -44,6 +44,11 @@ $all_user = $dl->getAllUsername();
 @endsection
 
 @section('body')
+
+    <script> // questo aggiunge la classe active all'elemento "le mie ricette" nel menu
+        $('#navbar2-accounts').addClass('active');
+    </script>
+
     <!-- Header -->
     <div id="parent-setting" class="container text-center p-5">
         <img src="{{asset('image/doodle/doodle1.jpg')}}" width="200" height="60" alt="">
@@ -128,7 +133,7 @@ $all_user = $dl->getAllUsername();
                                             $role_name = "";
 
                                             if(($dl->getUserbyUsername($user_s->username))->isAdmin){
-                                               
+
                                                     if(session()->has('language')){
                                                         if(session('language')=="it"){
                                                             $role_name = "Admin";
@@ -141,7 +146,7 @@ $all_user = $dl->getAllUsername();
                                                         $role_name = "Admin";
                                                     }
 
-                                                    
+
                                             }
                                             else if(($dl->getUserbyUsername($user_s->username))->isEditor){
                                                     if(session()->has('language')){
@@ -156,7 +161,7 @@ $all_user = $dl->getAllUsername();
                                                     else{
                                                         $role_name = "Editor";
                                                     }
-                                                    
+
                                                 }
                                                  else if(($dl->getUserbyUsername($user_s->username))->isModerator){
                                                     if(session()->has('language')){
@@ -171,7 +176,7 @@ $all_user = $dl->getAllUsername();
                                                     else{
                                                         $role_name = "Moderatore";
                                                     }
-                                                    
+
                                                 }
                                                 else {
                                                       if(session()->has('language')){
@@ -185,7 +190,7 @@ $all_user = $dl->getAllUsername();
                                                       else{
                                                           $role_name = "Utente Normale";
                                                       }
-                                                }    
+                                                }
                                             ?>
                                             <option disabled selected>{{$role_name}}</option>
                                             <option value="0">@lang('labels.normalUser')</option>

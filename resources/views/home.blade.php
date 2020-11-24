@@ -28,15 +28,6 @@ foreach ($recipes_allDate as $recipe_okDate) {
 
 @section('right_navbar')
     @if($logged)
-        <li class="nav-item pr-2 pb-1">
-            <img style="border-radius: 100px; height: 40px; width: 40px;"
-                 @if(($dl->getUserbyUsername($loggedName))->image_profile == NULL)
-                 src="{{asset('image/default_user/paw.jpg')}}"
-                 @else
-                 src ="{{asset(($dl->getUserbyUsername($loggedName))->image_profile)}}"
-                @endif
-            >
-        </li>
         <li class="nav-item">
             <div class="dropdown">
                 <button class="btn btn-outline-secondary dropdown-toggle " type="button" id="dropdownMenuButton"
@@ -48,6 +39,15 @@ foreach ($recipes_allDate as $recipe_okDate) {
                     <a class="dropdown-item" href="{{route('logout')}}">@lang('labels.logout')</a>
                 </div>
             </div>
+        </li>
+        <li class="nav-item pr-2 pb-1">
+            <img style="border-radius: 100px; height: 40px; width: 40px;"
+                 @if(($dl->getUserbyUsername($loggedName))->image_profile == NULL)
+                 src="{{asset('image/default_user/paw.jpg')}}"
+                 @else
+                 src ="{{asset(($dl->getUserbyUsername($loggedName))->image_profile)}}"
+                @endif
+            >
         </li>
     @else
         <li class="nav-item">

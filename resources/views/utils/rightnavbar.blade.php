@@ -37,7 +37,9 @@ foreach ($recipes_all as $recipe) {
 }
 
 ?>
-<a class="dropdown-item <?php if($active == "1"){ echo "active";} ?> " href="{{route('account_all_recipes')}}">@lang('labels.recipeAll') <span class="badge badge-success">{{$count_approved}}</span> <span class="badge badge-danger">{{$count_denied}}</span></a>
+<a class="dropdown-item <?php if($active == "1"){ echo "active";} ?> " href="{{route('account_all_recipes')}}">@lang('labels.recipeAll')
+    <span class="badge badge-success">{{$count_approved}}</span> <span class="badge badge-danger">{{$count_denied}}</span>
+</a>
 <a class="dropdown-item <?php if($active == "2"){ echo "active";} ?>" href="{{route('account_favorites')}}">@lang('labels.recipeFav')</a>
 <a class="dropdown-item <?php if($active == "3"){ echo "active";} ?>" href="{{route('account_settings')}}">@lang('labels.settings')</a>
 @if(($dl->getUserbyUsername($loggedName))->isModerator)

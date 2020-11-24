@@ -85,7 +85,7 @@
 /*Footer*/
 .footer {
     background: #ddddd4;
-    height: 100px;
+    min-height: 100px;
 }
 
 /*Style font setting*/

@@ -85,6 +85,10 @@ foreach ($recipes_all as $recipe) {
 
 @section('body')
 
+    <script> // questo aggiunge la classe active all'elemento "le mie ricette" nel menu
+        $('#navbar2-revised').addClass('active');
+    </script>
+
     <!-- Header -->
     <div id="parent-setting" class="container text-center p-4">
         <img src="{{asset('image/doodle/doodle1.jpg')}}" width="200" height="60" alt="">

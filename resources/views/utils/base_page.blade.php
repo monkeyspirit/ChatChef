@@ -28,32 +28,20 @@ $dl = new \App\DataLayer();
     <script src="{{url('/js/bootstrap.min.js')}}"></script>
     <script src="{{url('/js/md5.js')}}"></script>
 
-
-
-
-
 </head>
 <body >
 
+    <nav id="nav_parent" class="navbar navbar-expand-md navbar-light bg-light d-flex flex-column flex-md-row justify-content-md-between">
 
-
-    <nav id="nav_parent" class="navbar navbar-expand-lg navbar-light bg-light align-content-center">
-
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse " id="navbarSupportedContent">
-
-            <a class="navbar-brand " href="{{route('home')}}">
+        <ul class="navbar-nav d-flex flex-row">
+            <a class="navbar-brand" href="{{route('home')}}">
                 <lottie-player id="nav-lottie"
                                src="{{asset('/icons/maneki.json')}}"
                                background="transparent"
                                speed="1"
-                               style="width: 40px; height: 40px;"
-
-                >
+                               style="width: 40px; height: 40px;">
                 </lottie-player>
+
                 <script>
                     var nav_animation = document.getElementById("nav-lottie");
                     $("#nav_parent").mouseover(function () {
@@ -62,143 +50,129 @@ $dl = new \App\DataLayer();
                     $("#nav_parent").mouseleave(function () {
                         nav_animation.stop();
                     });
-
                 </script>
             </a>
+            <li class="nav-item align-items-center">
+                <a class="nav-link active mt-2"  href="{{route('home')}}">@lang('labels.allRecipes')</a>
+            </li>
+        </ul>
 
+        <form class="form-inline my-2 my-md-0 w-100">
+            <div class="container px-md-5">
+                <div class="input-group w-100">
+                    <input class="searcher form-control" placeholder=@lang('labels.searchPlaceholder') aria-label="Search">
 
-            <ul class="navbar-nav ml-auto">
-                <li>
-                    @if(session()->has('language'))
-
-                        @if(session('language') == "it")
-                            <div class="dropdown">
-                                <button class="btn btn-outline-secondary-my dropdown-toggle" type="button"
-                                        id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false">
-                                    <a href="{{route('setLang',['lang'=>'it'])}}"><img
-                                            src="{{asset('image/flags/it.jpg')}}" class="flag-icon"></a>
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="{{route('setLang',['lang'=>'en'])}}"><img
-                                            src="{{asset('image/flags/uk.jpg')}}" class="flag-icon"> English</a>
-
-                                </div>
-                            </div>
-                        @elseif (session('language') == "en")
-                            <div class="dropdown">
-                                <button class="btn btn-outline-secondary-my dropdown-toggle" type="button"
-                                        id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false">
-                                    <a href="{{route('setLang',['lang'=>'en'])}}"><img
-                                            src="{{asset('image/flags/uk.jpg')}}" class="flag-icon"></a>
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="{{route('setLang',['lang'=>'it'])}}"><img
-                                            src="{{asset('image/flags/it.jpg')}}" class="flag-icon"> Italiano</a>
-
-                                </div>
-                            </div>
-                        @endif
-                    @else
-                        <div class="dropdown">
-                            <button class="btn btn-outline-secondary-my dropdown-toggle" type="button"
-                                    id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false">
-                                <a href="{{route('setLang',['lang'=>'it'])}}"><img
-                                        src="{{asset('image/flags/it.jpg')}}" class="flag-icon"></a>
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="{{route('setLang',['lang'=>'en'])}}"><img
-                                        src="{{asset('image/flags/uk.jpg')}}" class="flag-icon"> Italiano</a>
-
-                            </div>
-                        </div>
-                    @endif
-
-
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link active" style="padding-top: 8%" href="{{route('home')}}">@lang('labels.allRecipes')</a>
-                </li>
-                <li class="nav-item ">
-
-
-                    <form class="form-inline">
-                        <div class="container">
-                            <input class="searcher form-control mr-sm-2" placeholder=@lang('labels.searchPlaceholder') aria-label="Search">
-                            <a class="btn btn-outline-secondary my-2 my-sm-0" href="{{route('search')}}">@lang('labels.advancedsearch')</a>
-
-                            <div class="suggestions tendina" style="display: block;">
-                                <ul>
-
-                                </ul>
-                            </div>
-                        </div>
-                    </form>
-
-
-                    <script type="text/javascript">
-
-                        var recipes = <?php echo json_encode($recipes) ?>;
-
-                        const searchInput = document.querySelector('.searcher');
-                        const suggestionPanel = document.querySelector('.suggestions');
-
-                        searchInput.addEventListener("keyup", function () {
-                            const input = searchInput.value.toString().toUpperCase();
-
-                            suggestionPanel.innerHTML = '';
-                            const suggestions = recipes.filter(function (recipe) {
-                                return recipe.title.toUpperCase().includes(input);
-                            });
-                            suggestions.forEach(function (suggested) {
-                                const div = document.createElement('div');
-
-
-                                div.innerHTML = "<li class='pt-2 pb-2'><a href='/recipe_view/" + suggested.id + "'>" + suggested.title + "</a></li>";
-
-                                suggestionPanel.appendChild(div);
-                            });
-
-                            if (input == '') {
-                                suggestionPanel.innerHTML = '';
-                            }
-
-                        });
-                    </script>
-                </li>
-                <li class="nav-item">
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            @lang('labels.searchBytag')
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="{{route('searchType',['n'=>1])}}">@lang('labels.firstDish')</a>
-                            <a class="dropdown-item" href="{{route('searchType',['n'=>2])}}">@lang('labels.mainCourse')</a>
-                            <a class="dropdown-item" href="{{route('searchType',['n'=>3])}}">@lang('labels.dessert')</a>
-                            <a class="dropdown-item" href="{{route('searchType',['n'=>4])}}">@lang('labels.appetiser')</a>
-                            <a class="dropdown-item" href="{{route('searchType',['n'=>5])}}">@lang('labels.sideDish')</a>
-                            <a class="dropdown-item" href="{{route('searchType',['n'=>6])}}">@lang('labels.meat')</a>
-                            <a class="dropdown-item" href="{{route('searchType',['n'=>7])}}">@lang('labels.fish')</a>
-                            <a class="dropdown-item" href="{{route('searchType',['n'=>8])}}">@lang('labels.vegetarian')</a>
-                            <a class="dropdown-item" href="{{route('searchType',['n'=>9])}}">@lang('labels.vegan')</a>
-                            <a class="dropdown-item" href="{{route('searchType',['n'=>10])}}">@lang('labels.glutenFree')</a>
-                            <a class="dropdown-item" href="{{route('searchType',['n'=>11])}}">@lang('labels.withoutAll')</a>
-                        </div>
+                    <div class="input-group-append">
+                        <a class="btn btn-outline-secondary my-0" href="{{route('search')}}">@lang('labels.advancedsearch')</a>
                     </div>
+                </div>
+
+                <div class="suggestions tendina" style="display: block;">
+                </div>
+            </div>
+            <script type="text/javascript">
+
+                var recipes = <?php echo json_encode($recipes) ?>;
+
+                const searchInput = document.querySelector('.searcher');
+                const suggestionPanel = document.querySelector('.suggestions');
+
+                searchInput.addEventListener("keyup", function () {
+                    const input = searchInput.value.toString().toUpperCase();
+
+                    suggestionPanel.innerHTML = '';
+                    const suggestions = recipes.filter(function (recipe) {
+                        return recipe.title.toUpperCase().includes(input);
+                    });
+                    suggestions.forEach(function (suggested) {
+                        const div = document.createElement('div');
+
+
+                        div.innerHTML = "<li class='pt-2 pb-2'><a href='/recipe_view/" + suggested.id + "'>" + suggested.title + "</a></li>";
+
+                        suggestionPanel.appendChild(div);
+                    });
+
+                    if (input == '') {
+                        suggestionPanel.innerHTML = '';
+                    }
+
+                });
+            </script>
+        </form>
+
+        <ul class="navbar-nav d-flex flex-row">
+            @if($logged)
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="{{route('logout')}}">{{ $loggedName }}</a>
                 </li>
+                <li class="nav-item pr-2 pb-1">
+                </li>
+                <img style="height: 40px; width: 40px; border-radius: 100px; border-style: solid; border-width: thin"
+                     @if(($dl->getUserbyUsername($loggedName))->image_profile == NULL)
+                     src="{{asset('image/default_user/paw.jpg')}}"
+                     @else
+                     src ="{{asset(($dl->getUserbyUsername($loggedName))->image_profile)}}"
+                    @endif
+                >
+            @else
+                <li class="nav-item">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginRegModal">
+                        @lang('labels.loginButton')
+                    </button>
+                </li>
+            @endif
+            {{--            @yield('right_navbar')--}}
+        </ul>
 
-            </ul>
-
-
-
-            <ul class="navbar-nav ml-auto">
-                @yield('right_navbar')
-            </ul>
-        </div>
     </nav>
+
+    @if($logged)
+{{--    Barra di navigazione secondaria--}}
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top align-content-center">
+        <ul class="navbar-nav">
+            <li class="navbar-text">
+                Il mio Account
+            </li>
+        </ul>
+        <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbar2NavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+             <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbar2NavDropdown">
+        <ul class="navbar-nav ml-sm-auto">
+            <li class="nav-item">
+                <a class="nav-link" id="navbar2-myrecipes" href="{{route('account_all_recipes')}}">@lang('labels.recipeAll')</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="navbar2-favorites" href="{{route('account_favorites')}}">@lang('labels.recipeFav')</a>
+            </li>
+            <?php $user = ($dl->getUserbyUsername($loggedName)); ?>
+            @if($user->isEditor)
+                <li class="nav-item">
+                    <a class="nav-link" id="navbar2-recentlyadded" href="{{route('review')}}">@lang('labels.recentlyAdded')</a>
+                </li>
+            @endif
+            @if($user->isModerator)
+                <li class="nav-item">
+                    <a class="nav-link" id="navbar2-revised" href="{{route('approved')}}">@lang('labels.revised')</a>
+                </li>
+            @endif
+            @if($user->isAdmin)
+                <li class="nav-item">
+                    <a class="nav-link" id="navbar2-accounts" href="{{route('account_management')}}">@lang('labels.accountManagement')</a>
+                </li>
+            @endif
+            <li class="nav-item">
+                <a class="nav-link" id="navbar2-settings" href="{{route('account_settings')}}">@lang('labels.settings')</a>
+            </li>
+            <li>
+                <a class="nav-link" id="navbar2-logout" href="{{route('logout')}}">@lang('labels.logout')</a>
+            </li>
+        </ul>
+        </div>
+
+    </nav>
+    @endif
 
 
 
@@ -476,11 +450,47 @@ $dl = new \App\DataLayer();
             </div>
         </div>
     </div>
+
+
     @yield('body')
 
 
+    <div class="footer">
 
-    <div class="footer ">
+
+        <div class="container">
+            <div class="dropdown">
+            Lingua:
+            @if(session()->has('language') && session('language') == "en")
+                    <button class="btn btn-outline-secondary-my dropdown-toggle" type="button"
+                            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                        <a class="dropdown-item" href="{{route('setLang',['lang'=>'en'])}}"><img
+                                src="{{asset('image/flags/uk.jpg')}}" class="flag-icon"> English</a>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="{{route('setLang',['lang'=>'it'])}}"><img
+                                src="{{asset('image/flags/it.jpg')}}" class="flag-icon"> Italiano</a>
+
+                    </div>
+                @else
+                    <button class="btn btn-outline-secondary-my dropdown-toggle" type="button"
+                            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                        <a href="{{route('setLang',['lang'=>'it'])}}"><img
+                                src="{{asset('image/flags/it.jpg')}}" class="flag-icon"> Italiano</a>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="{{route('setLang',['lang'=>'en'])}}"><img
+                                src="{{asset('image/flags/uk.jpg')}}" class="flag-icon"> English</a>
+
+                    </div>
+                @endif
+        </div>
+
+
+        </div>
+
         <div class="text-center small">
             <br/>
             <p>@lang('labels.designBy')</p>

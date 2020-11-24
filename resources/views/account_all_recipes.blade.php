@@ -19,7 +19,7 @@ foreach ($recipes_all as $recipe_ok) {
 
 @section('title', 'All recipe')
 
-@section('right_navbar')
+@section('right_navbar') {{-- questo non lo usa più --}}
     <li class="nav-item pr-2 pb-1">
         <img style="border-radius: 100px; height: 40px; width: 40px;"
              @if(($dl->getUserbyUsername($loggedName))->image_profile == NULL)
@@ -42,7 +42,12 @@ foreach ($recipes_all as $recipe_ok) {
         </li>
 @endsection
 
+
 @section('body')
+
+    <script> // questo aggiunge la classe active all'elemento "le mie ricette" nel menu
+        $('#navbar2-myrecipes').addClass('active');
+    </script>
 
     <!-- Header -->
     <div id="parent-setting" class="container text-center p-4">
