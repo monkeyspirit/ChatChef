@@ -17,16 +17,25 @@ $dl = new \App\DataLayer();
     <link href="{{url('/css/bootstrap.css')}}" rel="stylesheet" type="text/css" >
 
 
-    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap" rel="stylesheet">
 
+   <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+    <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap" rel="stylesheet">
     <!-- jQuery e plugin JavaScript -->
     <script src="{{url('http://code.jquery.com/jquery.js')}}"></script>
     <script src="{{url('/js/popper.min.js')}}"></script>
     <script src="{{url('/js/bootstrap.min.js')}}"></script>
     <script src="{{url('/js/md5.js')}}"></script>
+
+    <link rel="stylesheet" href="{{url('/OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css')}}">
+    <link rel="stylesheet" href="{{url('/OwlCarousel2-2.3.4/dist/assets/owl.theme.default.min.css')}}">
+
+    <script src="{{url('/OwlCarousel2-2.3.4/dist/owl.carousel.js')}}"></script>
 
 </head>
 <body >

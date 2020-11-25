@@ -64,10 +64,19 @@
 }
 
 /*Title*/
-.h-title{
+.h-title-home{
     font-size: 65px;
-    font-family: 'Amatic SC', cursive;
+    /*font-family: 'Sacramento', cursive;*/
+    /*font-family: 'Satisfy', cursive;*/
+    font-family: 'Fredericka the Great', cursive;
 }
+.h-title{
+    font-size: 50px;
+    /*font-family: 'Sacramento', cursive;
+    font-family: 'Satisfy', cursive;*/
+    font-family: 'Fredericka the Great', cursive;
+}
+
 
 
 /*Icon*/

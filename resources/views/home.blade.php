@@ -62,64 +62,74 @@ foreach ($recipes_allDate as $recipe_okDate) {
 
 
 
-    <div id="parent-title" class="container text-center p-4">
-        <img src="{{asset('image/doodle/doodle1.jpg')}}" width="200" height="60" alt="">
+       <div id="parent-title" class="container text-center p-4">
 
         <div class="d-flex justify-content-center">
-            <div class="row  align-self-center pr-4">
-                <lottie-player id="fir-lottie"
-                               src="{{asset('/icons/angry-cat.json')}}"
-                               background="transparent"
-                               speed="1"
-                               style="width: 50px; height: 50px;position: relative;"
-
-                >
-                </lottie-player>
-                <script>
-                    var fir_animation = document.getElementById("fir-lottie");
-                    $("#parent-title").mouseover(function () {
-                        fir_animation.play();
-                    });
-                    $("#parent-title").mouseleave(function () {
-                        fir_animation.stop();
-                    });
-                </script>
-
-            </div>
-            <h1 class="h-title">ChatChef</h1>
-            <div class="row align-self-center pl-4">
-                <lottie-player id="sec-lottie"
-                               src="{{asset('/icons/salad.json')}}"
-                               background="transparent"
-                               speed="1"
-                               style="width: 50px; height: 50px;"
-
-                >
-                </lottie-player>
-                <script>
-                    var sec_animation = document.getElementById("sec-lottie");
-                    $("#parent-title").mouseover(function () {
-                        sec_animation.play();
-                    });
-                    $("#parent-title").mouseleave(function () {
-                        sec_animation.stop();
-                    });
-                </script>
-
-            </div>
+            <h1 class="h-title-home">ChatChef</h1>
         </div>
+        <div class="d-flex justify-content-center">
+        <lottie-player id="fir-lottie"
+                       src="{{asset('/icons/angry-cat.json')}}"
+                       background="transparent"
+                       speed="1"
+                       style="width: 50px; height: 50px;position: relative;"
 
-        <img src="{{asset('image/doodle/doodle2.jpg')}}" width="200" height="60" alt="">
+        >
+        </lottie-player>
+        <script>
+            var fir_animation = document.getElementById("fir-lottie");
+            $("#parent-title").mouseover(function () {
+                fir_animation.play();
+            });
+            $("#parent-title").mouseleave(function () {
+                fir_animation.stop();
+            });
+        </script>
+        </div>
     </div>
 
-    <!-- Copertina -->
-    <div class="image-container">
-        <div id="cover">
 
-        </div>
+   <!-- Copertina -->
+    <div class="container" style="background-color: #d2691e">
+                <div class="owl-carousel">
+                    @foreach($recipes as $recipe)
+                        <div class="pt-4">
+                            @include('utils.card_view_recipe_home',['recipe'=>$recipe])
+                        </div>
+                    @endforeach
 
-        <script src="{{asset('js/helloCovers.js')}}"></script>
+                </div>
+                <script>
+                    $(document).ready(function(){
+
+                        $('.owl-carousel').owlCarousel({
+                            loop:true,
+                            margin:10,
+                            responsiveClass:true,
+                            responsive:{
+                                0:{
+                                    items:1,
+                                    nav:true,
+                                    loop:false
+
+                                },
+                                600:{
+                                    items:2,
+                                    nav:false,
+                                    loop:false
+                                },
+                                1000:{
+                                    items:3,
+                                    nav:true,
+                                    loop:false
+                                }
+                            }
+                        })
+                    });
+                </script>
     </div>
+
+
 
 
     <div class="container text-center pt-4 pb-4">
