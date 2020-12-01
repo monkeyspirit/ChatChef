@@ -77,7 +77,7 @@ return [
     'littleunit'=>'u',
     'tablespoon'=>'cucc.',
     'addField'=>'Aggiungi un campo ',
-    'insertCover'=>'Inserisci una o più immagini che descrivano la ricetta:',
+    'insertCover'=>'Qui è possibile inserire delle immagini di copertina per la ricetta:',
     'insertStep'=>'Inserisci i passaggi della preparazione, aggiungi un\'immagine per ogni passaggio:',
     'step'=>'Passaggio',
     'deleteStep'=>'Elimina il passaggio',
@@ -124,7 +124,15 @@ return [
     'sendMail' => 'Una mail è stata inviata alla tua casella di posta con la nuova password.',
     'allRecipes' => 'Tutte le ricette',
     'searchBytag' => 'Ricerca per tipo',
-    'changerole' => 'Cambia ruolo'
-
+    'changerole' => 'Cambia ruolo',
+    'success' => 'Completato',
+    'success text' => 'La tua ricetta è stata inviata!<br/>Presto sarà presa in considerazione.',
+    'addImage' => 'Aggiungi un\'immagine',
+    'remove' => 'Rimuovi',
+    'required' => 'I campi contrassegnati con * sono obbligatori',
+    'tag' => 'Etichette',
+    'easy' => "Facile",
+    'mid' => "Media",
+    'expert' => "Difficile",
 
 ];

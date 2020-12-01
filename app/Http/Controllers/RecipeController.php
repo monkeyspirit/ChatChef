@@ -12,6 +12,8 @@ class RecipeController extends Controller
 {
     public function addRecipe(){
 
+        print_r($_POST);
+
         if (isset($_POST['register_form'])){
 
             $title = $_POST['title'];

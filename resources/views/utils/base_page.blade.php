@@ -11,31 +11,41 @@ $dl = new \App\DataLayer();
     <title> @yield('title')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- Fogli di stile -->
 
+    <!-- CSS -->
+    <!-- style.css -->
     <link href="{{url('/css/style.css')}}" rel="stylesheet" type="text/css" >
-    {{--<link href="{{url('/css/bootstrap.css')}}" rel="stylesheet" type="text/css" >--}}
-    <link href="{{url('/Cirrus-0.6.0/dist/cirrus.css')}}" rel="stylesheet" type="text/css" >
-
-
-   <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap" rel="stylesheet">
-    <!-- jQuery e plugin JavaScript -->
-    <script src="{{url('http://code.jquery.com/jquery.js')}}"></script>
-    <script src="{{url('/js/popper.min.js')}}"></script>
-    <script src="{{url('/js/bootstrap.min.js')}}"></script>
-    <script src="{{url('/js/md5.js')}}"></script>
-
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="{{url('css/bootstrap.css')}}">
+    <!-- OwlCarousel -->
     <link rel="stylesheet" href="{{url('/OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css')}}">
     <link rel="stylesheet" href="{{url('/OwlCarousel2-2.3.4/dist/assets/owl.theme.default.min.css')}}">
+    <!-- Google fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap" rel="stylesheet">
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+
+    <!-- JS -->
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- popper.min.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <!-- bootstrap.min.js -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+    <!-- md5 -->
+    <script src="{{url('/js/md5.js')}}"></script>
+    <!-- OwlCarousel -->
     <script src="{{url('/OwlCarousel2-2.3.4/dist/owl.carousel.js')}}"></script>
+
+
+
+
 
 </head>
 <body >

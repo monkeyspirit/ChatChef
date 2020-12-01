@@ -78,7 +78,7 @@ return [
     'tablespoon'=>'tbs',
     'littleunit'=>'u',
     'addField'=>'Add a new Field ',
-    'insertCover'=>'Insert one or more images that describe your recipe:',
+    'insertCover'=>'There is possible to insert images for the cover of the recipe:',
     'insertStep'=>'Insert the steps of the preparation, you can also add an image for every step:',
     'step'=>'Step',
     'inserTag'=>'Insert the tags:',
@@ -125,9 +125,17 @@ return [
     'sendMail' => 'A mail has been send to your mailbox with the new password.',
     'allRecipes' => 'All Recipes',
     'searchBytag' => 'Search by type',
-    'changerole' => 'Change role'
+    'changerole' => 'Change role',
 
-
+    'success' => 'Success',
+    'success text' => 'Your recipe has been sent! It will soon be considered.',
+    'addImage' => 'Add an image',
+    'remove' => 'Remove',
+    'required' => 'The fields with * are mandatory',
+    'tag' => 'Tag',
+    'easy' => "Easy",
+    'mid' => "Middle",
+    'expert' => "Expert",
 
 
 
