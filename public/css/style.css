@@ -62,19 +62,10 @@
 }
 
 /*Title*/
-.h-title-home{
-    font-size: 65px;
-    /*font-family: 'Sacramento', cursive;*/
-    /*font-family: 'Satisfy', cursive;*/
-    font-family: 'Fredericka the Great', cursive;
-}
 .h-title{
-    font-size: 50px;
-    /*font-family: 'Sacramento', cursive;
-    font-family: 'Satisfy', cursive;*/
-    font-family: 'Fredericka the Great', cursive;
+    font-size: 65px;
+    font-family: 'Amatic SC', cursive;
 }
-
 
 
 /*Icon*/
@@ -704,6 +695,10 @@
     overflow: hidden;
 }
 
+.home-carousel-image {
+    height: 400px;
+    object-fit: cover;
+}
 /* Style the form */
 #regForm {
     background-color: #ffffff;
@@ -711,6 +706,24 @@
     padding: 40px;
     width: 70%;
     min-width: 300px;
+}
+
+.carousel:hover {
+    cursor: pointer;
+}
+.carousel-item:hover img{
+    filter: brightness(75%);
+}
+.carousel-item:hover h2 {
+    text-decoration: underline;
+}
+
+.carousel-control-prev:hover, .carousel-control-next:hover {
+    background-color: orange;
+}
+
+.recipe-card:hover {
+    cursor: pointer;
 }
 
 /* Style the input fields */

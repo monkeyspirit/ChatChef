@@ -44,7 +44,7 @@ else {
 ?>
 
 
-<div class="col mb-3">
+<div class="my-1 col" onclick="window.location.href='{{route('recipe_view',['id'=>$recipe->id])}}'">
 
     <div  class="container-card">
         <div class="column">
@@ -69,9 +69,9 @@ else {
                     <h2 class="sub_title">@lang('labels.labelCardHome') {{$user->firstname}} {{$user->lastname}}</h2>
 
                     <p style="height:140px; overflow-y: scroll;" class="description">{{$recipe->description}}
-                        <p class="description text-center">
-                            <a class="btn btn-outline-primary" href="{{route('recipe_view',['id'=>$recipe->id])}}">@lang('labels.buttonGoto')</a>
-                        </p>
+{{--                        <p class="description text-center">--}}
+{{--                            <a class="btn btn-outline-primary" href="{{route('recipe_view',['id'=>$recipe->id])}}">@lang('labels.buttonGoto')</a>--}}
+{{--                        </p>--}}
                     </p>
 
                     <!--<div class="post-meta"><span class="timestamp"><i class="fa fa-clock-">o</i> 6 mins ago</span><span
