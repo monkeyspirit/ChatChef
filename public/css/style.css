@@ -64,19 +64,10 @@
 }
 
 /*Title*/
-.h-title-home{
-    font-size: 65px;
-    /*font-family: 'Sacramento', cursive;*/
-    /*font-family: 'Satisfy', cursive;*/
-    font-family: 'Fredericka the Great', cursive;
-}
 .h-title{
-    font-size: 50px;
-    /*font-family: 'Sacramento', cursive;
-    font-family: 'Satisfy', cursive;*/
-    font-family: 'Fredericka the Great', cursive;
+    font-size: 65px;
+    font-family: 'Amatic SC', cursive;
 }
-
 
 
 /*Icon*/
@@ -714,3 +705,24 @@
     overflow: hidden;
 }
 
+.home-carousel-image {
+    height: 400px;
+    object-fit: cover;
+}
+
+.carousel:hover {
+    cursor: pointer;
+}
+.carousel:hover img{
+    filter: brightness(50%);
+}
+.carousel-item:hover h2 {
+    text-decoration: underline;
+}
+
+.carousel-control-prev, .carousel-control-next {
+}
+
+.recipe-card:hover {
+    cursor: pointer;
+}

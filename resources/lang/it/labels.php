@@ -124,7 +124,12 @@ return [
     'sendMail' => 'Una mail è stata inviata alla tua casella di posta con la nuova password.',
     'allRecipes' => 'Tutte le ricette',
     'searchBytag' => 'Ricerca per tipo',
-    'changerole' => 'Cambia ruolo'
+    'changerole' => 'Cambia ruolo',
+    'orderby' => 'Ordina Per',
+    'alphabeticalAZ' => 'Alfabetico (A->Z)',
+    'alphabeticalZA' => 'Alfabetico (Z->A)',
+    'date' => 'Più Recente',
+    'dateInverse' => 'Meno Recente',
 
 
 ];

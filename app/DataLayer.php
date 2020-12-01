@@ -108,6 +108,11 @@ class DataLayer
         return DB::table('recipe')->orderBy('title')->get();
     }
 
+
+    public function getAllRecipeAZPaginate(){
+        return DB::table('recipe')->orderBy('title')->paginate(2);
+    }
+
     public function getAllRecipeDate(){
         return DB::table('recipe')->orderBy('date')->get();
     }
@@ -265,7 +270,7 @@ class DataLayer
         else if($role == 3){
           DB::update('UPDATE `user` SET `isAdmin` = ? WHERE `user`.`id` = ?;',[0, $user_id]);
           DB::update('UPDATE `user` SET `isEditor` = ? WHERE `user`.`id` = ?;',[0, $user_id]);
-          DB::update('UPDATE `user` SET `isModerator` = ? WHERE `user`.`id` = ?;',[1, $user_id]);  
+          DB::update('UPDATE `user` SET `isModerator` = ? WHERE `user`.`id` = ?;',[1, $user_id]);
         }
     }
 

@@ -14,8 +14,8 @@ $dl = new \App\DataLayer();
     <!-- Fogli di stile -->
 
     <link href="{{url('/css/style.css')}}" rel="stylesheet" type="text/css" >
-    {{--<link href="{{url('/css/bootstrap.css')}}" rel="stylesheet" type="text/css" >--}}
-    <link href="{{url('/Cirrus-0.6.0/dist/cirrus.css')}}" rel="stylesheet" type="text/css" >
+    <link href="{{url('/css/bootstrap.css')}}" rel="stylesheet" type="text/css" >
+{{--    <link href="{{url('/Cirrus-0.6.0/dist/cirrus.css')}}" rel="stylesheet" type="text/css" >--}}
 
 
    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap" rel="stylesheet">
