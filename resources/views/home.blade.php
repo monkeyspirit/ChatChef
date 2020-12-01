@@ -77,21 +77,21 @@ $numRecipesPerPage = 3; // poi nella versione finale facciamo 6
 @section('body')
 
     <div class="container text-center my-3">
-        <h1 class="h-title">I consigli del giorno</h1>
+        <h1 class="h-title mt-5 mb-4">I consigli del giorno</h1>
 
         <div id="carousel" class="carousel slide" data-ride="carousel" style="background-color: darkslategrey">
-{{--            <ol class="carousel-indicators">--}}
-{{--                <li data-target="#carousel" data-slide-to="0" class="active"></li>--}}
-{{--                <li data-target="#carousel" data-slide-to="1"></li>--}}
-{{--                <li data-target="#carousel" data-slide-to="2"></li>--}}
-{{--            </ol>--}}
+            {{-- <ol class="carousel-indicators">
+                <li data-target="#carousel" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel" data-slide-to="1"></li>
+                <li data-target="#carousel" data-slide-to="2"></li>
+            </ol> --}}
             <div class="carousel-inner">
                 <div class="carousel-item active" onclick="window.location.href='{{route('recipe_view',['id'=>$recipes_carousel[0]->id])}}'">
                     <?php
                     $cover1 = $dl->getFirstCoverImage($recipes_carousel[0]->id)
                     ?>
                     <img class="d-block w-100 home-carousel-image" src="{{ asset($cover1) }}" alt="First slide" >
-                    <div class="carousel-caption d-none d-md-block">
+                    <div class="carousel-caption d-block">
                         <h2>{{ $recipes_carousel[0]->title }}</h2>
                         <p>{{ $recipes_carousel[0]->description }}</p>
                     </div>
@@ -101,7 +101,7 @@ $numRecipesPerPage = 3; // poi nella versione finale facciamo 6
                     $cover2 = $dl->getFirstCoverImage($recipes_carousel[1]->id)
                     ?>
                     <img class="d-block w-100 home-carousel-image" src="{{ asset($cover2) }}" alt="First slide" >
-                    <div class="carousel-caption d-none d-md-block">
+                    <div class="carousel-caption d-block">
                         <h2>{{ $recipes_carousel[1]->title }}</h2>
                         <p>{{ $recipes_carousel[1]->description }}</p>
                     </div>
@@ -111,7 +111,7 @@ $numRecipesPerPage = 3; // poi nella versione finale facciamo 6
                     $cover3 = $dl->getFirstCoverImage($recipes_carousel[2]->id)
                     ?>
                     <img class="d-block w-100 home-carousel-image" src="{{ asset($cover3) }}" alt="First slide" >
-                    <div class="carousel-caption d-none d-md-block">
+                    <div class="carousel-caption d-block">
                         <h2>{{ $recipes_carousel[2]->title }}</h2>
                         <p>{{ $recipes_carousel[2]->description }}</p>
                     </div>
@@ -132,7 +132,6 @@ $numRecipesPerPage = 3; // poi nella versione finale facciamo 6
 
 
     <div class="container pt-4 pb-4">
-
         {{-- OLD SORTING SECTION--}}
         {{--
         <div class="d-flex justify-content-center">
@@ -213,7 +212,7 @@ $numRecipesPerPage = 3; // poi nella versione finale facciamo 6
         <img src="{{asset('image/doodle/doodle6.jpg')}}" width="250" height="60" alt="">
         {{-- --}}
 
-        <h1 class="h-title text-center">@lang('labels.homeTitle')</h1>
+        <h1 class="h-title text-center mt-5 ">@lang('labels.homeTitle')</h1>
 
         <form class="form-inline d-flex justify-content-end">
             <div class="form-group ">
@@ -275,7 +274,7 @@ $numRecipesPerPage = 3; // poi nella versione finale facciamo 6
             </script>
         </form>
 
-        <div class="container my-1 border-bottom"></div>
+        <div class="container my-3 border-bottom"></div>
 
         <!-- Card recipes IDate-->
         <div id="fade" class="container">

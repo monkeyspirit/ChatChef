@@ -713,14 +713,15 @@
 .carousel:hover {
     cursor: pointer;
 }
-.carousel:hover img{
-    filter: brightness(50%);
+.carousel-item:hover img{
+    filter: brightness(75%);
 }
 .carousel-item:hover h2 {
     text-decoration: underline;
 }
 
-.carousel-control-prev, .carousel-control-next {
+.carousel-control-prev:hover, .carousel-control-next:hover {
+    background-color: orange;
 }
 
 .recipe-card:hover {
