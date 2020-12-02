@@ -747,15 +747,23 @@ input.invalid {
 
 /* Make circles that indicate the steps of the form: */
 .step {
-    height: 15px;
-    width: 15px;
+    height: 50px;
+    width: 50px;
     margin: 0 2px;
     background-color: #bbbbbb;
     border: none;
     border-radius: 50%;
     display: inline-block;
     opacity: 0.5;
+
 }
+
+.progress-icon {
+    padding-top: 10px;
+    font-size: 28px;
+    color: #ffffff;
+}
+
 
 /* Mark the active step: */
 .step.active {
@@ -764,5 +772,10 @@ input.invalid {
 
 /* Mark the steps that are finished and valid: */
 .step.finish {
-    background-color: #4CAF50;
+    background-color: orange;
+}
+
+
+input[type=number]::-webkit-inner-spin-button {
+    opacity: 1;
 }

@@ -66,8 +66,8 @@ return [
     'title' => 'Title',
     'difficult'=>'Difficulty',
     'preptime'=>'Preparation time',
-    'cookingtime'=>'Cooking time',
-    'doses'=>'Doses for',
+    'cookingtime'=>'Cooking time    ',
+    'doses'=>'Doses for       ',
     'description'=>'Description',
     'insertIng'=>'Insert the ingredients with their quantities:',
     'ingredients'=>'Ingredient',
@@ -136,7 +136,10 @@ return [
     'easy' => "Easy",
     'mid' => "Middle",
     'expert' => "Expert",
-
+    'people' => 'people',
+    'ingredient_list' => "Ingredients' list",
+    'add_ingredient' => "Add an ingredient",
+    'tags' => 'Tags',
 
 
 
