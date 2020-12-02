@@ -283,7 +283,7 @@ foreach ($recipes_all as $recipe_ok) {
                                                         '                                            <span style="color: darkred"><strong>*</strong></span>\n' +
                                                         '                                        </div>' +
                                                     '                                        <div class="col">\n' +
-                                                        '                                        <input oninput="this.className = \'\'" type="text" class="form-control" placeholder=@lang('labels.ingredients') name="ingredients['+x+']">\n' +
+                                                        '                                        <input oninput="this.className = \'\'" type="text" class="form-control" placeholder=@lang('labels.ingredients') name="ingredients[]">\n' +
                                                         '                                    </div>\n' +
                                                         '\n' +
                                                         '                                    <!-- Quantity -->\n' +

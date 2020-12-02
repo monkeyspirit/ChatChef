@@ -111,17 +111,17 @@ class RecipeController extends Controller
                     $dl->addImageRecipe($image);
                 }
                 else{
-                    $pathCover = 'image/default_cover.jpg';
-                    $image = array('picture_path' => $pathCover, 'recipe_id' => $recipe_id);
+                    $path_default = 'image/default_cover.jpg';
+                    $image = array('picture_path' => $path_default, 'recipe_id' => $recipe_id);
                     $dl->addImageRecipe($image);
                 }
 
             }
         }
         else{
-            $pathCover = 'image/default_cover.jpg';
+            $path_default = 'image/default_cover.jpg';
 
-            $image = array('picture_path' => $pathCover, 'recipe_id' => $recipe_id);
+            $image = array('picture_path' => $path_default, 'recipe_id' => $recipe_id);
             $dl->addImageRecipe($image);
 
         }
