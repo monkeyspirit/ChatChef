@@ -12,9 +12,9 @@ class RecipeController extends Controller
 {
     public function addRecipe(){
 
-        print_r($_POST);
 
-        if (isset($_POST['register_form'])){
+
+          if (isset($_POST['register_form'])){
 
             $title = $_POST['title'];
             $date = date("Y/m/d");
@@ -63,35 +63,70 @@ class RecipeController extends Controller
         $dl->addRecipeDB($recipe);
         $recipe_id = $dl->getLastRecipeUserInsert($user_id);
 
-        $img = count($_FILES['stepsImage']['name']);
+        if (isset($_FILES['stepsImage'])){
 
-        $path='upload/'. $recipe_id.'/';
-        mkdir($path,0777,true);
-        $step_images="";
 
-        for($t=0; $t<$img; $t++){
-            move_uploaded_file($_FILES['stepsImage']['tmp_name'][$t], $path . $_FILES['stepsImage']['name'][$t]);
-                $image = array('picture_path'=>$path . $_FILES['stepsImage']['name'][$t],'recipe_id'=>null);
-                $dl->addImageRecipe($image);
-                $image_id = $dl->getLastImageInsert($path . $_FILES['stepsImage']['name'][$t]);
-                $step_images = $step_images."_".$image_id;
+            $path='upload/'. $recipe_id.'/';
+            mkdir($path,0777,true);
+            $step_images="";
 
+            for($t=0; $t<$count_step; $t++){
+                if($_FILES['stepsImage']['type'][$t] !== ""){
+
+                    move_uploaded_file($_FILES['stepsImage']['tmp_name'][$t], $path . $_FILES['stepsImage']['name'][$t]);
+                    $image = array('picture_path'=>$path . $_FILES['stepsImage']['name'][$t],'recipe_id'=>null);
+                    $dl->addImageRecipe($image);
+                    $image_id = $dl->getLastImageInsert($path . $_FILES['stepsImage']['name'][$t]);
+                    $step_images = $step_images."_".$image_id;
+                }
+                else{
+
+                    $n= rand(1, 6);
+                    $default_path = 'image/default_step_image/'.$n.'.jpg';
+                    $image = array('picture_path'=>$default_path,'recipe_id'=>null);
+                    $dl->addImageRecipe($image);
+                    $image_id = $dl->getLastImageInsert($default_path . $_FILES['stepsImage']['name'][$t]);
+                    $step_images = $step_images."_".$image_id;
+
+                }
+
+
+            }
+
+            $dl->updateImageRecipeSteps($recipe_id,$step_images);
         }
 
-        $dl->updateImageRecipeSteps($recipe_id,$step_images);
 
-        $imgCover = count($_FILES['imageCover']['name']);
+        if (isset($_FILES['imageCover'])) {
+            $imgCover = count($_FILES['imageCover']['name']);
 
-        $pathCover='upload_cover/'. $recipe_id.'/';
-        mkdir($pathCover,0777,true);
+            $pathCover = 'upload_cover/' . $recipe_id . '/';
+            mkdir($pathCover, 0777, true);
 
-        for($t=0; $t<$imgCover; $t++){
-            move_uploaded_file($_FILES['imageCover']['tmp_name'][$t], $pathCover . $_FILES['imageCover']['name'][$t]);
-            $image = array('picture_path'=>$pathCover . $_FILES['imageCover']['name'][$t],'recipe_id'=>$recipe_id);
+            for ($t = 0; $t < $imgCover; $t++) {
+
+                if($_FILES['imageCover']['type'][$t] !== ""){
+                    move_uploaded_file($_FILES['imageCover']['tmp_name'][$t], $pathCover . $_FILES['imageCover']['name'][$t]);
+                    $image = array('picture_path' => $pathCover . $_FILES['imageCover']['name'][$t], 'recipe_id' => $recipe_id);
+                    $dl->addImageRecipe($image);
+                }
+                else{
+                    $pathCover = 'image/default_cover.jpg';
+                    $image = array('picture_path' => $pathCover, 'recipe_id' => $recipe_id);
+                    $dl->addImageRecipe($image);
+                }
+
+            }
+        }
+        else{
+            $pathCover = 'image/default_cover.jpg';
+
+            $image = array('picture_path' => $pathCover, 'recipe_id' => $recipe_id);
             $dl->addImageRecipe($image);
+
         }
 
-        return Redirect::to(route('account_all_recipes'));
+       return Redirect::to(route('account_all_recipes'));
 
     }
 

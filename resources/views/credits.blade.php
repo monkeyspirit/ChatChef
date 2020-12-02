@@ -87,6 +87,7 @@ foreach ($recipes_all as $recipe_ok) {
             <span>Article News Card: Made with <i class='fa fa-heart animated infinite pulse'></i> by <a href='http://andy.design'>Andy Tran</a> | Designed by <a href='http://justinkwak.com'>JustinKwak</a></span><br/>
             <a href='https://www.freepik.com/free-photos-vectors/cartoon'>Cartoon vector created by pch.vector - www.freepik.com</a><br/>
             <a href='https://www.freepik.com/free-photos-vectors/background'>Background photo created by freepik - www.freepik.com</a>
+            <a href='https://www.freepik.com/vectors/people'>People vector created by pikisuperstar - www.freepik.com</a>
         </div>
 
 

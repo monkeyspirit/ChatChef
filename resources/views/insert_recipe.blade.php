@@ -122,7 +122,7 @@ foreach ($recipes_all as $recipe_ok) {
                                                     $(wrapper).append(' <div id="dynamicImage" class="input-group mb-3 pt-2">\n'+
                                                         '<div class="custom-file">\n'+
                                                         '<input id="file_upload"  type="file" accept="image/png, image/jpeg" class="custom-file-input form-control" name="imageCover[]" aria-describedby="imageCover">\n'+
-                                                        '<label class="custom-file-label" for="imageCover">@lang('labels.chooseFile') <span style="color: darkred"><strong>*</strong></span></label>\n'+
+                                                        '<label class="custom-file-label" for="imageCover">@lang('labels.chooseFile')</label>\n'+
                                                         '</div>'+
                                                         '<a href="#" class="delete pt-2 pl-1" style="color: #c72222"><i class="fas fa-minus-square"></i> @lang('labels.remove')</a></div>'); //add input box
                                                     $(".custom-file-input").on("change", function() {
@@ -318,6 +318,7 @@ foreach ($recipes_all as $recipe_ok) {
                                 </div>
 
                                 <div class="tab">
+
                                     <div class="text-center">
                                         <h2>@lang('labels.method')</h2>
                                     </div>
@@ -326,10 +327,15 @@ foreach ($recipes_all as $recipe_ok) {
                                         <label><strong>@lang('labels.step'):</strong></label><label style="color: darkred"> *</label>
                                         <textarea rows="4" class="form-control" name="steps[]" aria-label="steps" aria-describedby="steps"></textarea>
                                         <br>
-                                        <div class="custom-file">
+
+                                       <div class="custom-file">
                                             <input type="file" accept="image/*" class="custom-file-input" name="stepsImage[]"/>
-                                            <label class="custom-file-label" for="stepsImage">@lang('labels.chooseFile') <span style="color: darkred"><strong>*</strong></span></label>
+                                            <label class="custom-file-label" for="stepsImage">@lang('labels.chooseFile')</label>
                                         </div>
+
+
+
+
                                     </div>
                                     <script>
                                         $(".custom-file-input").on("change", function() {
@@ -362,16 +368,18 @@ foreach ($recipes_all as $recipe_ok) {
                                                                             '<br><label><strong>@lang('labels.step'):</strong></label><label style="color: darkred"> *</label>\n' +
                                                         '                                        <textarea rows="4" class="form-control" name="steps[]" aria-label="steps" aria-describedby="steps"></textarea>\n' +
                                                         '                                        <br>\n' +
-                                                        '                                        <div class="custom-file">\n' +
-                                                        '                                            <input type="file" accept="image/*" class="custom-file-input" name="stepsImage[]"/>\n' +
-                                                        '                                            <label class="custom-file-label" for="stepsImage">@lang('labels.chooseFile') <span style="color: darkred"><strong>*</strong></span></label>\n' +
-                                                        '                                        </div>'+
 
-                                                            '<a href="#" class="delete pt-2 pl-1" style="color: #c72222"><i class="fas fa-minus-square"></i> @lang('labels.remove')</a></div>'); //add input box
+                                                        '                                           <div class="custom-file">\n' +
+                                                        '                                            <input type="file" accept="image/*" class="custom-file-input" name="stepsImage[]"/>\n' +
+                                                        '                                            <label class="custom-file-label" for="stepsImage">@lang("labels.chooseFile")</label>\n' +
+                                                        '                                        </div>' +
+                                                        '           <a href="#" class="delete pt-2 pl-1" style="color: #c72222"><i class="fas fa-minus-square"></i> @lang("labels.remove")</a></div>'); //add input box
                                                     $(".custom-file-input").on("change", function() {
                                                         var fileName = $(this).val().split("\\").pop();
                                                         $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
                                                     });
+
+
                                                 }
                                             });
 
@@ -462,10 +470,16 @@ foreach ($recipes_all as $recipe_ok) {
                                 </div>
 
                                 <div class="tab">
-                                    <div class="text-center">
-                                        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-                                        <lottie-player src="https://assets6.lottiefiles.com/packages/lf20_ruryzm9h.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;"    autoplay></lottie-player>
+                                    <div class="container">
+                                        <div class="text-center">
+                                            <h2>@lang('labels.success')!</h2>
+                                        </div>
+                                        <div class="row justify-content-center">
+                                            <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+                                            <lottie-player src="https://assets6.lottiefiles.com/packages/lf20_ruryzm9h.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;"    autoplay></lottie-player>
+                                        </div>
                                     </div>
+
 
 
                                 </div>
@@ -543,15 +557,33 @@ foreach ($recipes_all as $recipe_ok) {
                             x = document.getElementsByClassName("tab");
                             y = x[currentTab].getElementsByTagName("input");
                             z = x[currentTab].getElementsByTagName("textarea");
+
                             // A loop that checks every input field in the current tab:
                             for (i = 0; i < y.length; i++) {
                                 // If a field is empty...
-                                if (y[i].value === "") {
+                                if (y[i].value === "" && y[i].type !== "file") {
                                     // add an "invalid" class to the field:
                                     y[i].className += " invalid";
                                     // and set the current valid status to false:
                                     valid = false;
                                 }
+
+                                if (y[i].type === "checkbox"){
+                                    if (y[i].checked){
+                                        y[i].value = "1";
+                                    }
+                                    else{
+                                        y[i].checked = true;
+                                        y[i].value = "0";
+                                    }
+                                }
+
+                                if (y[i].type === "file") {
+                                    if (y[i].value === "") {
+
+                                    }
+                                }
+
                             }
 
                             for (i = 0; i < z.length; i++) {
