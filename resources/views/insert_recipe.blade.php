@@ -74,8 +74,6 @@ foreach ($recipes_all as $recipe_ok) {
                         </ul>
                     </div>
 
-
-
                     <br>
                         <!-- One "tab" for each step in the form: -->
                         <div class="col col-lg-8 col-md-10 col-sm-12 card" style="margin: 0 auto; float: none; margin-bottom: 10px;">
