@@ -73,17 +73,7 @@ foreach ($recipes_all as $recipe_ok) {
                             <li class="step">@lang('labels.save')</li>
                         </ul>
                     </div>
-{{--
 
-                    <!-- Circles which indicates the steps of the form: -->
-                        <div style="text-align:center;margin-top:40px;">
-                            <span class="step"><i class="progress-icon fa fa-info"></i></span>
-                            <span class="step"><i class="progress-icon fas fa-book-reader"></i></span>
-                            <span class="step"><i class="progress-icon fas fa-shopping-basket"></i></span>
-                            <span class="step"><i class="progress-icon fas fa-tasks"></i></span>
-                            <span class="step"><i class="progress-icon fas fa-tag"></i></span>
-                        </div>
---}}
 
 
                     <br>
