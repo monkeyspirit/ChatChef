@@ -144,5 +144,6 @@ return [
     'next' => 'Next',
     'prev' => 'Previous',
     'edit_text' => '',
+    'addTag' => 'Add tag'
 
 ];

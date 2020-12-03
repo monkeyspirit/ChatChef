@@ -148,5 +148,5 @@ return [
     'next' => 'Avanti',
     'prev' => 'Precedente',
     'edit_text' => 'Hai inserito tutti i campi necessari per la modifica della ricetta. <br><br><strong>Per concludere ti serve solo salvarla!</strong> <br><br>Dopo aver inviato la ricetta potrebbe trascorrere un po\' di tempo prima che venga dinuovo pubblicata, verrà prima controllata per verificare che i dati inseriti vadano bene.',
-
+    'addTag' => 'Aggiungi etichetta'
 ];

@@ -559,7 +559,7 @@ foreach ($recipes_all as $recipe_ok) {
 
                         <div class="tab">
                             <div class="text-center">
-                                <h2>@lang('labels.tags')</h2>
+                                <h2>@lang('labels.tag')</h2>
                             </div>
                             @for($i=1; $i<$number_tag; $i++)
                                 <div id="dynamicTags{{$i}}" class="col-sm-12 p-2 text-center">
@@ -710,22 +710,22 @@ foreach ($recipes_all as $recipe_ok) {
                                         @endif
                                     </select>
 
+                                    @if($i>=2)
+                                        <a href="#" class="delete pt-2 pl-1" style="color: #c72222"><i class="fas fa-minus-square"></i> @lang('labels.remove')</a>
 
-                                    <a href="#" class="delete pt-2 pl-1" style="color: #c72222"><i class="fas fa-minus-square"></i> @lang('labels.delete')</a>
+                                        <script>
+                                            $(document).ready(function () {
 
-                                    <script>
-                                        $(document).ready(function () {
+                                                var wrapper = $("#dynamicTags{{$i}}");
 
-                                            var wrapper = $("#dynamicTags{{$i}}");
+                                                $(wrapper).on("click", ".delete", function (e) {
+                                                    e.preventDefault();
+                                                    $(this).parent('div').remove();
 
-                                            $(wrapper).on("click", ".delete", function (e) {
-                                                e.preventDefault();
-                                                $(this).parent('div').remove();
-
-                                            })
-                                        });
-                                    </script>
-
+                                                })
+                                            });
+                                        </script>
+                                    @endif
 
                                 </div>
 
@@ -737,7 +737,7 @@ foreach ($recipes_all as $recipe_ok) {
 
                             <br/>
                             <div class="text-center pb-2">
-                                <button class="btn btn-outline-secondary " id="add_edit_field4">@lang('labels.addField') &nbsp;
+                                <button class="btn btn-outline-secondary " id="add_edit_field4">@lang('labels.addTag') &nbsp;
                                     <span style="font-size:16px; font-weight:bold;">+ </span>
                                 </button>
 
