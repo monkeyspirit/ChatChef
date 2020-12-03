@@ -12,8 +12,6 @@ class RecipeController extends Controller
 {
     public function addRecipe(){
 
-
-
           if (isset($_POST['register_form'])){
 
             $title = $_POST['title'];
@@ -139,7 +137,7 @@ class RecipeController extends Controller
         if(isset($_SESSION['logged'])) {
 
             $user = $dl->getUserbyUsername($_SESSION['loggedName']);
-            if (($rec->approved != 0) && ($user->role == 2 || $user->id == $rec->user_id)) {
+            if (($rec->approved != 0) && ($user->isModerator || $user->id == $rec->user_id)) {
                 if (isset($_POST['edit_form'])) {
 
 
@@ -179,7 +177,7 @@ class RecipeController extends Controller
                         //Creo il path per le nuove foto
                         $path = 'upload/' . $id . '/';
                         //Nuove da sostituire o aggiungere
-                        $img = count($_FILES['stepsImage_edit']['name']);
+                        $img = count($_FILES['stepsImage_edit']['type']);
 
                         if ($_POST['todeleteStepImage'] != null) {
 
@@ -207,12 +205,25 @@ class RecipeController extends Controller
 
                             for ($i = 0; $i < count($old_step); $i++) {
                                 if ($old_step[$i] == -1) {
-                                    move_uploaded_file($_FILES['stepsImage_edit']['tmp_name'][$t], $path . $_FILES['stepsImage_edit']['name'][$t]);
-                                    $image = array('picture_path' => $path . $_FILES['stepsImage_edit']['name'][$t], 'recipe_id' => null);
-                                    $dl->addImageRecipe($image);
-                                    $image_id = $dl->getLastImageInsert($path . $_FILES['stepsImage_edit']['name'][$t]);
-                                    $old_step[$i] = $image_id;
-                                    $t++;
+
+                                    if($_FILES['stepsImage_edit']['type'][$t] !== ""){
+                                        move_uploaded_file($_FILES['stepsImage_edit']['tmp_name'][$t], $path . $_FILES['stepsImage_edit']['name'][$t]);
+                                        $image = array('picture_path' => $path . $_FILES['stepsImage_edit']['name'][$t], 'recipe_id' => null);
+                                        $dl->addImageRecipe($image);
+                                        $image_id = $dl->getLastImageInsert($path . $_FILES['stepsImage_edit']['name'][$t]);
+                                        $old_step[$i] = $image_id;
+                                        $t++;
+                                    }
+                                    else{
+                                        $n= rand(1, 6);
+                                        $default_path = 'image/default_step_image/'.$n.'.jpg';
+                                        $image = array('picture_path' => $default_path, 'recipe_id' => null);
+                                        $dl->addImageRecipe($image);
+                                        $image_id = $dl->getLastImageInsert($default_path . $_FILES['stepsImage_edit']['name'][$t]);
+                                        $old_step[$i] = $image_id;
+                                        $t++;
+                                    }
+
 
 
                                 }
@@ -235,12 +246,22 @@ class RecipeController extends Controller
 
 
                         for ($k = $t; $k < $img; $k++) {
+                            if($_FILES['stepsImage_edit']['type'][$k] !== ""){
+                                move_uploaded_file($_FILES['stepsImage_edit']['tmp_name'][$k], $path . $_FILES['stepsImage_edit']['name'][$k]);
+                                $image = array('picture_path' => $path . $_FILES['stepsImage_edit']['name'][$k], 'recipe_id' => null);
+                                $dl->addImageRecipe($image);
+                                $image_id = $dl->getLastImageInsert($path . $_FILES['stepsImage_edit']['name'][$k]);
+                                $new_step = $new_step . '_' . $image_id;
+                            }
+                            else {
+                                $n= rand(1, 6);
+                                $default_path = 'image/default_step_image/'.$n.'.jpg';
+                                $image = array('picture_path'=>$default_path,'recipe_id'=>null);
+                                $dl->addImageRecipe($image);
+                                $image_id = $dl->getLastImageInsert($default_path . $_FILES['stepsImage_edit']['name'][$k]);
+                                $new_step = $new_step."_".$image_id;
+                            }
 
-                            move_uploaded_file($_FILES['stepsImage_edit']['tmp_name'][$k], $path . $_FILES['stepsImage_edit']['name'][$k]);
-                            $image = array('picture_path' => $path . $_FILES['stepsImage_edit']['name'][$k], 'recipe_id' => null);
-                            $dl->addImageRecipe($image);
-                            $image_id = $dl->getLastImageInsert($path . $_FILES['stepsImage_edit']['name'][$k]);
-                            $new_step = $new_step . '_' . $image_id;
                         }
 
 
@@ -339,9 +360,17 @@ class RecipeController extends Controller
                     $pathCover = 'upload_cover/' . $id . '/';
 
                     for ($t = 0; $t < $imgCover; $t++) {
-                        move_uploaded_file($_FILES['imageCover_edit']['tmp_name'][$t], $pathCover . $_FILES['imageCover_edit']['name'][$t]);
-                        $image = array('picture_path' => $pathCover . $_FILES['imageCover_edit']['name'][$t], 'recipe_id' => $id);
-                        $dl->addImageRecipe($image);
+                        if($_FILES['imageCover_edit']['type'][$t] !== ""){
+                            move_uploaded_file($_FILES['imageCover_edit']['tmp_name'][$t], $pathCover . $_FILES['imageCover_edit']['name'][$t]);
+                            $image = array('picture_path' => $pathCover . $_FILES['imageCover_edit']['name'][$t], 'recipe_id' => $id);
+                            $dl->addImageRecipe($image);
+                        }
+                        else {
+                            $path_default = 'image/default_cover.jpg';
+                            $image = array('picture_path' => $path_default, 'recipe_id' => $id);
+                            $dl->addImageRecipe($image);
+                        }
+
                     }
 
                 }

@@ -87,8 +87,21 @@ foreach ($recipes_all as $recipe_ok) {
                                     <label style="color: darkred">*</label><label><strong>@lang('labels.title'):</strong></label>
                                     <p><input id="title" name="title" type="text" class="form-control" aria-label="Title" aria-describedby="title" oninput="this.className = ''"></p>
                                     <label><strong>@lang('labels.description'):</strong></label>
-                                    <p><textarea rows="5" class="form-control" onkeyup="countCharIns(this)" id="description" name="description" aria-label="description" aria-describedby="description"></textarea></p>
+                                    <p><textarea rows="5" class="form-control" onkeyup="countCharI(this)" id="description" name="description" aria-label="description" aria-describedby="description"></textarea></p>
+                                    <script>
+                                        function countCharI(val) {
+                                            var len = val.value.length;
+                                            if (len >= 350) {
+                                                $('#charNumI').text(350);
+                                                val.value = val.value.substring(0, 350);
+
+                                            } else {
+                                                $('#charNumI').text(len);
+                                            }
+                                        }
+                                    </script>
                                     <small id="charNumI">0</small><small>/350</small>
+
                                     <br>
                                     <br>
                                     <label>@lang('labels.insertCover')</label>

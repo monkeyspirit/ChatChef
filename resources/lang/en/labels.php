@@ -143,6 +143,6 @@ return [
     'save_text' => '',
     'next' => 'Next',
     'prev' => 'Previous',
-
+    'edit_text' => '',
 
 ];

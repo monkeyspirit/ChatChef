@@ -84,19 +84,20 @@ foreach ($recipes_all as $recipe_ok) {
         <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="nav-login-tab">
             <!-- FORM INSERT RECIPE -->
 
+
             <form id="edit_form{{$recipe->id}}" action="{{route('edit_recipe',['id'=>$recipe->id])}}" method="post" enctype="multipart/form-data">
-            @csrf
+                @csrf
 
-            <!-- Circles which indicates the steps of the form: -->
-                <div style="text-align:center;margin-top:40px;">
-                    <span class="step"><i class="progress-icon fa fa-info"></i></span>
-                    <span class="step"><i class="progress-icon fas fa-book-reader"></i></span>
-                    <span class="step"><i class="progress-icon fas fa-shopping-basket"></i></span>
-                    <span class="step"><i class="progress-icon fas fa-tasks"></i></span>
-                    <span class="step"><i class="progress-icon fas fa-tag"></i></span>
-
+                <div class="progressbar-container">
+                    <ul class="progressbar">
+                        <li class="step">@lang('labels.information')</li>
+                        <li class="step">@lang('labels.toKnow')</li>
+                        <li class="step">@lang('labels.ingredient_list')</li>
+                        <li class="step">@lang('labels.method')</li>
+                        <li class="step">@lang('labels.tag')</li>
+                        <li class="step">@lang('labels.save')</li>
+                    </ul>
                 </div>
-
 
                 <br>
                 <!-- One "tab" for each step in the form: -->
@@ -109,21 +110,62 @@ foreach ($recipes_all as $recipe_ok) {
                                 <h2>@lang('labels.information')</h2>
                             </div>
                             <label style="color: darkred">*</label><label><strong>@lang('labels.title'):</strong></label>
-                            <p><input id="title" name="title" type="text" class="form-control" aria-label="Title" aria-describedby="title" oninput="this.className = ''"></p>
+                            <p><input id="title_edit" name="title_edit" value="{{$recipe->title}}" type="text" class="form-control" aria-label="Title" aria-describedby="title" oninput="this.className = ''"></p>
                             <label><strong>@lang('labels.description'):</strong></label>
-                            <p><textarea rows="5" class="form-control" onkeyup="countCharIns(this)" id="description" name="description" aria-label="description" aria-describedby="description"></textarea></p>
-                            <small id="charNumI">0</small><small>/350</small>
+                            <p><textarea rows="5" class="form-control" onkeyup="countCharE(this)" id="description_edit" name="description_edit" aria-label="description" aria-describedby="description">{{$recipe->description}}</textarea></p>
+                            <small id="charNumE">{{strlen($recipe->description)}}</small><small>/350</small>
                             <br>
+                            <script>
+                                function countCharE(val) {
+                                    var len = val.value.length;
+                                    if (len >= 350) {
+                                        $('#charNumE').text(350);
+                                        val.value = val.value.substring(0, 350);
+
+                                    } else {
+                                        $('#charNumE').text(len);
+                                    }
+                                }
+                            </script>
                             <br>
+
+
                             <label>@lang('labels.insertCover')</label>
-                            <div id="dynamicImage" class="form-row">
+
+                            @for($i=0; $i<$number_cover; $i++)
+
+                                <div id="dynamicCover_edit{{$i}}">
+                                    <a>{{$imageCover[$i]->picture_path}}</a>
+
+
+                                    <a href="#" onclick="decrementCover({{$i}})" class="delete pt-2 pl-1" style="color: #c72222"><i class="fas fa-minus-square"></i> @lang('labels.remove')</a>
+                                    <script>
+                                        $(document).ready(function () {
+
+                                            var wrapper = $("#dynamicCover_edit{{$i}}");
+
+                                            $(wrapper).on("click", ".delete", function (e) {
+                                                e.preventDefault();
+                                                $(this).parent('div').remove();
+                                            })
+
+
+                                        });
+                                    </script>
+
+
+                                </div>
+                            @endfor
+
+
+                            <div id="addingCover">
 
                             </div>
 
                             <br>
 
                             <div style="text-align: center; border: 0px solid">
-                                <button class="btn btn-outline-secondary" id="add_form_field2">@lang('labels.addImage') &nbsp;
+                                <button class="btn btn-outline-secondary" id="add_edit_field2">@lang('labels.addImage') &nbsp;
                                     <span style="font-size:16px; font-weight:bold;">+ </span>
                                 </button>
                             </div>
@@ -134,8 +176,8 @@ foreach ($recipes_all as $recipe_ok) {
                             <script>
                                 $(document).ready(function() {
                                     var max_fields = 10;
-                                    var wrapper = $("#dynamicImage");
-                                    var add_button = $("#add_form_field2");
+                                    var wrapper = $("#addingCover");
+                                    var add_button = $("#add_edit_field2");
 
                                     var x = 1;
                                     $(add_button).click(function(e) {
@@ -143,9 +185,9 @@ foreach ($recipes_all as $recipe_ok) {
                                         if (x < max_fields) {
                                             x++;
 
-                                            $(wrapper).append(' <div id="dynamicImage" class="input-group mb-3 pt-2">\n'+
+                                            $(wrapper).append(' <div id="dynamicImage_edit" class="input-group mb-3 pt-2">\n'+
                                                 '<div class="custom-file">\n'+
-                                                '<input id="file_upload"  type="file" accept="image/png, image/jpeg" class="custom-file-input form-control" name="imageCover[]" aria-describedby="imageCover">\n'+
+                                                '<input id="imageCover_edit"  type="file" accept="image/png, image/jpeg" class="custom-file-input form-control" name="imageCover_edit[]" aria-describedby="imageCover">\n'+
                                                 '<label class="custom-file-label" for="imageCover">@lang('labels.chooseFile')</label>\n'+
                                                 '</div>'+
                                                 '<a href="#" class="delete pt-2 pl-1" style="color: #c72222"><i class="fas fa-minus-square"></i> @lang('labels.remove')</a></div>'); //add input box
@@ -188,15 +230,15 @@ foreach ($recipes_all as $recipe_ok) {
 
                             </label><label style="color: darkred">*</label><label><img src="{{asset('image/icons_View/recipe-book.png')}}" alt="" class="icon"> <strong>@lang('labels.difficult'):</strong></label>
                             <div class="custom-control custom-radio">
-                                <input type="radio" id="customRadio1" value="1" name="difficult" class="custom-control-input" checked="checked">
+                                <input @if($recipe->difficult == 1) checked @endif type="radio" id="customRadio1" value="1" name="difficult_edit" class="custom-control-input">
                                 <label class="custom-control-label" for="customRadio1">@lang('labels.easy')</label>
                             </div>
                             <div class="custom-control custom-radio">
-                                <input type="radio" id="customRadio2" value="2" name="difficult" class="custom-control-input">
+                                <input @if($recipe->difficult == 2) checked @endif type="radio" id="customRadio2" value="2" name="difficult_edit" class="custom-control-input">
                                 <label class="custom-control-label" for="customRadio2">@lang('labels.mid')</label>
                             </div>
                             <div class="custom-control custom-radio">
-                                <input type="radio" id="customRadio3" value="3" name="difficult" class="custom-control-input">
+                                <input @if($recipe->difficult == 3) checked @endif type="radio" id="customRadio3" value="3" name="difficult_edit" class="custom-control-input">
                                 <label class="custom-control-label" for="customRadio3">@lang('labels.expert')</label>
                             </div>
 
@@ -208,7 +250,7 @@ foreach ($recipes_all as $recipe_ok) {
                                     <label><strong>@lang('labels.preptime'):</strong>
                                 </div>
                                 <div class="col-auto">
-                                    <input style="width: 150px" min=0 max=200 name="preptime" id="preptime" type="number"  class="form-control" aria-label="Preparation time" aria-describedby="prep" oninput="this.className = ''">
+                                    <input value="{{$recipe->preparation_time}}" style="width: 150px" min=0 max=200 name="preptime_edit" id="preptime_edit" type="number"  class="form-control" aria-label="Preparation time" aria-describedby="prep" oninput="this.className = ''">
                                 </div>
                                 <div class="col-auto">
                                     <label>(min.)</label>
@@ -221,7 +263,7 @@ foreach ($recipes_all as $recipe_ok) {
                                     <label> <strong>@lang('labels.cookingtime'):</strong></label>
                                 </div>
                                 <div class="col-auto">
-                                    <input style="width: 150px" min=0 max=200 name="cookingtime" id="cookingtime" type="number" class="form-control" aria-label="Cooking time" aria-describedby="cook" oninput="this.className = ''">
+                                    <input value="{{$recipe->cooking_time}}" style="width: 150px" min=0 max=200 name="cookingtime_edit" id="cookingtime_edit" type="number" class="form-control" aria-label="Cooking time" aria-describedby="cook" oninput="this.className = ''">
                                 </div>
                                 <div class="col-auto">
                                     <label>(min.)</label>
@@ -234,7 +276,7 @@ foreach ($recipes_all as $recipe_ok) {
                                     <label> <strong>@lang('labels.doses'):</strong></label>
                                 </div>
                                 <div class="col-auto">
-                                    <input style="width: 150px" min=0 max=200 name="doses" id="doses" type="number" class="form-control" aria-label="Doses" aria-describedby="doses" oninput="this.className = ''">
+                                    <input value="{{$recipe->doses}}" style="width: 150px" min=0 max=200 name="doses_edit" id="doses_edit" type="number" class="form-control" aria-label="Doses" aria-describedby="doses" oninput="this.className = ''">
                                 </div>
                                 <div class="col-auto">
                                     <label>@lang('labels.people')</label>
@@ -250,41 +292,85 @@ foreach ($recipes_all as $recipe_ok) {
                             <div class="text-center">
                                 <h2>@lang('labels.ingredient_list')</h2>
                             </div>
+                            @for($i=1; $i<$number_ing; $i++)
 
-                            <div id="dynamicIngredient" class="form-row">
-                                <!-- Name -->
-                                <div class="col-auto">
-                                    <span style="color: darkred"><strong>*</strong></span>
-                                </div>
-                                <div class="col">
-                                    <input type="text" class="form-control" placeholder="@lang('labels.ingredients')" name="ingredients[0]" oninput="this.className = ''">
-                                </div>
+                                <div id="dynamicIngredient_edit{{$i}}" class="form-row p-2">
+                                    <!-- Name -->
+                                    <div class="col-auto">
+                                        <span style="color: darkred"><strong>*</strong></span>
+                                    </div>
+                                    <div class="col">
+                                        <input value="{{$ingredients_n[$i]}}" type="text" class="form-control"
+                                               name="ingredients_edit[]" oninput="this.className = ''">
 
-                                <!-- Quantity -->
-                                <div class="col-auto">
-                                    <span style="color: darkred"><strong>*</strong></span>
-                                </div>
-                                <div class="col">
-                                    <input type="number" step="0.01" min="0" class="form-control" placeholder="@lang('labels.quantity')" name="quantities[]" oninput="this.className = ''">
-                                </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <span style="color: darkred"><strong>*</strong></span>
+                                    </div>
+                                    <!-- Quantity -->
+                                    <div class="col">
+                                        <input value={{$ingredients_q[$i]}} type="number" step="0.01" min="0" class="form-control"
+                                               name="quantities_edit[]" oninput="this.className = ''">
+                                    </div>
 
-                                <!-- Unit -->
+                                    <!-- Unit -->
+                                    <div class="col">
+                                        <select class="custom-select" name="units_edit[]">';
+                                            @if($ingredients_u[$i]==1)
+                                                <option selected value="1">@lang('labels.ml')</option>
+                                                <option value="2"> @lang('labels.g')</option>
+                                                <option value="3">@lang('labels.tablespoon')</option>
+                                                <option value="4">  @lang('labels.littleunit')</option>
 
-                                <div class="col">
-                                    <select class="custom-select" name="units[]">
-                                        <option value="1" selected>@lang('labels.ml')</option>
-                                        <option value="2">@lang('labels.g')</option>
-                                        <option value="3">@lang('labels.tablespoon')</option>
-                                        <option value="4">@lang('labels.littleunit')</option>
-                                    </select>
+                                            @elseif ($ingredients_u[$i]==2)
+                                                <option value="1">@lang('labels.ml')</option>
+                                                <option selected value="2"> @lang('labels.g')</option>
+                                                <option value="3">@lang('labels.tablespoon')</option>
+                                                <option value="4">  @lang('labels.littleunit')</option>
+                                            @elseif ($ingredients_u[$i]==3)
+                                                <option value="1">@lang('labels.ml')</option>
+                                                <option value="2"> @lang('labels.g')</option>
+                                                <option selected value="3">@lang('labels.tablespoon')</option>
+                                                <option value="4">  @lang('labels.littleunit')</option>
+                                            @else
+                                                <option value="1">@lang('labels.ml')</option>
+                                                <option value="2"> @lang('labels.g')</option>
+                                                <option value="3">@lang('labels.tablespoon')</option>
+                                                <option selected value="4">  @lang('labels.littleunit')</option>
+                                            @endif
+                                        </select>
+                                    </div>
+
+
+                                    @if($i>=2)
+                                        <a href="#" class="delete pt-2 pl-1" style="color: #c72222"><i class="fas fa-minus-square"></i> @lang('labels.remove')</a>
+
+
+                                        <script>
+                                            $(document).ready(function () {
+
+                                                var wrapper = $("#dynamicIngredient_edit{{$i}}");
+
+                                                $(wrapper).on("click", ".delete", function (e) {
+                                                    e.preventDefault();
+                                                    $(this).parent('div').remove();
+
+                                                })
+                                            });
+                                        </script>
+                                    @endif
+
                                 </div>
-                            </div>
+                            @endfor
+
+
 
                             <div id="addIng"></div>
 
                             <br/>
+
                             <div class="text-center pb-2">
-                                <button class="btn btn-outline-secondary " id="add_form_field1">@lang('labels.add_ingredient')
+                                <button class="btn btn-outline-secondary " id="add_edit_field1">@lang('labels.add_ingredient')
                                     <span style="font-size:16px; font-weight:bold;">+ </span>
                                 </button>
                             </div>
@@ -293,7 +379,7 @@ foreach ($recipes_all as $recipe_ok) {
                                 $(document).ready(function() {
                                     var max_fields = 100;
                                     var wrapper = $("#addIng");
-                                    var add_button = $("#add_form_field1");
+                                    var add_button = $("#add_edit_field1");
 
                                     var x = 1;
                                     $(add_button).click(function(e) {
@@ -301,25 +387,25 @@ foreach ($recipes_all as $recipe_ok) {
                                         if (x < max_fields) {
                                             x++;
                                             e = x;
-                                            $(wrapper).append('<div id="dynamicIngredient" class=" p-2 form-row">' +
+                                            $(wrapper).append('<div id="dynamicIngredient_edit" class=" p-2 form-row">' +
                                                 '<!-- Name -->\n' +
                                                 '                                    <div class="col-auto">\n' +
                                                 '                                            <span style="color: darkred"><strong>*</strong></span>\n' +
                                                 '                                        </div>' +
                                                 '                                        <div class="col">\n' +
-                                                '                                        <input oninput="this.className = \'\'" type="text" class="form-control" placeholder=@lang('labels.ingredients') name="ingredients[]">\n' +
+                                                '                                        <input oninput="this.className = \'\'" type="text" class="form-control" placeholder=@lang('labels.ingredients') name="ingredients_edit[]">\n' +
                                                 '                                    </div>\n' +
                                                 '\n' +
                                                 '                                    <!-- Quantity -->\n' +
                                                 '                                    <div class="col-auto">\n' +
                                                 '                                            <span style="color: darkred"><strong>*</strong></span>\n' +
                                                 '                                        </div><div class="col">\n' +
-                                                '                                        <input oninput="this.className = \'\'" type="number" step="0.01" min="0" class="form-control" placeholder=@lang('labels.quantity') name="quantities[]">\n' +
+                                                '                                        <input oninput="this.className = \'\'" type="number" step="0.01" min="0" class="form-control" placeholder=@lang('labels.quantity') name="quantities_edit[]">\n' +
                                                 '                                    </div>\n' +
                                                 '\n' +
                                                 '                                    <!-- Unit -->\n' +
                                                 '                                    <div class="col">\n' +
-                                                '                                        <select class="custom-select" name="units[]">\n' +
+                                                '                                        <select class="custom-select" name="units_edit[]">\n' +
                                                 '                                            <option value="1" selected>@lang('labels.ml')</option>\n' +
                                                 '                                            <option value="2">@lang('labels.g')</option>\n' +
                                                 '                                            <option value="3">@lang('labels.tablespoon')</option>\n'+
@@ -347,20 +433,67 @@ foreach ($recipes_all as $recipe_ok) {
                                 <h2>@lang('labels.method')</h2>
                             </div>
                             <label>@lang('labels.insertStep')</label>
-                            <div id="dynamicStepSlot">
-                                <label><strong>@lang('labels.step'):</strong></label><label style="color: darkred"> *</label>
-                                <textarea rows="4" class="form-control" name="steps[]" aria-label="steps" aria-describedby="steps"></textarea>
-                                <br>
+                            @for($i=1; $i<$number_step; $i++)
+                                <div id="dynamicStepSlot{{$i}}">
 
-                                <div class="custom-file">
-                                    <input type="file" accept="image/*" class="custom-file-input" name="stepsImage[]"/>
-                                    <label class="custom-file-label" for="stepsImage">@lang('labels.chooseFile')</label>
+                                    <label><strong>@lang('labels.step'):</strong></label><label style="color: darkred"> *</label>
+
+                                    <textarea rows="4" required class="form-control" name="steps_edit[]" aria-label="steps_edit"
+                                              aria-describedby="steps_edit">{{$step_text[$i]}}</textarea>
+
+                                    <div id="appendUpload{{$i}}" class="input-group mb-3">
+                                        <div id="stepSlot{{$i}}" class="custom-file">
+                                            <a>{{$step_image[$i-1]}}</a>
+                                            <a href="#" onclick="decrementStep({{$i}})" class="delete pt-2 pl-1" style="color: #c72222"><i class="fas fa-minus-square"></i> @lang('labels.remove')</a>
+
+                                            <script>
+                                                $(document).ready(function () {
+
+                                                    var wrapper = $("#stepSlot{{$i}}");
+
+                                                    $(wrapper).on("click", ".delete", function (e) {
+                                                        e.preventDefault();
+                                                        $(this).parent('div').remove();
+                                                        $($("#appendUpload{{$i}}")).append(
+                                                            '<div class="custom-file">' +
+                                                            ' <input type="file" accept="image/*" class="custom-file-input" name="stepsImage_edit[]"/>' +
+                                                            '<label class="custom-file-label" for="stepsImage_edit">@lang('labels.chooseFile')</label>' +
+                                                            ' </div>'); //add input box
+                                                        $(".custom-file-input").on("change", function () {
+                                                            var fileName = $(this).val().split("\\").pop();
+                                                            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+                                                        });
+                                                    });
+
+
+                                                });
+                                            </script>
+
+
+                                        </div>
+                                    </div>
+
+
+                                    <a href="#" onclick="decrementStep({{$i}})" class="delete pt-2 pl-1" style="color: #c72222"><i class="fas fa-minus-square"></i> @lang('labels.deleteStep')</a>
+
+                                    <script>
+                                        $(document).ready(function () {
+
+                                            var wrapper = $("#dynamicStepSlot{{$i}}");
+
+                                            $(wrapper).on("click", ".delete", function (e) {
+                                                e.preventDefault();
+                                                $(this).parent('div').remove();
+
+                                            })
+                                        });
+                                    </script>
+
+
                                 </div>
 
+                            @endfor
 
-
-
-                            </div>
                             <script>
                                 $(".custom-file-input").on("change", function() {
                                     var fileName = $(this).val().split("\\").pop();
@@ -368,19 +501,25 @@ foreach ($recipes_all as $recipe_ok) {
                                 });
                             </script>
 
+                            <div id="dynamicStepSlot_edit1">
+
+                            </div>
+
 
                             <br/>
                             <div class="text-center pb-2">
-                                <button class="btn btn-outline-secondary " id="add_form_field3">@lang('labels.addField') &nbsp;
+                                <button class="btn btn-outline-secondary " id="add_edit_field3">@lang('labels.addField') &nbsp;
                                     <span style="font-size:16px; font-weight:bold;">+ </span>
                                 </button>
 
                             </div>
+
+
                             <script>
                                 $(document).ready(function() {
                                     var max_fields = 30;
-                                    var wrapper = $("#dynamicStepSlot");
-                                    var add_button = $("#add_form_field3");
+                                    var wrapper = $("#dynamicStepSlot_edit1");
+                                    var add_button = $("#add_edit_field3");
 
                                     var x = 1;
                                     $(add_button).click(function(e) {
@@ -388,13 +527,13 @@ foreach ($recipes_all as $recipe_ok) {
                                         if (x < max_fields) {
                                             x++;
 
-                                            $(wrapper).append('<div id="dynamicStepSlot">'+
+                                            $(wrapper).append('<div id="dynamicStepSlot_edit1">'+
                                                 '<br><label><strong>@lang('labels.step'):</strong></label><label style="color: darkred"> *</label>\n' +
-                                                '                                        <textarea rows="4" class="form-control" name="steps[]" aria-label="steps" aria-describedby="steps"></textarea>\n' +
+                                                '                                        <textarea rows="4" class="form-control" name="steps_edit[]" aria-label="steps" aria-describedby="steps"></textarea>\n' +
                                                 '                                        <br>\n' +
 
                                                 '                                           <div class="custom-file">\n' +
-                                                '                                            <input type="file" accept="image/*" class="custom-file-input" name="stepsImage[]"/>\n' +
+                                                '                                            <input type="file" accept="image/*" class="custom-file-input" name="stepsImage_edit[]"/>\n' +
                                                 '                                            <label class="custom-file-label" for="stepsImage">@lang("labels.chooseFile")</label>\n' +
                                                 '                                        </div>' +
                                                 '           <a href="#" class="delete pt-2 pl-1" style="color: #c72222"><i class="fas fa-minus-square"></i> @lang("labels.remove")</a></div>'); //add input box
@@ -422,26 +561,183 @@ foreach ($recipes_all as $recipe_ok) {
                             <div class="text-center">
                                 <h2>@lang('labels.tags')</h2>
                             </div>
-                            <label>@lang('labels.inserTag')</label>
-                            <div id="dynamicTags" class="col-sm-12 text-center">
-                                <select class="custom-select" name="tags[]">
-                                    <option value="1" selected>@lang('labels.firstDish')</option>
-                                    <option value="2">@lang('labels.mainCourse')</option>
-                                    <option value="3">@lang('labels.dessert')</option>
-                                    <option value="4">@lang('labels.appetiser')</option>
-                                    <option value="5">@lang('labels.sideDish')</option>
-                                    <option value="6">@lang('labels.meat')</option>
-                                    <option value="7">@lang('labels.fish')</option>
-                                    <option value="8">@lang('labels.vegetarian')</option>
-                                    <option value="9">@lang('labels.vegan')</option>
-                                    <option value="10">@lang('labels.glutenFree')</option>
-                                    <option value="11">@lang('labels.withoutAll')</option>
-                                </select>
-                            </div>
+                            @for($i=1; $i<$number_tag; $i++)
+                                <div id="dynamicTags{{$i}}" class="col-sm-12 p-2 text-center">
+                                    <select required class="custom-select" name="tags_edit[]">
+                                        @if($tags[$i]==1)
+                                            <option disabled value="" selected>@lang('labels.chooseTag')</option>
+                                            <option selected value="1">@lang('labels.firstDish')</option>
+                                            <option value="2">@lang('labels.mainCourse')</option>
+                                            <option value="3">@lang('labels.dessert')</option>
+                                            <option value="4">@lang('labels.appetiser')</option>
+                                            <option value="5">@lang('labels.sideDish')</option>
+                                            <option value="6">@lang('labels.meat')</option>
+                                            <option value="7">@lang('labels.fish')</option>
+                                            <option value="8">@lang('labels.vegetarian')</option>
+                                            <option value="9">@lang('labels.vegan')</option>
+                                            <option value="10">@lang('labels.glutenFree')</option>
+                                            <option value="11">@lang('labels.withoutAll')</option>
+                                        @elseif($tags[$i]==2)
+                                            <option disabled value="" selected>@lang('labels.chooseTag')</option>
+                                            <option value="1">@lang('labels.firstDish')</option>
+                                            <option selected value="2">@lang('labels.mainCourse')</option>
+                                            <option value="3">@lang('labels.dessert')</option>
+                                            <option value="4">@lang('labels.appetiser')</option>
+                                            <option value="5">@lang('labels.sideDish')</option>
+                                            <option value="6">@lang('labels.meat')</option>
+                                            <option value="7">@lang('labels.fish')</option>
+                                            <option value="8">@lang('labels.vegetarian')</option>
+                                            <option value="9">@lang('labels.vegan')</option>
+                                            <option value="10">@lang('labels.glutenFree')</option>
+                                            <option value="11">@lang('labels.withoutAll')</option>
+                                        @elseif($tags[$i]==3)
+                                            <option disabled value="" selected>@lang('labels.chooseTag')</option>
+                                            <option value="1">@lang('labels.firstDish')</option>
+                                            <option value="2">@lang('labels.mainCourse')</option>
+                                            <option selected value="3">@lang('labels.dessert')</option>
+                                            <option value="4">@lang('labels.appetiser')</option>
+                                            <option value="5">@lang('labels.sideDish')</option>
+                                            <option value="6">@lang('labels.meat')</option>
+                                            <option value="7">@lang('labels.fish')</option>
+                                            <option value="8">@lang('labels.vegetarian')</option>
+                                            <option value="9">@lang('labels.vegan')</option>
+                                            <option value="10">@lang('labels.glutenFree')</option>
+                                            <option value="11">@lang('labels.withoutAll')</option>
+                                        @elseif($tags[$i]==4)
+                                            <option disabled value="" selected>@lang('labels.chooseTag')</option>
+                                            <option value="1">@lang('labels.firstDish')</option>
+                                            <option value="2">@lang('labels.mainCourse')</option>
+                                            <option value="3">@lang('labels.dessert')</option>
+                                            <option selected value="4">@lang('labels.appetiser')</option>
+                                            <option value="5">@lang('labels.sideDish')</option>
+                                            <option value="6">@lang('labels.meat')</option>
+                                            <option value="7">@lang('labels.fish')</option>
+                                            <option value="8">@lang('labels.vegetarian')</option>
+                                            <option value="9">@lang('labels.vegan')</option>
+                                            <option value="10">@lang('labels.glutenFree')</option>
+                                            <option value="11">@lang('labels.withoutAll')</option>
+                                        @elseif($tags[$i]==5)
+                                            <option disabled value="" selected>@lang('labels.chooseTag')</option>
+                                            <option value="1">@lang('labels.firstDish')</option>
+                                            <option value="2">@lang('labels.mainCourse')</option>
+                                            <option value="3">@lang('labels.dessert')</option>
+                                            <option value="4">@lang('labels.appetiser')</option>
+                                            <option selected value="5">@lang('labels.sideDish')</option>
+                                            <option value="6">@lang('labels.meat')</option>
+                                            <option value="7">@lang('labels.fish')</option>
+                                            <option value="8">@lang('labels.vegetarian')</option>
+                                            <option value="9">@lang('labels.vegan')</option>
+                                            <option value="10">@lang('labels.glutenFree')</option>
+                                            <option value="11">@lang('labels.withoutAll')</option>
+                                        @elseif($tags[$i]==6)
+                                            <option disabled value="" selected>@lang('labels.chooseTag')</option>
+                                            <option value="1">@lang('labels.firstDish')</option>
+                                            <option value="2">@lang('labels.mainCourse')</option>
+                                            <option value="3">@lang('labels.dessert')</option>
+                                            <option value="4">@lang('labels.appetiser')</option>
+                                            <option value="5">@lang('labels.sideDish')</option>
+                                            <option selected value="6">@lang('labels.meat')</option>
+                                            <option value="7">@lang('labels.fish')</option>
+                                            <option value="8">@lang('labels.vegetarian')</option>
+                                            <option value="9">@lang('labels.vegan')</option>
+                                            <option value="10">@lang('labels.glutenFree')</option>
+                                            <option value="11">@lang('labels.withoutAll')</option>
+                                        @elseif($tags[$i]==7)
+                                            <option disabled value="" selected>@lang('labels.chooseTag')</option>
+                                            <option value="1">@lang('labels.firstDish')</option>
+                                            <option value="2">@lang('labels.mainCourse')</option>
+                                            <option value="3">@lang('labels.dessert')</option>
+                                            <option value="4">@lang('labels.appetiser')</option>
+                                            <option value="5">@lang('labels.sideDish')</option>
+                                            <option value="6">@lang('labels.meat')</option>
+                                            <option selected value="7">@lang('labels.fish')</option>
+                                            <option value="8">@lang('labels.vegetarian')</option>
+                                            <option value="9">@lang('labels.vegan')</option>
+                                            <option value="10">@lang('labels.glutenFree')</option>
+                                            <option value="11">@lang('labels.withoutAll')</option>
+                                        @elseif($tags[$i]==8)
+                                            <option disabled value="" selected>@lang('labels.chooseTag')</option>
+                                            <option value="1">@lang('labels.firstDish')</option>
+                                            <option value="2">@lang('labels.mainCourse')</option>
+                                            <option value="3">@lang('labels.dessert')</option>
+                                            <option value="4">@lang('labels.appetiser')</option>
+                                            <option value="5">@lang('labels.sideDish')</option>
+                                            <option value="6">@lang('labels.meat')</option>
+                                            <option value="7">@lang('labels.fish')</option>
+                                            <option selected value="8">@lang('labels.vegetarian')</option>
+                                            <option value="9">@lang('labels.vegan')</option>
+                                            <option value="10">@lang('labels.glutenFree')</option>
+                                            <option value="11">@lang('labels.withoutAll')</option>
+                                        @elseif($tags[$i]==9)
+                                            <option disabled value="" selected>@lang('labels.chooseTag')</option>
+                                            <option value="1">@lang('labels.firstDish')</option>
+                                            <option value="2">@lang('labels.mainCourse')</option>
+                                            <option value="3">@lang('labels.dessert')</option>
+                                            <option value="4">@lang('labels.appetiser')</option>
+                                            <option value="5">@lang('labels.sideDish')</option>
+                                            <option value="6">@lang('labels.meat')</option>
+                                            <option value="7">@lang('labels.fish')</option>
+                                            <option value="8">@lang('labels.vegetarian')</option>
+                                            <option selected value="9">@lang('labels.vegan')</option>
+                                            <option value="10">@lang('labels.glutenFree')</option>
+                                            <option value="11">@lang('labels.withoutAll')</option>
+                                        @elseif($tags[$i]==10)
+                                            <option disabled value="" selected>@lang('labels.chooseTag')</option>
+                                            <option value="1">@lang('labels.firstDish')</option>
+                                            <option value="2">@lang('labels.mainCourse')</option>
+                                            <option value="3">@lang('labels.dessert')</option>
+                                            <option value="4">@lang('labels.appetiser')</option>
+                                            <option value="5">@lang('labels.sideDish')</option>
+                                            <option value="6">@lang('labels.meat')</option>
+                                            <option value="7">@lang('labels.fish')</option>
+                                            <option value="8">@lang('labels.vegetarian')</option>
+                                            <option value="9">@lang('labels.vegan')</option>
+                                            <option selected value="10">@lang('labels.glutenFree')</option>
+                                            <option value="11">@lang('labels.withoutAll')</option>
+                                        @elseif($tags[$i]==11)
+                                            <option disabled value="" selected>@lang('labels.chooseTag')</option>
+                                            <option value="1">@lang('labels.firstDish')</option>
+                                            <option value="2">@lang('labels.mainCourse')</option>
+                                            <option value="3">@lang('labels.dessert')</option>
+                                            <option value="4">@lang('labels.appetiser')</option>
+                                            <option value="5">@lang('labels.sideDish')</option>
+                                            <option value="6">@lang('labels.meat')</option>
+                                            <option value="7">@lang('labels.fish')</option>
+                                            <option value="8">@lang('labels.vegetarian')</option>
+                                            <option value="9">@lang('labels.vegan')</option>
+                                            <option value="10">@lang('labels.glutenFree')</option>
+                                            <option selected value="11">@lang('labels.withoutAll')</option>
+                                        @endif
+                                    </select>
+
+
+                                    <a href="#" class="delete pt-2 pl-1" style="color: #c72222"><i class="fas fa-minus-square"></i> @lang('labels.delete')</a>
+
+                                    <script>
+                                        $(document).ready(function () {
+
+                                            var wrapper = $("#dynamicTags{{$i}}");
+
+                                            $(wrapper).on("click", ".delete", function (e) {
+                                                e.preventDefault();
+                                                $(this).parent('div').remove();
+
+                                            })
+                                        });
+                                    </script>
+
+
+                                </div>
+
+
+                            @endfor
+
+                            <div id="addingTags"></div>
+
 
                             <br/>
                             <div class="text-center pb-2">
-                                <button class="btn btn-outline-secondary " id="add_form_field4">@lang('labels.addField') &nbsp;
+                                <button class="btn btn-outline-secondary " id="add_edit_field4">@lang('labels.addField') &nbsp;
                                     <span style="font-size:16px; font-weight:bold;">+ </span>
                                 </button>
 
@@ -450,8 +746,8 @@ foreach ($recipes_all as $recipe_ok) {
                             <script>
                                 $(document).ready(function() {
                                     var max_fields = 30;
-                                    var wrapper = $("#dynamicTags");
-                                    var add_button = $("#add_form_field4");
+                                    var wrapper = $("#addingTags");
+                                    var add_button = $("#add_edit_field4");
 
                                     var x = 1;
 
@@ -460,8 +756,8 @@ foreach ($recipes_all as $recipe_ok) {
                                         if (x < max_fields) {
                                             x++;
 
-                                            $(wrapper).append('<div id="dynamicTags" class="input-group col-sm-12 text-center p-2">' +
-                                                '<select class="custom-select" name="tags[]">'+
+                                            $(wrapper).append('<div id="addingTags" class="input-group col-sm-12 text-center p-2">' +
+                                                '<select class="custom-select" name="tags_edit[]">'+
                                                 '<option value="1" selected>@lang('labels.firstDish')</option>'+
                                                 '<option value="2">@lang('labels.mainCourse')</option>'+
                                                 '<option value="3">@lang('labels.dessert')</option>'+
@@ -498,27 +794,45 @@ foreach ($recipes_all as $recipe_ok) {
                                 <div class="text-center">
                                     <h2>@lang('labels.success')!</h2>
                                 </div>
+                                <label class="text-center">@lang('labels.save_text')</label>
                                 <div class="row justify-content-center">
                                     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-                                    <lottie-player src="https://assets6.lottiefiles.com/packages/lf20_ruryzm9h.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;"    autoplay></lottie-player>
+                                    <lottie-player src="https://assets10.lottiefiles.com/private_files/lf30_womtqnns.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;"  loop  autoplay></lottie-player>
                                 </div>
                             </div>
 
 
 
                         </div>
+
+                        <input id="todeleteCover" type="text" name="todeleteCover" hidden>
+                        <input id="todeleteStepImage" type="text" name="todeleteStepImage" hidden>
+                        <script>
+
+                            function decrementCover(i) {
+                                document.getElementById("todeleteCover").value = document.getElementById("todeleteCover").value + "_" + i;
+                            }
+
+
+                            function decrementStep(i) {
+                                document.getElementById("todeleteStepImage").value = document.getElementById("todeleteStepImage").value + "_" + i;
+                            }
+
+                        </script>
+
                         <div  class="text-center">
                             <div class="pt-3  ">
-                                <input style="width: auto" type="submit" id="submit" name="register_form" class="form-control btn btn-success" value=@lang('labels.save')>
+                                <input style="width: auto" type="submit" id="submit" name="edit_form" class="form-control btn btn-success" value=@lang('labels.save')>
                             </div>
+
                         </div>
                         <div class="text-center">
                             <div class="pt-3">
                                 {{-- <a type="button" class="btn btn-danger" href="{{route("account_all_recipes")}}">@lang('labels.cancel')</a>--}}
 
-                                <button type="button" class="btn btn-outline-secondary" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+                                <button type="button" class="btn btn-outline-secondary" id="prevBtn" onclick="nextPrev(-1)">@lang('labels.prev')</button>
 
-                                <button type="button" class="btn btn-outline-primary" id="nextBtn" onclick="nextPrev(1)">Next</button>
+                                <button type="button" class="btn btn-outline-primary" id="nextBtn" onclick="nextPrev(1)">@lang('labels.next')</button>
 
 
                             </div>
@@ -544,11 +858,11 @@ foreach ($recipes_all as $recipe_ok) {
                             document.getElementById("prevBtn").style.display = "inline";
                         }
                         if (n == (x.length - 1)) {
-                            document.getElementById("nextBtn").innerHTML = "Submit";
+
                             document.getElementById("nextBtn").style.display = "none";
                             document.getElementById("submit").style.display = "inline";
                         } else {
-                            document.getElementById("nextBtn").innerHTML = "Next";
+
                             document.getElementById("nextBtn").style.display = "inline";
                             document.getElementById("submit").style.display = "none";
                         }
@@ -606,6 +920,9 @@ foreach ($recipes_all as $recipe_ok) {
                                 if (y[i].value === "") {
 
                                 }
+                                else{
+
+                                }
                             }
 
                         }
@@ -631,12 +948,21 @@ foreach ($recipes_all as $recipe_ok) {
                         var i, x = document.getElementsByClassName("step");
                         for (i = 0; i < x.length; i++) {
                             x[i].className = x[i].className.replace(" active", "");
+                            x[i].className = x[i].className.replace(" focus", "");
                         }
                         //... and adds the "active" class to the current step:
-                        x[n].className += " active";
+
+                        for (i = 0; i < n-1; i++) {
+                            x[i].className  += " active";
+                        }
+
+                        x[n-1].className += " active";
+                        x[n].className += " focus";
                     }
                 </script>
             </form>
+
+
             <br/>
 
         </div>
