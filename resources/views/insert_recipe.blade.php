@@ -486,9 +486,10 @@ foreach ($recipes_all as $recipe_ok) {
                                         <div class="text-center">
                                             <h2>@lang('labels.success')!</h2>
                                         </div>
+                                        <label class="text-center">@lang('labels.save_text')</label>
                                         <div class="row justify-content-center">
                                             <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-                                            <lottie-player src="https://assets6.lottiefiles.com/packages/lf20_ruryzm9h.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;"    autoplay></lottie-player>
+                                            <lottie-player src="https://assets10.lottiefiles.com/private_files/lf30_womtqnns.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;"  loop  autoplay></lottie-player>
                                         </div>
                                     </div>
 
@@ -504,9 +505,9 @@ foreach ($recipes_all as $recipe_ok) {
                                     <div class="pt-3">
                                        {{-- <a type="button" class="btn btn-danger" href="{{route("account_all_recipes")}}">@lang('labels.cancel')</a>--}}
 
-                                            <button type="button" class="btn btn-outline-secondary" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+                                            <button type="button" class="btn btn-outline-secondary" id="prevBtn" onclick="nextPrev(-1)">@lang('labels.prev')</button>
 
-                                            <button type="button" class="btn btn-outline-primary" id="nextBtn" onclick="nextPrev(1)">Next</button>
+                                            <button type="button" class="btn btn-outline-primary" id="nextBtn" onclick="nextPrev(1)">@lang('labels.next')</button>
 
 
                                     </div>
@@ -532,11 +533,11 @@ foreach ($recipes_all as $recipe_ok) {
                                 document.getElementById("prevBtn").style.display = "inline";
                             }
                             if (n == (x.length - 1)) {
-                                document.getElementById("nextBtn").innerHTML = "Submit";
+
                                 document.getElementById("nextBtn").style.display = "none";
                                 document.getElementById("submit").style.display = "inline";
                             } else {
-                                document.getElementById("nextBtn").innerHTML = "Next";
+
                                 document.getElementById("nextBtn").style.display = "inline";
                                 document.getElementById("submit").style.display = "none";
                             }

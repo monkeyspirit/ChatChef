@@ -108,7 +108,7 @@ return [
     'information'=>'Information',
     'toKnow'=>'To Know',
     'ingr'=>'Ingredients',
-    'method'=>'Method',
+    'method'=>'method',
     'sign'=>'Sign that this recipe is correct',
     'removeFav'=>'Remove from your favorites',
     'addFav'=>'Add to your favorites',
@@ -132,7 +132,7 @@ return [
     'addImage' => 'Add an image',
     'remove' => 'Remove',
     'required' => 'The fields with * are mandatory',
-    'tag' => 'Tag',
+    'tag' => 'Tags',
     'easy' => "Easy",
     'mid' => "Middle",
     'expert' => "Expert",
@@ -140,8 +140,9 @@ return [
     'ingredient_list' => "Ingredients' list",
     'add_ingredient' => "Add an ingredient",
     'tags' => 'Tags',
-    'save'=> 'Save',
-
+    'save_text' => '',
+    'next' => 'Next',
+    'prev' => 'Previous',
 
 
 ];

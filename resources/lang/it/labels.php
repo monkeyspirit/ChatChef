@@ -131,7 +131,7 @@ return [
     'date' => 'Più Recente',
     'dateInverse' => 'Meno Recente',
     'changerole' => 'Cambia ruolo',
-    'success' => 'Completato',
+    'success' => 'Ottimo lavoro',
     'success text' => 'La tua ricetta è stata inviata!<br/>Presto sarà presa in considerazione.',
     'addImage' => 'Aggiungi un\'immagine',
     'remove' => 'Rimuovi',
@@ -144,6 +144,8 @@ return [
     'ingredient_list' => "Lista degli ingredienti",
     'add_ingredient' => "Aggiungi un ingrediente",
     'tags' => 'Etichette',
-    'save' => 'Salva'
+    'save_text' => 'Hai inserito tutti i campi necessari per la creazione della ricetta. <br><br><strong>Per concludere ti serve solo salvarla!</strong> <br><br>Dopo aver inviato la ricetta potrebbe trascorrere un po\' di tempo prima che venga pubblicata, verrà prima controllata per verificare che i dati inseriti vadano bene.',
+    'next' => 'Avanti',
+    'prev' => 'Precedente',
 
 ];
