@@ -747,14 +747,12 @@ input.invalid {
 
 /* Make circles that indicate the steps of the form: */
 .step {
-    height: 50px;
-    width: 50px;
-    margin: 0 2px;
-    background-color: #bbbbbb;
+    height: 30px;
+    width: 30px;
+
     border: none;
     border-radius: 50%;
     display: inline-block;
-    opacity: 0.5;
 
 }
 
@@ -772,10 +770,73 @@ input.invalid {
 
 /* Mark the steps that are finished and valid: */
 .step.finish {
-    background-color: orange;
+
 }
 
 
 input[type=number]::-webkit-inner-spin-button {
     opacity: 1;
 }
+
+
+
+.progressbar-container {
+    width: 600px;
+    height: 100px;
+    margin: auto;
+}
+.progressbar {
+    counter-reset: step;
+}
+.progressbar li {
+    list-style-type: none;
+    width: 16.66%;
+    float: left;
+    font-size: 12px;
+    position: relative;
+    text-align: center;
+    text-transform: uppercase;
+    color: #7d7d7d;
+}
+
+.progressbar li:before {
+    width: 30px;
+    height: 30px;
+    content: counter(step);
+    counter-increment: step;
+    line-height: 27px;
+    border: 2px solid #7d7d7d;
+    display: block;
+    text-align: center;
+    margin: 0 auto 10px auto;
+    border-radius: 50%;
+    background-color: white;
+}
+.progressbar li:after {
+    width: 100%;
+    height: 2px;
+    content: '';
+    position: absolute;
+    background-color: #7d7d7d;
+    top: 15px;
+    left: -50%;
+    z-index: -1;
+}
+.progressbar li:first-child:after {
+    content: none;
+}
+.progressbar li.active {
+    color: green;
+}
+
+.progressbar li.focus:before{
+    border-color: #55b776;
+}
+
+.progressbar li.active:before {
+    border-color: #55b776;
+}
+.progressbar li.active + li:after{
+    background: #3aac5d;
+}
+

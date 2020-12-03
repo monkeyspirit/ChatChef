@@ -144,5 +144,6 @@ return [
     'ingredient_list' => "Lista degli ingredienti",
     'add_ingredient' => "Aggiungi un ingrediente",
     'tags' => 'Etichette',
+    'save' => 'Salva'
 
 ];

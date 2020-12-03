@@ -140,6 +140,7 @@ return [
     'ingredient_list' => "Ingredients' list",
     'add_ingredient' => "Add an ingredient",
     'tags' => 'Tags',
+    'save'=> 'Save',
 
 
 

@@ -63,6 +63,18 @@ foreach ($recipes_all as $recipe_ok) {
                 <form id="register_form" action="{{route('insert_recipe')}}" method="post" enctype="multipart/form-data">
                     @csrf
 
+                    <div class="progressbar-container">
+                        <ul class="progressbar">
+                            <li class="step">@lang('labels.information')</li>
+                            <li class="step">@lang('labels.toKnow')</li>
+                            <li class="step">@lang('labels.ingredient_list')</li>
+                            <li class="step">@lang('labels.method')</li>
+                            <li class="step">@lang('labels.tag')</li>
+                            <li class="step">@lang('labels.save')</li>
+                        </ul>
+                    </div>
+{{--
+
                     <!-- Circles which indicates the steps of the form: -->
                         <div style="text-align:center;margin-top:40px;">
                             <span class="step"><i class="progress-icon fa fa-info"></i></span>
@@ -70,8 +82,8 @@ foreach ($recipes_all as $recipe_ok) {
                             <span class="step"><i class="progress-icon fas fa-shopping-basket"></i></span>
                             <span class="step"><i class="progress-icon fas fa-tasks"></i></span>
                             <span class="step"><i class="progress-icon fas fa-tag"></i></span>
-
                         </div>
+--}}
 
 
                     <br>
@@ -607,9 +619,16 @@ foreach ($recipes_all as $recipe_ok) {
                             var i, x = document.getElementsByClassName("step");
                             for (i = 0; i < x.length; i++) {
                                 x[i].className = x[i].className.replace(" active", "");
+                                x[i].className = x[i].className.replace(" focus", "");
                             }
                             //... and adds the "active" class to the current step:
-                            x[n].className += " active";
+
+                            for (i = 0; i < n-1; i++) {
+                                x[i].className  += " active";
+                            }
+
+                            x[n-1].className += " active";
+                            x[n].className += " focus";
                         }
                     </script>
                 </form>
