@@ -131,7 +131,7 @@ return [
     'date' => 'Più Recente',
     'dateInverse' => 'Meno Recente',
     'changerole' => 'Cambia ruolo',
-    'success' => 'Ottimo lavoro',
+    'success' => 'Completato',
     'success text' => 'La tua ricetta è stata inviata!<br/>Presto sarà presa in considerazione.',
     'addImage' => 'Aggiungi un\'immagine',
     'remove' => 'Rimuovi',
@@ -148,5 +148,15 @@ return [
     'next' => 'Avanti',
     'prev' => 'Precedente',
     'edit_text' => 'Hai inserito tutti i campi necessari per la modifica della ricetta. <br><br><strong>Per concludere ti serve solo salvarla!</strong> <br><br>Dopo aver inviato la ricetta potrebbe trascorrere un po\' di tempo prima che venga dinuovo pubblicata, verrà prima controllata per verificare che i dati inseriti vadano bene.',
-    'addTag' => 'Aggiungi etichetta'
+    'addTag' => 'Aggiungi etichetta',
+    'chooseDifficulty' => 'Scegli uno o più livelli di difficoltà',
+    'medium' => 'Medio',
+    'hard' => 'Difficile',
+    'filterPerPrepTime' => 'Filtra per Tempo di Preparazione',
+    'filterPerCookTime' => 'Filtra per Tempo di Cottura',
+    'minTime' => 'Tempo Minimo',
+    'maxTime' => 'Tempo Massimo',
+    'minutes' => 'minuti'
+
+
 ];
