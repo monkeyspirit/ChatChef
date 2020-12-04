@@ -140,7 +140,7 @@ return [
     'easy' => "Facile",
     'mid' => "Media",
     'expert' => "Difficile",
-    'people' => 'people',
+    'people' => 'persone',
     'ingredient_list' => "Lista degli ingredienti",
     'add_ingredient' => "Aggiungi un ingrediente",
     'tags' => 'Etichette',

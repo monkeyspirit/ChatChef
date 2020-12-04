@@ -503,10 +503,12 @@ foreach ($recipes_all as $recipe_ok) {
                                 <p class="text-center" style="font-family: 'Amatic SC', cursive; font-size: 30px"> @lang('labels.toKnow') <br/>
                             </div>
                             <!--Informazioni ricetta -->
-                            <p class="pl-5"><img src="{{asset('image/icons_View/recipe-book.png')}}" class="icon">  @lang('labels.difficult'): <strong>{{$recipe->difficult}}</strong></p>
-                            <p class="pl-5"><img src="{{asset('image/icons_View/hand_kitchen_mixer_icon.png')}}" class="icon">  @lang('labels.preptime'):  <strong>{{$recipe->preparation_time}}</strong></p>
-                            <p class="pl-5"><img src="{{asset('image/icons_View/kitchen_pot_restaurant_icon.png')}}" class="icon">   @lang('labels.cookingtime'):   <strong>{{$recipe->cooking_time}}</strong></p>
-                            <p class="pl-5"><img src="{{asset('image/icons_View/kitchen_scale_machine_icon.png')}}" class="icon">  @lang('labels.doses'):  <strong> {{$recipe->doses}}</strong></p>
+                            <p class="pl-5"><img src="{{asset('image/icons_View/recipe-book.png')}}" class="icon">  @lang('labels.difficult'):
+                                <strong>@if($recipe->difficult == 1)@lang('labels.easy')@elseif($recipe->difficult == 1)@lang('labels.mid')@else@lang('labels.expert') @endif</strong>
+                            </p>
+                            <p class="pl-5"><img src="{{asset('image/icons_View/hand_kitchen_mixer_icon.png')}}" class="icon">  @lang('labels.preptime'):  <strong>{{$recipe->preparation_time}}</strong> min.</p>
+                            <p class="pl-5"><img src="{{asset('image/icons_View/kitchen_pot_restaurant_icon.png')}}" class="icon">   @lang('labels.cookingtime'):   <strong>{{$recipe->cooking_time}}</strong> min.</p>
+                            <p class="pl-5"><img src="{{asset('image/icons_View/kitchen_scale_machine_icon.png')}}" class="icon">  @lang('labels.doses'):  <strong> {{$recipe->doses}}</strong> @lang('labels.people')</p>
 
                         </div>
                     </div>
