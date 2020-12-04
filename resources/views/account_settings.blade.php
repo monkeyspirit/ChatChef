@@ -51,10 +51,10 @@ foreach ($recipes_all as $recipe_ok) {
 
     <!-- Header -->
     <div id="parent-setting" class="container text-center p-4">
-        <img src="{{asset('image/doodle/doodle1.jpg')}}" width="200" height="60" alt="">
+       {{-- <img src="{{asset('image/doodle/doodle1.jpg')}}" width="200" height="60" alt="">--}}
 
         <div class="d-flex justify-content-center">
-            <div class="row  align-self-center pr-5">
+           {{-- <div class="row  align-self-center pr-5">
                 <lottie-player id="setf-lottie"
                                src="{{asset('/icons/settings.json')}}"
                                background="transparent"
@@ -74,9 +74,9 @@ foreach ($recipes_all as $recipe_ok) {
 
                 </script>
 
-            </div>
+            </div>--}}
             <h1 class="h-title">@lang('labels.settings')</h1>
-            <div class="row align-self-center pl-5">
+            {{--<div class="row align-self-center pl-5">
                 <lottie-player id="secs-lottie"
                                src="{{asset('/icons/paint-roller.json')}}"
                                background="transparent"
@@ -96,10 +96,10 @@ foreach ($recipes_all as $recipe_ok) {
 
                 </script>
 
-            </div>
+            </div>--}}
         </div>
 
-        <img src="{{asset('image/doodle/doodle2.jpg')}}" width="200" height="60">
+        {{--<img src="{{asset('image/doodle/doodle2.jpg')}}" width="200" height="60">--}}
     </div>
 
 

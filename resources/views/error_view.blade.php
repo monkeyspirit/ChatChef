@@ -58,7 +58,7 @@ foreach ($recipes_all as $recipe_ok) {
         <h1 class="h-title">
            @lang('labels.wentWrong')
         </h1>
-        <img src="{{asset('image/doodle/doodle-error.jpg')}}" width="200" height="60" alt="">
+        {{--<img src="{{asset('image/doodle/doodle-error.jpg')}}" width="200" height="60" alt="">--}}
     </div>
     <div class="container text-center p-1">
         <a href="{{route('home')}}" class="btn btn-outline-primary">@lang('labels.goBackHome')</a>

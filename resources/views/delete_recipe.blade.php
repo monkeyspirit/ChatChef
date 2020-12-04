@@ -49,11 +49,11 @@ foreach ($recipes_all as $recipe_ok) {
 
 
     <div class="container text-center p-4">
-        <img src="{{asset('image/doodle/square-line1.jpg')}}" width="450" height="40" alt="">
+       {{-- <img src="{{asset('image/doodle/square-line1.jpg')}}" width="450" height="40" alt="">--}}
         <h1 class="h-title">
             @lang('labels.delteButtonMyRec')
         </h1>
-        <img src="{{asset('image/doodle/square-line1.jpg')}}" width="450" height="40" alt="">
+        {{--<img src="{{asset('image/doodle/square-line1.jpg')}}" width="450" height="40" alt="">--}}
     </div>
 
     <div class="container text-center">

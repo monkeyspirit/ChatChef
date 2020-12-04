@@ -25,7 +25,7 @@ foreach ($recipes_all as $recipe_ok) {
     <div id="parent-title" class="container text-center pt-5 p-4">
 
         <div class="d-flex justify-content-center">
-            <div class="row  align-self-center pr-4">
+           {{-- <div class="row  align-self-center pr-4">
                 <lottie-player id="fir-lottie"
                                src="{{asset('/icons/unlock.json')}}"
                                background="transparent"
@@ -45,11 +45,11 @@ foreach ($recipes_all as $recipe_ok) {
 
                 </script>
 
-            </div>
+            </div>--}}
             <h1 class="h-title">
                 @lang('labels.forgotTitle')
             </h1>
-            <div class="row align-self-center pl-4">
+            {{--<div class="row align-self-center pl-4">
                 <lottie-player id="sec-lottie"
                                src="{{asset('/icons/compass.json')}}"
                                background="transparent"
@@ -69,10 +69,10 @@ foreach ($recipes_all as $recipe_ok) {
 
                 </script>
 
-            </div>
+            </div>--}}
         </div>
 
-        <img src="{{asset('image/doodle/doodle-error.jpg')}}" width="350" height="60">
+        {{--<img src="{{asset('image/doodle/doodle-error.jpg')}}" width="350" height="60">--}}
     </div>
     <div class="container p-3">
         <div class="row justify-content-center">
