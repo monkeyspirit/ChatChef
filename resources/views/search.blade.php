@@ -223,93 +223,132 @@ $users = $dl->getAllUsername();
 
     <div class="container">
 
-        <h1 class="h-title text-center my-5">
+        <h1 class="h-title text-center my-3">
             @lang('labels.advancedsearch')
         </h1>
+
+        <div class="border border-bottom my-2"></div>
 
         <form action="{{route('search_advanced')}}" method="post">
             @csrf
             <div class="row">
                 <div class="col-lg-6">
-
-                    <div class="form-group">
-                        <h4>@lang('labels.chooseTags')</h4>
-
-                        @foreach($list_tags as $tagnum => $tag)
-                            <div class="form-check form-check-inline">
-                                <input type="checkbox" class="form-check-input" name="tag-{{$tagnum}}" id="tag-{{$tagnum}}">
-                                <label class="form-check-label" for="tag-{{$tagnum}}">{{$tag}}</label>
+                    <div class="card" >
+                        <div class="card-body">
+                            <h4 class="card-title">@lang('labels.chooseTags'):</h4>
+                            <div class="row pl-3">
+                                @foreach($list_tags as $tagnum => $tag)
+                                    <div class="col-6 my-1">
+                                        <div class="form-check form-check-inline">
+                                            <input type="checkbox" class="form-check-input" name="tag-{{$tagnum}}" id="tag-{{$tagnum}}">
+                                            <label class="form-check-label" for="tag-{{$tagnum}}">{{$tag}}</label>
+                                        </div>
+                                    </div>
+                                @endforeach
                             </div>
-                        @endforeach
-                    </div>
-
-                    <div class="form-group">
-                        <h4>@lang('labels.chooseDifficulty')</h4>
-
-                        <div class="form-check form-check-inline">
-                            <input type="checkbox" class="form-check-input" name="easy" id="easy" checked>
-                            <label class="form-check-label" for="easy">@lang('labels.easy')</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input type="checkbox" class="form-check-input" name="medium" id="medium" checked>
-                            <label class="form-check-label" for="medium">@lang('labels.medium')</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input type="checkbox" class="form-check-input" name="hard" id="hard" checked>
-                            <label class="form-check-label" for="hard">@lang('labels.hard')</label>
                         </div>
                     </div>
-
                 </div>
 
+                <div class="col-lg-6 mt-1 mt-lg-0">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4>@lang('labels.chooseDifficulty'):</h4>
+                            <div class="mt-3 d-flex justify-content-center">
 
-                <div class="col-lg-6">
-
-                    <div class="form-group" id="filtePerPrepTimeDiv">
-                        <div class="form-check form-check-inline">
-                            <h4>@lang('labels.filterPerPrepTime')</h4>
-                            <span class="mx-1"></span>
-                            <input type="checkbox" class="form-check-input" name="filterPrepTime" id="filterPrepTime">
+                                <div class="form-check form-check-inline">
+                                    <input type="checkbox" class="form-check-input" name="easy" id="easy" checked>
+                                    <label class="form-check-label" for="easy">@lang('labels.easy')</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input type="checkbox" class="form-check-input" name="medium" id="medium" checked>
+                                    <label class="form-check-label" for="medium">@lang('labels.medium')</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input type="checkbox" class="form-check-input" name="hard" id="hard" checked>
+                                    <label class="form-check-label" for="hard">@lang('labels.hard')</label>
+                                </div>
+                            </div>
                         </div>
-
-                        <div class="form-inline flex-nowrap">
-                            <label>@lang('labels.minTime')</label>
-                            <input type="number" class="form-control mx-3" name="minPrepTime" disabled>
-                            <label>@lang('labels.minutes')</label>
-                        </div>
-                        <div class="form-inline flex-nowrap">
-                            <label>@lang('labels.maxTime')</label>
-                            <input type="number" class="form-control mx-3" name="maxPrepTime" disabled>
-                            <label>@lang('labels.minutes')</label>
-                        </div>
-
                     </div>
 
-                    <div class="form-group" id="filtePerCookTimeDiv">
-                        <div class="form-check form-check-inline">
-                            <h4>@lang('labels.filterPerCookTime')</h4>
-                            <span class="mx-1"></span>
-                            <input type="checkbox" class="form-check-input" name="filterCookTime" id="filterCookTime">
-                        </div>
+                    <div class="my-1"></div>
 
-                        <div class="form-inline flex-nowrap">
-                            <label>@lang('labels.minTime')</label>
-                            <input type="number" class="form-control mx-3" name="minCookTime" disabled>
-                            <label>@lang('labels.minutes')</label>
-                        </div>
-                        <div class="form-inline flex-nowrap">
-                            <label>@lang('labels.maxTime')</label>
-                            <input type="number" class="form-control mx-3" name="maxCookTime" disabled>
-                            <label>@lang('labels.minutes')</label>
-                        </div>
+                    <div class="card" id="filtePerPrepTimeDiv">
+                        <div class="card-body">
+                            <div class="row flex-nowrap mb-3">
+                                <div class="col text-truncate">
+                                    <h4 class="text-truncate">@lang('labels.filterPerPrepTime'):</h4>
+                                </div>
+                                <div class="col-2 d-flex align-items-center justify-content-center">
+                                    <label class="switch m-0" >
+                                        <input type="checkbox" name="filterPrepTime" id="filterPrepTime" >
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+                            </div>
 
+                            <div class="form-group row">
+                                <label class="col col-form-label" for="minPrepTime" style="color: darkgrey">
+                                    @lang('labels.minTime') (@lang('labels.minutes'))
+                                </label>
+                                <div class="col">
+                                    <input type="number" class="form-control" name="minPrepTime" min="0" disabled>
+                                </div>
+                            </div>
+                            <div class="form-group row mb-0">
+                                <label class="col col-form-label" for="maxPrepTime" style="color: darkgrey">
+                                    @lang('labels.maxTime') (@lang('labels.minutes'))
+                                </label>
+                                <div class="col">
+                                    <input type="number" class="form-control" name="maxPrepTime" min="0" disabled>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="my-1"></div>
+
+                    <div class="card" id="filtePerCookTimeDiv">
+                        <div class="card-body">
+                            <div class="row flex-nowrap mb-3">
+                                <div class="col text-truncate">
+                                    <h4 class="text-truncate">@lang('labels.filterPerCookTime'):</h4>
+                                </div>
+                                <div class="col-2 d-flex align-items-center justify-content-center">
+                                    <label class="switch m-0">
+                                        <input type="checkbox" name="filterCookTime" id="filterCookTime">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col col-form-label" for="minCookTime" style="color: darkgrey">
+                                    @lang('labels.minTime') (@lang('labels.minutes'))
+                                </label>
+                                <div class="col">
+                                    <input type="number" class="form-control" name="minCookTime" min="0" disabled>
+                                </div>
+                            </div>
+                            <div class="form-group row mb-0">
+                                <label class="col col-form-label" for="maxCookTime" style="color: darkgrey">
+                                    @lang('labels.maxTime') (@lang('labels.minutes'))
+                                </label>
+                                <div class="col">
+                                    <input type="number" class="form-control" name="maxCookTime" min="0" disabled>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
 
                 </div>
             </div>
 
             <div class="row justify-content-center my-4">
-                <button class="btn btn-outline-primary">@lang('labels.searchPlaceholder')</button>
+                <button class="btn btn-outline-primary" style="min-width: 200px">@lang('labels.searchPlaceholder')</button>
             </div>
         </form>
     </div>
@@ -317,9 +356,13 @@ $users = $dl->getAllUsername();
     <script>
         function toggleFilterPerPrepTime(enable) {
             $('#filtePerPrepTimeDiv input[type=number]').prop('disabled', !enable);
+            // $('#filtePerPrepTimeDiv').css('background', enable ? 'white' : '#eeeeee');
+            $('#filtePerPrepTimeDiv label').css('color', enable ? 'black' : 'darkgrey');
         }
         function toggleFilterPerCookTime(enable) {
             $('#filtePerCookTimeDiv input[type=number]').prop('disabled', !enable);
+            // $('#filtePerCookTimeDiv').css('background', enable ? 'white' : '#eeeeee');
+            $('#filtePerCookTimeDiv label').css('color', enable ? 'black' : 'darkgrey');
         }
 
         $(document).ready(function () {

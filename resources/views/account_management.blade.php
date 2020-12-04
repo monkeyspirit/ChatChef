@@ -112,29 +112,44 @@ $all_user = $dl->getAllUsername();
 
         <div class="w-100 border-bottom mb-4"></div>
 
-{{--        <div class="justify-content-center pt-2 pb-1">--}}
-            <table class="table">
-                <thead class="thead-dark">
-                <tr>
-                    <th scope="col">@lang('labels.modalLoginUsername')</th>
-                    <th scope="col" class="d-none d-lg-flex">@lang('labels.modalRegEmail')</th>
-                    <th scope="col">@lang('labels.role')</th>
-                    <th scope="col">@lang('labels.banState')</th>
-                </tr>
-                </thead>
-                <tbody>
+        {{--        <div class="justify-content-center pt-2 pb-1">--}}
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">@lang('labels.modalLoginUsername')</th>
+                <th scope="col" class="d-none d-lg-table-cell">@lang('labels.modalRegEmail')</th>
+                <th scope="col">@lang('labels.role')
+                    <button class="btn btn-sm btn-dark" style="border-radius: 100%"  data-toggle="popover"
+                            title="@lang('labels.role')"
+                            data-content="@lang('messages.roleExplain')"
+                            data-trigger="focus">
+                        <i class="far fa-question-circle"></i>
+                    </button>
+                </th>
+                <th scope="col">@lang('labels.banState')
+                    <button class="btn btn-sm btn-dark" style="border-radius: 100%"  data-toggle="popover"
+                            title="@lang('labels.banState')"
+                            data-content="@lang('messages.banExplain')"
+                            data-trigger="focus">
+                        <i class="far fa-question-circle"></i>
+                    </button>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
 
-                @foreach($all_user as $user_s)
-                    <tr>
-                        <td>{{$user_s->username}}</td>
-                        <td class="d-none d-lg-block">{{($dl->getUserbyUsername($user_s->username))->email}}</td>
-                        <td>
-                            <div class="form-inline flex-nowrap">
-                                <div class="pr-3">
-                                    <?php
-                                    $id = ($dl->getUserbyUsername($user_s->username))->id;
-                                    ?>
-                                    <select class="custom-select" id="role_select{{$id}}" name="role_select{{$id}}" {{ ($user_s->username == $user->username) ? 'disabled' : '' }}>
+            @foreach($all_user as $user_s)
+                <tr>
+                    <td>{{$user_s->username}}</td>
+                    <td class="d-none d-lg-block">{{($dl->getUserbyUsername($user_s->username))->email}}</td>
+                    <td>
+                        <div class="form-inline flex-nowrap">
+                            <div class="pr-3">
+                                <?php
+                                $id = ($dl->getUserbyUsername($user_s->username))->id;
+                                ?>
+                                <select class="custom-select" id="role_select{{$id}}"
+                                        name="role_select{{$id}}" {{ ($user_s->username == $user->username) ? 'disabled' : '' }}>
                                     {{-- <?php
                                         $role_name = "";
 
@@ -187,105 +202,110 @@ $all_user = $dl->getAllUsername();
                                             }
                                         }
                                         ?>--}}
-{{--                                        <option disabled selected>{{$role_name}}</option>--}}
-                                        <option value="0" >@lang('labels.normalUser')</option>
-                                        <option value="1" {{ ($dl->getUserbyUsername($user_s->username))->isAdmin ? 'selected' : ''  }}>@lang('labels.admin')</option>
-                                        <option value="2" {{ ($dl->getUserbyUsername($user_s->username))->isEditor ? 'selected' : ''  }}>@lang('labels.editor')</option>
-                                        <option value="3" {{ ($dl->getUserbyUsername($user_s->username))->isModerator ? 'selected' : ''  }}>@lang('labels.moderator')</option>
-                                    </select>
-                                </div>
-
-                                <button name="{{$id}}" class="btn btn-outline-primary change" {{ ($user_s->username == $user->username) ? 'disabled' : '' }}>
-                                    @lang('labels.save')
-                                </button>
+                                    {{--                                        <option disabled selected>{{$role_name}}</option>--}}
+                                    <option value="0">@lang('labels.normalUser')</option>
+                                    <option
+                                        value="1" {{ ($dl->getUserbyUsername($user_s->username))->isAdmin ? 'selected' : ''  }}>@lang('labels.admin')</option>
+                                    <option
+                                        value="2" {{ ($dl->getUserbyUsername($user_s->username))->isEditor ? 'selected' : ''  }}>@lang('labels.editor')</option>
+                                    <option
+                                        value="3" {{ ($dl->getUserbyUsername($user_s->username))->isModerator ? 'selected' : ''  }}>@lang('labels.moderator')</option>
+                                </select>
                             </div>
+
+                            <button name="{{$id}}"
+                                    class="btn btn-outline-primary change" {{ ($user_s->username == $user->username) ? 'disabled' : '' }}>
+                                @lang('labels.save')
+                            </button>
+                        </div>
+                    </td>
+                    <td class="d-flex flex-nowrap">
+                        <label for="customSwitch-{{ $user_s->username }}">@lang('labels.unbanned')</label>
+                        <label class="switch mx-2">
+                            <input class="ban-switch" name="{{$id}}" type="checkbox"
+                                   id="customSwitch-{{ $user_s->username }}" {{ ($dl->getUserbyUsername($user_s->username))->ban ? 'checked' : '' }} >
+                            <span class="slider round bg-red"></span>
+                        </label>
+                        <label for="customSwitch-{{ $user_s->username }}">@lang('labels.banned')</label>
+                    </td>
+
+                    {{--@if(($dl->getUserbyUsername($user_s->username))->ban)
+                        <td>
+                            <button name="{{$id}}"
+                                    class="btn btn-outline-success unban">@lang('labels.unban')</button>
                         </td>
-                        <td class="d-flex flex-nowrap">
-                            <label for="customSwitch-{{ $user_s->username }}">@lang('labels.unbanned')</label>
-                            <label class="switch mx-2">
-                                <input class="ban-switch" name="{{$id}}" type="checkbox" id="customSwitch-{{ $user_s->username }}" {{ ($dl->getUserbyUsername($user_s->username))->ban ? 'checked' : '' }} >
-                                <span class="slider round bg-red"></span>
-                            </label>
-                            <label for="customSwitch-{{ $user_s->username }}">@lang('labels.banned')</label>
+                    @else
+                        <td>
+                            <button name="{{$id}}" class="btn btn-outline-danger ban">@lang('labels.ban')</button>
                         </td>
+                    @endif--}}
 
-                        {{--@if(($dl->getUserbyUsername($user_s->username))->ban)
-                            <td>
-                                <button name="{{$id}}"
-                                        class="btn btn-outline-success unban">@lang('labels.unban')</button>
-                            </td>
-                        @else
-                            <td>
-                                <button name="{{$id}}" class="btn btn-outline-danger ban">@lang('labels.ban')</button>
-                            </td>
-                        @endif--}}
-
-                    </tr>
-                    {{--
-                    <script>
-                        var token = '{{\Illuminate\Support\Facades\Session::token()}}';
-                        var urlChange = '{{route('change_role')}}';
-                        var urlBan = '{{route('ban')}}';
-                        var urlUnban = '{{route('unban')}}';
+                </tr>
+                {{--
+                <script>
+                    var token = '{{\Illuminate\Support\Facades\Session::token()}}';
+                    var urlChange = '{{route('change_role')}}';
+                    var urlBan = '{{route('ban')}}';
+                    var urlUnban = '{{route('unban')}}';
 
 
-                        $(".change").click(function (event) {
-                            event.preventDefault();
-                            var select_id = "role_select" + this.name;
+                    $(".change").click(function (event) {
+                        event.preventDefault();
+                        var select_id = "role_select" + this.name;
 
-                            $.ajax({
-                                method: 'POST',
-                                url: urlChange,
-                                data: {
-                                    user_id: this.name,
-                                    role: document.getElementById(select_id).value,
-                                    _token: token
-                                },
-                                success: function (response) {
-                                    window.location.reload();
+                        $.ajax({
+                            method: 'POST',
+                            url: urlChange,
+                            data: {
+                                user_id: this.name,
+                                role: document.getElementById(select_id).value,
+                                _token: token
+                            },
+                            success: function (response) {
+                                window.location.reload();
 
-                                }
-                            })
-
-
-                        });
-
-                        $(".ban").click(function (event) {
-                            event.preventDefault();
-                            $.ajax({
-                                method: 'POST',
-                                url: urlBan,
-                                data: {user_id: this.name, _token: token},
-                                success: function (response) {
-                                    window.location.reload();
-
-                                }
-                            })
+                            }
+                        })
 
 
-                        });
-                        $(".unban").click(function (event) {
-                            event.preventDefault();
+                    });
 
-                            $.ajax({
-                                method: 'POST',
-                                url: urlUnban,
-                                data: {user_id: this.name, _token: token},
-                                success: function (response) {
-                                    window.location.reload();
+                    $(".ban").click(function (event) {
+                        event.preventDefault();
+                        $.ajax({
+                            method: 'POST',
+                            url: urlBan,
+                            data: {user_id: this.name, _token: token},
+                            success: function (response) {
+                                window.location.reload();
 
-                                }
-                            })
+                            }
+                        })
 
 
-                        });
-                    </script> --}}
+                    });
+                    $(".unban").click(function (event) {
+                        event.preventDefault();
 
-                @endforeach
-                </tbody>
-            </table>
+                        $.ajax({
+                            method: 'POST',
+                            url: urlUnban,
+                            data: {user_id: this.name, _token: token},
+                            success: function (response) {
+                                window.location.reload();
 
-{{--        </div>--}}
+                            }
+                        })
+
+
+                    });
+                </script> --}}
+
+            @endforeach
+            </tbody>
+        </table>
+
+        {{--        </div>--}}
 
         <script>
             var token = '{{\Illuminate\Support\Facades\Session::token()}}';
@@ -330,17 +350,22 @@ $all_user = $dl->getAllUsername();
 
         </script>
 
+        <script>
+            $(function () {
+                $('[data-toggle="popover"]').popover()
+            })
+        </script>
 
-{{--        <div class="row content">--}}
-{{--            <div class="custom-control custom-switch">--}}
-{{--                <input type="checkbox" class="custom-control-input" id="customSwitch1">--}}
-{{--                <label class="custom-control-label" for="customSwitch1">Toggle this switch element</label>--}}
-{{--            </div>--}}
-{{--            <div class="custom-control custom-switch">--}}
-{{--                <input type="checkbox" class="custom-control-input" id="customSwitch2">--}}
-{{--                <label class="custom-control-label" for="customSwitch2">Toggle this switch element</label>--}}
-{{--            </div>--}}
-{{--        </div>--}}
+        {{--        <div class="row content">--}}
+        {{--            <div class="custom-control custom-switch">--}}
+        {{--                <input type="checkbox" class="custom-control-input" id="customSwitch1">--}}
+        {{--                <label class="custom-control-label" for="customSwitch1">Toggle this switch element</label>--}}
+        {{--            </div>--}}
+        {{--            <div class="custom-control custom-switch">--}}
+        {{--                <input type="checkbox" class="custom-control-input" id="customSwitch2">--}}
+        {{--                <label class="custom-control-label" for="customSwitch2">Toggle this switch element</label>--}}
+        {{--            </div>--}}
+        {{--        </div>--}}
     </div>
 
 @endsection
