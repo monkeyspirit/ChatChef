@@ -6,11 +6,17 @@
    {{-- style="background-image: url('public/image/cooking_togheter.jpg')"--}}
     <div class="container-card" onclick="window.location.href='{{route('insert')}}'">
         <div class="column">
-            <div class="post-module" style="height: 300px">
+            <div class="post-module" style="height: 380px">
 
                 <img src="{{asset('image/cooking_togheter.jpg')}}" class="card-img-create" style="height: 70%">
                 <div class="card-body">
                     <h3 class="text-center pt-0 pb-0" style="font-family: 'Fredericka the Great', cursive">@lang('labels.addNewButton')</h3>
+                    <div class="text-center">
+                        <button class="btn btn-outline-secondary" type="button" onclick="window.location.href='{{route('insert')}}'">
+                            <i class="las la-plus"></i>
+                        </button>
+                    </div>
+
                 </div>
             </div>
         </div>

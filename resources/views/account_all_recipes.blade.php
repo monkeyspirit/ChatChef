@@ -131,8 +131,9 @@ foreach ($recipes_all as $recipe_ok) {
 
         <br>
         <div class="text-center">
-            <button class="btn btn-outline-secondary" type="button" data-toggle="collapse" data-target="#collapse_waiting" aria-expanded="false" aria-controls="collapseExample">
-                <h2 class="text-center pt-0 pb-0" style="font-family: 'Fredericka the Great', cursive">@lang('labels.waiting recipes')</h2>
+            <h2 class="text-center pt-0 pb-0" style="font-family: 'Fredericka the Great', cursive">@lang('labels.waiting recipes')</h2>
+            <button value="0" onclick="change_arrow(this)" class="btn btn-outline-secondary" type="button" data-toggle="collapse" data-target="#collapse_waiting" aria-expanded="false" aria-controls="collapseExample">
+                <i class="las la-angle-down"></i>
             </button>
         </div>
         <br>
@@ -143,10 +144,13 @@ foreach ($recipes_all as $recipe_ok) {
                 @endforeach
             </div>
         </div>
+            <hr>
         <br>
+            <div class="wrap"><span class="arrow"><span></span><span></span></span><span class="arrow--l-r right"><span></span><span></span><span></span><span></span><span></span></span></div>
             <div class="text-center">
-                <button class="btn btn-outline-secondary" type="button" data-toggle="collapse" data-target="#collapse_notapproved" aria-expanded="false" aria-controls="collapseExample">
-                    <h2 class="text-center pt-0 pb-0" style="font-family: 'Fredericka the Great', cursive">@lang('labels.not approved recipes')</h2>
+                <h2 class="text-center pt-0 pb-0" style="font-family: 'Fredericka the Great', cursive">@lang('labels.not approved recipes')</h2>
+                <button value="0" onclick="change_arrow(this)" class="btn btn-outline-secondary" type="button" data-toggle="collapse" data-target="#collapse_notapproved" aria-expanded="false" aria-controls="collapseExample">
+                    <i class="las la-angle-down"></i>
                 </button>
             </div>
         <br>
@@ -159,13 +163,17 @@ foreach ($recipes_all as $recipe_ok) {
             </div>
         </div>
         <br>
+            <hr>
             <div class="text-center">
-                <button class="btn btn-outline-secondary" type="button" data-toggle="collapse" data-target="#collapse_approved" aria-expanded="false" aria-controls="collapseExample">
-                    <h2 class="text-center pt-0 pb-0" style="font-family: 'Fredericka the Great', cursive">@lang('labels.approved recipes')</h2>
+                <h2 class="text-center pt-0 pb-0" style="font-family: 'Fredericka the Great', cursive">@lang('labels.approved recipes')</h2>
+                <button value="0" onclick="change_arrow(this)" class="btn btn-outline-secondary"  type="button" data-toggle="collapse" data-target="#collapse_approved" aria-expanded="false" aria-controls="collapseExample">
+                    <i class="las la-angle-down"></i>
                 </button>
+
             </div>
 
         <br>
+
         <div class="collapse" id="collapse_approved">
             <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3">
                 @foreach($recipe_appproved as $recipe)
@@ -175,6 +183,17 @@ foreach ($recipes_all as $recipe_ok) {
         </div>
     </div>
 
+    <script>
+        function change_arrow(btn){
+            if (btn.value === "0") {
+                btn.innerHTML = "<i class=\"las la-angle-up\"></i>";
+                btn.value = "1";
+            } else {
+                btn.innerHTML = "<i class=\"las la-angle-down\"></i>";
+                btn.value = "0";
+            }
+        }
+    </script>
 
     <div class="content">
         <br/>

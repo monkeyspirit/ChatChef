@@ -112,5 +112,6 @@
     <orderEntry type="library" name="font-awesome" level="application" />
     <orderEntry type="library" name="@lottiefiles/lottie-player" level="application" />
     <orderEntry type="library" name="sweetalert" level="application" />
+    <orderEntry type="library" name="line-awesome" level="application" />
   </component>
 </module>

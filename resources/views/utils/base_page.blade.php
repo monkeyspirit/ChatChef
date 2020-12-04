@@ -33,8 +33,8 @@ $dl = new \App\DataLayer();
     <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap" rel="stylesheet">
     <!-- fontawesome -->
     <link rel="stylesheet" href="{{url('/fontawesome-free-5.15.1-web/css/all.css')}}">
-
-
+    <!-- line awsome -->
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
     <!-- JS -->
     <!-- jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
