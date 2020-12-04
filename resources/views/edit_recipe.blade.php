@@ -110,7 +110,7 @@ foreach ($recipes_all as $recipe_ok) {
                                 <h2>@lang('labels.information')</h2>
                             </div>
                             <label style="color: darkred">*</label><label><strong>@lang('labels.title'):</strong></label>
-                            <p><input id="title_edit" name="title_edit" value="{{$recipe->title}}" type="text" class="form-control" aria-label="Title" aria-describedby="title" oninput="this.className = ''"></p>
+                            <p><input id="title_edit" name="title_edit" value="{{$recipe->title}}" type="text" class="form-control" aria-label="Title" aria-describedby="title"></p>
                             <label><strong>@lang('labels.description'):</strong></label>
                             <p><textarea rows="5" class="form-control" onkeyup="countCharE(this)" id="description_edit" name="description_edit" aria-label="description" aria-describedby="description">{{$recipe->description}}</textarea></p>
                             <small id="charNumE">{{strlen($recipe->description)}}</small><small>/350</small>
@@ -250,7 +250,7 @@ foreach ($recipes_all as $recipe_ok) {
                                     <label><strong>@lang('labels.preptime'):</strong>
                                 </div>
                                 <div class="col-auto">
-                                    <input value="{{$recipe->preparation_time}}" style="width: 150px" min=0 max=200 name="preptime_edit" id="preptime_edit" type="number"  class="form-control" aria-label="Preparation time" aria-describedby="prep" oninput="this.className = ''">
+                                    <input value="{{$recipe->preparation_time}}" style="width: 150px" min=0 max=200 name="preptime_edit" id="preptime_edit" type="number"  class="form-control" aria-label="Preparation time" aria-describedby="prep">
                                 </div>
                                 <div class="col-auto">
                                     <label>(min.)</label>
@@ -263,7 +263,7 @@ foreach ($recipes_all as $recipe_ok) {
                                     <label> <strong>@lang('labels.cookingtime'):</strong></label>
                                 </div>
                                 <div class="col-auto">
-                                    <input value="{{$recipe->cooking_time}}" style="width: 150px" min=0 max=200 name="cookingtime_edit" id="cookingtime_edit" type="number" class="form-control" aria-label="Cooking time" aria-describedby="cook" oninput="this.className = ''">
+                                    <input value="{{$recipe->cooking_time}}" style="width: 150px" min=0 max=200 name="cookingtime_edit" id="cookingtime_edit" type="number" class="form-control" aria-label="Cooking time" aria-describedby="cook">
                                 </div>
                                 <div class="col-auto">
                                     <label>(min.)</label>
@@ -276,7 +276,7 @@ foreach ($recipes_all as $recipe_ok) {
                                     <label> <strong>@lang('labels.doses'):</strong></label>
                                 </div>
                                 <div class="col-auto">
-                                    <input value="{{$recipe->doses}}" style="width: 150px" min=0 max=200 name="doses_edit" id="doses_edit" type="number" class="form-control" aria-label="Doses" aria-describedby="doses" oninput="this.className = ''">
+                                    <input value="{{$recipe->doses}}" style="width: 150px" min=0 max=200 name="doses_edit" id="doses_edit" type="number" class="form-control" aria-label="Doses" aria-describedby="doses">
                                 </div>
                                 <div class="col-auto">
                                     <label>@lang('labels.people')</label>
@@ -301,7 +301,7 @@ foreach ($recipes_all as $recipe_ok) {
                                     </div>
                                     <div class="col">
                                         <input value="{{$ingredients_n[$i]}}" type="text" class="form-control"
-                                               name="ingredients_edit[]" oninput="this.className = ''">
+                                               name="ingredients_edit[]">
 
                                     </div>
                                     <div class="col-auto">
@@ -310,7 +310,7 @@ foreach ($recipes_all as $recipe_ok) {
                                     <!-- Quantity -->
                                     <div class="col">
                                         <input value={{$ingredients_q[$i]}} type="number" step="0.01" min="0" class="form-control"
-                                               name="quantities_edit[]" oninput="this.className = ''">
+                                               name="quantities_edit[]">
                                     </div>
 
                                     <!-- Unit -->

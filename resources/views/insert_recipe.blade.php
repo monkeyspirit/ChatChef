@@ -85,7 +85,7 @@ foreach ($recipes_all as $recipe_ok) {
                                         <h2>@lang('labels.information')</h2>
                                     </div>
                                     <label style="color: darkred">*</label><label><strong>@lang('labels.title'):</strong></label>
-                                    <p><input id="title" name="title" type="text" class="form-control" aria-label="Title" aria-describedby="title" oninput="this.className = ''"></p>
+                                    <p><input id="title" name="title" type="text" class="form-control" aria-label="Title" aria-describedby="title"></p>
                                     <label><strong>@lang('labels.description'):</strong></label>
                                     <p><textarea rows="5" class="form-control" onkeyup="countCharI(this)" id="description" name="description" aria-label="description" aria-describedby="description"></textarea></p>
                                     <script>
@@ -197,7 +197,7 @@ foreach ($recipes_all as $recipe_ok) {
                                             <label><strong>@lang('labels.preptime'):</strong>
                                         </div>
                                         <div class="col-auto">
-                                            <input style="width: 150px" min=0 max=200 name="preptime" id="preptime" type="number"  class="form-control" aria-label="Preparation time" aria-describedby="prep" oninput="this.className = ''">
+                                            <input style="width: 150px" min=0 max=200 name="preptime" id="preptime" type="number"  class="form-control" aria-label="Preparation time" aria-describedby="prep">
                                         </div>
                                         <div class="col-auto">
                                             <label>(min.)</label>
@@ -210,7 +210,7 @@ foreach ($recipes_all as $recipe_ok) {
                                             <label> <strong>@lang('labels.cookingtime'):</strong></label>
                                         </div>
                                         <div class="col-auto">
-                                            <input style="width: 150px" min=0 max=200 name="cookingtime" id="cookingtime" type="number" class="form-control" aria-label="Cooking time" aria-describedby="cook" oninput="this.className = ''">
+                                            <input style="width: 150px" min=0 max=200 name="cookingtime" id="cookingtime" type="number" class="form-control" aria-label="Cooking time" aria-describedby="cook">
                                         </div>
                                         <div class="col-auto">
                                             <label>(min.)</label>
@@ -223,7 +223,7 @@ foreach ($recipes_all as $recipe_ok) {
                                             <label> <strong>@lang('labels.doses'):</strong></label>
                                         </div>
                                         <div class="col-auto">
-                                            <input style="width: 150px" min=0 max=200 name="doses" id="doses" type="number" class="form-control" aria-label="Doses" aria-describedby="doses" oninput="this.className = ''">
+                                            <input style="width: 150px" min=0 max=200 name="doses" id="doses" type="number" class="form-control" aria-label="Doses" aria-describedby="doses">
                                         </div>
                                         <div class="col-auto">
                                             <label>@lang('labels.people')</label>
@@ -246,7 +246,7 @@ foreach ($recipes_all as $recipe_ok) {
                                             <span style="color: darkred"><strong>*</strong></span>
                                         </div>
                                         <div class="col">
-                                            <input type="text" class="form-control" placeholder="@lang('labels.ingredients')" name="ingredients[0]" oninput="this.className = ''">
+                                            <input type="text" class="form-control" placeholder="@lang('labels.ingredients')" name="ingredients[0]">
                                         </div>
 
                                         <!-- Quantity -->
@@ -254,7 +254,7 @@ foreach ($recipes_all as $recipe_ok) {
                                             <span style="color: darkred"><strong>*</strong></span>
                                         </div>
                                         <div class="col">
-                                            <input type="number" step="0.01" min="0" class="form-control" placeholder="@lang('labels.quantity')" name="quantities[]" oninput="this.className = ''">
+                                            <input type="number" step="0.01" min="0" class="form-control" placeholder="@lang('labels.quantity')" name="quantities[]">
                                         </div>
 
                                         <!-- Unit -->
