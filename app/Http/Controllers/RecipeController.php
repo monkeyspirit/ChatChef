@@ -473,9 +473,6 @@ class RecipeController extends Controller
         session_start();
         $dl = new DataLayer();
 
-
-
-
         $id_recipes_ok = array();
         $recipes_all = $dl->getAllRecipe();
 
@@ -486,7 +483,48 @@ class RecipeController extends Controller
             }
         }
 
+        foreach ($recipes as $recipe) {
 
+            $toBeAdded = true;
+
+            if (!$request->has('easy') && $recipe->difficult == 1) {
+                $toBeAdded = false;
+            } else if (!$request->has('medium') && $recipe->difficult == 2) {
+                $toBeAdded = false;
+            } else if (!$request->has('hard') && $recipe->difficult == 3) {
+                $toBeAdded = false;
+            }
+
+            if ($request->has('filterPrepTime')) {
+                if ($request->get('maxPrepTime') != '' && $recipe->preparation_time > $request->get('maxPrepTime'))
+                    $toBeAdded = false;
+                if ($request->get('minPrepTime') != '' && $recipe->preparation_time < $request->get('minPrepTime'))
+                    $toBeAdded = false;
+            }
+
+            if ($request->has('filterCookTime')) {
+                if ($request->get('maxCookTime') != '' && $recipe->preparation_time > $request->get('maxPrepTime'))
+                    $toBeAdded = false;
+                if ($request->get('minCookTime') != '' && $recipe->preparation_time < $request->get('minPrepTime'))
+                    $toBeAdded = false;
+            }
+
+            // filter by tag
+            $recipe_tags = explode('_', $recipe->tags);
+
+            for ($tagnum = 1; $tagnum < 12; $tagnum++) {
+                if ($request->has('tag-' . $tagnum) && !in_array($tagnum, $recipe_tags)) {
+                    $toBeAdded = false;
+                }
+            }
+
+            if ($toBeAdded) {
+                array_push($id_recipes_ok, $recipe->id);
+            }
+
+        }
+
+        /*
         $list_tags = array("First dish","Main course","Dessert","Appetizer", "Side dish" ,"Meat", "Fish", "Vegetarian", "Vegan", "Gluten Free", "Without allergens");
         $numbers = array("1","2","3","4","5","6","7","8","9","10","11");
         array_shift($_POST);
@@ -590,6 +628,8 @@ class RecipeController extends Controller
             }
 
         }
+
+        */
 
 
         $unique = array_unique($id_recipes_ok);

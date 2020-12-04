@@ -1,11 +1,13 @@
 <?php
+
 use App\DataLayer;
+
 $dl = new \App\DataLayer();
 $recipes_all = $dl->getAllRecipe();
 
 $recipes = array();
 foreach ($recipes_all as $recipe_ok) {
-    if($recipe_ok->approved == 1 || $recipe_ok->approved == 3){
+    if ($recipe_ok->approved == 1 || $recipe_ok->approved == 3) {
         array_push($recipes, $recipe_ok);
     }
 }
@@ -13,21 +15,19 @@ foreach ($recipes_all as $recipe_ok) {
 $list_ingredients = $dl->getAllIngredients();
 
 $list_tags = array();
-$list_tags_en = array("1"=>"First dish","2" => "Main", "3" => "Dessert", "4" => "Appetizer", "5" => "Side dish", "6" => "Meat", "7" => "Fish", "8" => "Vegetarian", "9" => "Vegan", "10" => "Gluten Free", "11" => "Without allergens");
-$list_tags_it = array("1"=>"Primo","2" => "Secondo", "3" => "Dolce", "4" => "Antipasto", "5" => "Contorno", "6" => "Carne", "7" => "Pesce", "8" => "Vegetariano", "9" => "Vegano", "10" => "Senza glutine", "11" => "Senza allergeni");
+$list_tags_en = array("1" => "First dish", "2" => "Main", "3" => "Dessert", "4" => "Appetizer", "5" => "Side dish", "6" => "Meat", "7" => "Fish", "8" => "Vegetarian", "9" => "Vegan", "10" => "Gluten Free", "11" => "Without allergens");
+$list_tags_it = array("1" => "Primo", "2" => "Secondo", "3" => "Dolce", "4" => "Antipasto", "5" => "Contorno", "6" => "Carne", "7" => "Pesce", "8" => "Vegetariano", "9" => "Vegano", "10" => "Senza glutine", "11" => "Senza allergeni");
 
 
-    if(session()->has('language')){
-        if(session('language')=="it"){
-            $list_tags = $list_tags_it;
-        }
-        elseif (session('language')=="en"){
-            $list_tags = $list_tags_en;
-        }
-    }
-    else{
+if (session()->has('language')) {
+    if (session('language') == "it") {
         $list_tags = $list_tags_it;
+    } elseif (session('language') == "en") {
+        $list_tags = $list_tags_en;
     }
+} else {
+    $list_tags = $list_tags_it;
+}
 
 $users = $dl->getAllUsername();
 
@@ -46,7 +46,7 @@ $users = $dl->getAllUsername();
                  @if(($dl->getUserbyUsername($loggedName))->image_profile == NULL)
                  src="{{asset('image/default_user/paw.jpg')}}"
                  @else
-                 src ="{{asset(($dl->getUserbyUsername($loggedName))->image_profile)}}"
+                 src="{{asset(($dl->getUserbyUsername($loggedName))->image_profile)}}"
                 @endif
             >
         </li>
@@ -74,150 +74,263 @@ $users = $dl->getAllUsername();
 
 @section('body')
 
- <!-- Header -->
-    <div id="parent-title" class="container text-center p-4">
-        <img src="{{asset('image/doodle/doodle10.jpg')}}" width="350" height="60">
-        <div class="d-flex justify-content-center">
-            <div class="row  align-self-center pr-4">
-                <lottie-player id="fir-lottie"
-                               src="{{asset('/icons/light-on.json')}}"
-                               background="transparent"
-                               speed="1"
-                               style="width: 50px; height: 50px;position: relative;"
+    {{--
 
-                >
-                </lottie-player>
-                <script>
-                    var fir_animation = document.getElementById("fir-lottie");
-                    $("#parent-title").mouseover(function () {
-                        fir_animation.play();
-                    });
-                    $("#parent-title").mouseleave(function () {
-                        fir_animation.stop();
-                    });
+        <!-- Header -->
+        <div id="parent-title" class="container text-center p-4">
+            <img src="{{asset('image/doodle/doodle10.jpg')}}" width="350" height="60">
+            <div class="d-flex justify-content-center">
+                <div class="row  align-self-center pr-4">
+                    <lottie-player id="fir-lottie"
+                                   src="{{asset('/icons/light-on.json')}}"
+                                   background="transparent"
+                                   speed="1"
+                                   style="width: 50px; height: 50px;position: relative;"
 
-                </script>
+                    >
+                    </lottie-player>
+                    <script>
+                        var fir_animation = document.getElementById("fir-lottie");
+                        $("#parent-title").mouseover(function () {
+                            fir_animation.play();
+                            ààà
+                        });
+                        $("#parent-title").mouseleave(function () {
+                            fir_animation.stop();
+                        });
 
+                    </script>
+
+                </div>
+                <h1 class="h-title">
+                    @lang('labels.advancedsearch')
+                </h1>
+                <div class="row align-self-center pl-4">
+                    <lottie-player id="sec-lottie"
+                                   src="{{asset('/icons/searching.json')}}"
+                                   background="transparent"
+                                   speed="1"
+                                   style="width: 50px; height: 50px;"
+
+                    >
+                    </lottie-player>
+                    <script>
+                        var sec_animation = document.getElementById("sec-lottie");
+                        $("#parent-title").mouseover(function () {
+                            sec_animation.play();
+                        });
+                        $("#parent-title").mouseleave(function () {
+                            sec_animation.stop();
+                        });
+
+                    </script>
+
+                </div>
             </div>
-            <h1 class="h-title">
-                @lang('labels.advancedsearch')
-            </h1>
-            <div class="row align-self-center pl-4">
-                <lottie-player id="sec-lottie"
-                               src="{{asset('/icons/searching.json')}}"
-                               background="transparent"
-                               speed="1"
-                               style="width: 50px; height: 50px;"
 
-                >
-                </lottie-player>
-                <script>
-                    var sec_animation = document.getElementById("sec-lottie");
-                    $("#parent-title").mouseover(function () {
-                        sec_animation.play();
-                    });
-                    $("#parent-title").mouseleave(function () {
-                        sec_animation.stop();
-                    });
+            <img src="{{asset('image/doodle/doodle10.jpg')}}" width="350" height="60">
+        </div>
 
-                </script>
-
+        <div class="container col-lg-6 col-md-8 col-sm-12">
+            <div class="card border-info">
+                <div class="card-body">
+                    @lang('labels.advanceSearchdescription')
+                </div>
             </div>
         </div>
 
-        <img src="{{asset('image/doodle/doodle10.jpg')}}" width="350" height="60">
-    </div>
-
-    <div class="container col-lg-6 col-md-8 col-sm-12">
-        <div class="card border-info">
-            <div class="card-body">
-                @lang('labels.advanceSearchdescription')
+        <form action="{{route('search_advanced')}}" method="post">
+            @csrf
+            <div class="container text-center p-4">
+                <p style="font-family: 'Amatic SC', cursive; font-size: 40px">
+                    @lang('labels.chooseMethodSearch')
+                </p>
             </div>
-        </div>
-    </div>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <div class="custom-control custom-switch custom-control-inline">
+                                    <span class="pr-5">@lang('labels.atleast')</span>
+                                    <input type="checkbox" class="custom-control-input" name="method__research__toggle"
+                                           id="customSwitch1">
+                                    <label class="custom-control-label"
+                                           for="customSwitch1">@lang('labels.everything')</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-    <form action="{{route('search_advanced')}}" method="post">
-        @csrf
-        <div class="container text-center p-4">
-            <p style="font-family: 'Amatic SC', cursive; font-size: 40px">
-                @lang('labels.chooseMethodSearch')
-            </p>
-        </div>
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="card">
-                        <div class="card-body text-center">
-                            <div class="custom-control custom-switch custom-control-inline">
-                                <span class="pr-5">@lang('labels.atleast')</span>
-                                <input type="checkbox" class="custom-control-input" name="method__research__toggle" id="customSwitch1">
-                                <label class="custom-control-label" for="customSwitch1">@lang('labels.everything')</label>
+                </div>
+            </div>
+
+            <!-- Ingredients checkboxes-->
+            <div class="container text-center p-4">
+                <p style="font-family: 'Amatic SC', cursive; font-size: 40px">
+                    @lang('labels.chooseIngredients')
+                </p>
+            </div>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-8 col-sm-12">
+                        <div class="card">
+                            <div class="card-body">
+                                @foreach($list_ingredients as $item)
+                                    <div class="custom-control custom-control-inline custom-checkbox mb-2">
+                                        <input type="checkbox" class="custom-control-input" name="{{$item}}" id="{{$item}}">
+                                        <label class="custom-control-label" for="{{$item}}">{{$item}}</label>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="container text-center p-4">
+                <p style="font-family: 'Amatic SC', cursive; font-size: 40px">
+                    @lang('labels.chooseTags')
+                </p>
+            </div>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-8 col-sm-12">
+                        <div class="card">
+                            <div class="card-body">
+                                @foreach($list_tags as $tag)
+                                    <div class="custom-control custom-control-inline custom-checkbox mb-2">
+                                        <input type="checkbox" class="custom-control-input" name="{{$tag}}" id="{{$tag}}">
+                                        <label class="custom-control-label" for="{{$tag}}">{{$tag}}</label>
+                                    </div>
+
+                                @endforeach
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
-        </div>
+            <div class="container pt-4 pb-4">
+                <div class="row justify-content-center">
+                    <button type="submit" class="btn btn-primary">@lang('labels.searchPlaceholder')</button>
+                </div>
+            </div>
 
-        <!-- Ingredients checkboxes-->
-        <div class="container text-center p-4">
-            <p style="font-family: 'Amatic SC', cursive; font-size: 40px">
-                @lang('labels.chooseIngredients')
-            </p>
-        </div>
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-8 col-sm-12">
-                    <div class="card">
-                        <div class="card-body">
-                            @foreach($list_ingredients as $item)
-                                <div class="custom-control custom-control-inline custom-checkbox mb-2">
-                                    <input type="checkbox" class="custom-control-input" name="{{$item}}" id="{{$item}}">
-                                    <label class="custom-control-label" for="{{$item}}">{{$item}}</label>
-                                </div>
-                            @endforeach
+
+        </form>
+    --}}
+
+    <div class="container">
+
+        <h1 class="h-title text-center my-5">
+            @lang('labels.advancedsearch')
+        </h1>
+
+        <form action="{{route('search_advanced')}}" method="post">
+            @csrf
+            <div class="row">
+                <div class="col-lg-6">
+
+                    <div class="form-group">
+                        <h4>@lang('labels.chooseTags')</h4>
+
+                        @foreach($list_tags as $tagnum => $tag)
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" name="tag-{{$tagnum}}" id="tag-{{$tagnum}}">
+                                <label class="form-check-label" for="tag-{{$tagnum}}">{{$tag}}</label>
+                            </div>
+                        @endforeach
+                    </div>
+
+                    <div class="form-group">
+                        <h4>@lang('labels.chooseDifficulty')</h4>
+
+                        <div class="form-check form-check-inline">
+                            <input type="checkbox" class="form-check-input" name="easy" id="easy" checked>
+                            <label class="form-check-label" for="easy">@lang('labels.easy')</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input type="checkbox" class="form-check-input" name="medium" id="medium" checked>
+                            <label class="form-check-label" for="medium">@lang('labels.medium')</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input type="checkbox" class="form-check-input" name="hard" id="hard" checked>
+                            <label class="form-check-label" for="hard">@lang('labels.hard')</label>
                         </div>
                     </div>
 
                 </div>
-            </div>
-        </div>
 
-        <div class="container text-center p-4">
-            <p style="font-family: 'Amatic SC', cursive; font-size: 40px">
-                @lang('labels.chooseTags')
-            </p>
-        </div>
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-8 col-sm-12">
-                    <div class="card">
-                        <div class="card-body">
-                            @foreach($list_tags as $tag)
-                                <div class="custom-control custom-control-inline custom-checkbox mb-2">
-                                    <input type="checkbox" class="custom-control-input" name="{{$tag}}" id="{{$tag}}">
-                                    <label class="custom-control-label" for="{{$tag}}">{{$tag}}</label>
-                                </div>
 
-                            @endforeach
+                <div class="col-lg-6">
+
+                    <div class="form-group" id="filtePerPrepTimeDiv">
+                        <div class="form-check form-check-inline">
+                            <h4>@lang('labels.filterPerPrepTime')</h4>
+                            <span class="mx-1"></span>
+                            <input type="checkbox" class="form-check-input" name="filterPrepTime" id="filterPrepTime">
                         </div>
+
+                        <div class="form-inline flex-nowrap">
+                            <label>@lang('labels.minTime')</label>
+                            <input type="number" class="form-control mx-3" name="minPrepTime" disabled>
+                            <label>@lang('labels.minutes')</label>
+                        </div>
+                        <div class="form-inline flex-nowrap">
+                            <label>@lang('labels.maxTime')</label>
+                            <input type="number" class="form-control mx-3" name="maxPrepTime" disabled>
+                            <label>@lang('labels.minutes')</label>
+                        </div>
+
                     </div>
+
+                    <div class="form-group" id="filtePerCookTimeDiv">
+                        <div class="form-check form-check-inline">
+                            <h4>@lang('labels.filterPerCookTime')</h4>
+                            <span class="mx-1"></span>
+                            <input type="checkbox" class="form-check-input" name="filterCookTime" id="filterCookTime">
+                        </div>
+
+                        <div class="form-inline flex-nowrap">
+                            <label>@lang('labels.minTime')</label>
+                            <input type="number" class="form-control mx-3" name="minCookTime" disabled>
+                            <label>@lang('labels.minutes')</label>
+                        </div>
+                        <div class="form-inline flex-nowrap">
+                            <label>@lang('labels.maxTime')</label>
+                            <input type="number" class="form-control mx-3" name="maxCookTime" disabled>
+                            <label>@lang('labels.minutes')</label>
+                        </div>
+
+                    </div>
+
                 </div>
             </div>
-        </div>
-        <div class="container pt-4 pb-4">
-            <div class="row justify-content-center">
-                <button type="submit" class="btn btn-primary">@lang('labels.searchPlaceholder')</button>
+
+            <div class="row justify-content-center my-4">
+                <button class="btn btn-outline-primary">@lang('labels.searchPlaceholder')</button>
             </div>
-        </div>
+        </form>
+    </div>
 
+    <script>
+        function toggleFilterPerPrepTime(enable) {
+            $('#filtePerPrepTimeDiv input[type=number]').prop('disabled', !enable);
+        }
+        function toggleFilterPerCookTime(enable) {
+            $('#filtePerCookTimeDiv input[type=number]').prop('disabled', !enable);
+        }
 
-
-    </form>
-
-
-
+        $(document).ready(function () {
+            $('#filterPrepTime').click(function () {
+                toggleFilterPerPrepTime($('#filterPrepTime').prop('checked'));
+            })
+            $('#filterCookTime').click(function () {
+                toggleFilterPerCookTime($('#filterCookTime').prop('checked'));
+            })
+        })
+    </script>
 
 
 @endsection
