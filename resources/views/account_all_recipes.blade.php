@@ -4,8 +4,24 @@ $dl = new \App\DataLayer();
 $user_id = $dl->getUserIDbyUsername( $_SESSION['loggedName']);
 $recipes_user = $dl->getUserRecipe($user_id);
 
-$recipes_all = $dl->getAllRecipe();
+$recipe_appproved = array();
+$recipe_notapproved = array();
+$recipe_waiting = array();
 
+foreach ($recipes_user as $recipe_user) {
+    if($recipe_user->approved == 0){
+        array_push($recipe_waiting, $recipe_user);
+    }
+    elseif($recipe_user->approved == 2){
+        array_push($recipe_notapproved, $recipe_user);
+    }
+    else{
+        array_push($recipe_appproved, $recipe_user);
+    }
+}
+
+//Questo sotto serve per la tendina
+$recipes_all = $dl->getAllRecipe();
 $recipes = array();
 foreach ($recipes_all as $recipe_ok) {
     if($recipe_ok->approved == 1 || $recipe_ok->approved == 3){
@@ -20,26 +36,26 @@ foreach ($recipes_all as $recipe_ok) {
 @section('title', 'All recipe')
 
 @section('right_navbar') {{-- questo non lo usa più --}}
-    <li class="nav-item pr-2 pb-1">
-        <img style="border-radius: 100px; height: 40px; width: 40px;"
-             @if(($dl->getUserbyUsername($loggedName))->image_profile == NULL)
-             src="{{asset('image/default_user/paw.jpg')}}"
-             @else
-             src ="{{asset(($dl->getUserbyUsername($loggedName))->image_profile)}}"
-            @endif
-        >
-    </li>
-        <li class="nav-item">
-            <div class="dropdown">
-                <button class="btn btn-outline-secondary dropdown-toggle active " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    {{ $loggedName }}
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    @include('utils.rightnavbar', ['active'=>"1"])
-                    <a class="dropdown-item" href="{{route('logout_home')}}">@lang('labels.logout')</a>
-                </div>
-            </div>
-        </li>
+<li class="nav-item pr-2 pb-1">
+    <img style="border-radius: 100px; height: 40px; width: 40px;"
+         @if(($dl->getUserbyUsername($loggedName))->image_profile == NULL)
+         src="{{asset('image/default_user/paw.jpg')}}"
+         @else
+         src ="{{asset(($dl->getUserbyUsername($loggedName))->image_profile)}}"
+        @endif
+    >
+</li>
+<li class="nav-item">
+    <div class="dropdown">
+        <button class="btn btn-outline-secondary dropdown-toggle active " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{ $loggedName }}
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            @include('utils.rightnavbar', ['active'=>"1"])
+            <a class="dropdown-item" href="{{route('logout_home')}}">@lang('labels.logout')</a>
+        </div>
+    </div>
+</li>
 @endsection
 
 
@@ -109,16 +125,53 @@ foreach ($recipes_all as $recipe_ok) {
 
 
 
-            @if(($dl->getUserbyUsername($loggedName))->ban == 0)
-                @include('utils.card_view_insert_recipe')
-            @endif
+        @if(($dl->getUserbyUsername($loggedName))->ban == 0)
+            @include('utils.card_view_insert_recipe')
+        @endif
 
+        <br>
+        <div class="text-center">
+            <button class="btn btn-outline-secondary" type="button" data-toggle="collapse" data-target="#collapse_waiting" aria-expanded="false" aria-controls="collapseExample">
+                <h2 class="text-center pt-0 pb-0" style="font-family: 'Fredericka the Great', cursive">@lang('labels.waiting recipes')</h2>
+            </button>
+        </div>
+        <br>
+        <div class="collapse" id="collapse_waiting">
+            <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3">
+                @foreach($recipe_waiting as $recipe)
+                    @include('utils.card_view_recipe_account',['recipe'=>$recipe])
+                @endforeach
+            </div>
+        </div>
+        <br>
+            <div class="text-center">
+                <button class="btn btn-outline-secondary" type="button" data-toggle="collapse" data-target="#collapse_notapproved" aria-expanded="false" aria-controls="collapseExample">
+                    <h2 class="text-center pt-0 pb-0" style="font-family: 'Fredericka the Great', cursive">@lang('labels.not approved recipes')</h2>
+                </button>
+            </div>
+        <br>
 
+        <div class="collapse" id="collapse_notapproved">
+            <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3">
+                @foreach($recipe_notapproved as $recipe)
+                    @include('utils.card_view_recipe_account',['recipe'=>$recipe])
+                @endforeach
+            </div>
+        </div>
+        <br>
+            <div class="text-center">
+                <button class="btn btn-outline-secondary" type="button" data-toggle="collapse" data-target="#collapse_notapproved" aria-expanded="false" aria-controls="collapseExample">
+                    <h2 class="text-center pt-0 pb-0" style="font-family: 'Fredericka the Great', cursive">@lang('labels.approved recipes')</h2>
+                </button>
+            </div>
 
-        <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3">
-            @foreach($recipes_user as $recipe)
-                @include('utils.card_view_recipe_account',['recipe'=>$recipe])
-            @endforeach
+        <br>
+        <div class="collapse" id="collapse_approved">
+            <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3">
+                @foreach($recipe_appproved as $recipe)
+                    @include('utils.card_view_recipe_account',['recipe'=>$recipe])
+                @endforeach
+            </div>
         </div>
     </div>
 

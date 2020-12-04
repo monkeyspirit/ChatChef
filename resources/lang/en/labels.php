@@ -144,6 +144,9 @@ return [
     'next' => 'Next',
     'prev' => 'Previous',
     'edit_text' => '',
-    'addTag' => 'Add tag'
+    'addTag' => 'Add tag',
+    'approved recipes' => '',
+    'not approved recipes' => '',
+    'waiting recipes' => '',
 
 ];

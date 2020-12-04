@@ -156,7 +156,10 @@ return [
     'filterPerCookTime' => 'Filtra per Tempo di Cottura',
     'minTime' => 'Tempo Minimo',
     'maxTime' => 'Tempo Massimo',
-    'minutes' => 'minuti'
+    'minutes' => 'minuti',
+    'approved recipes' => 'Ricette approvate',
+    'not approved recipes' => 'Ricette non approvate',
+    'waiting recipes' => 'Ricette in attesa di approvazione',
 
 
 ];
