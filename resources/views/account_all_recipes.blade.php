@@ -160,7 +160,7 @@ foreach ($recipes_all as $recipe_ok) {
         </div>
         <br>
             <div class="text-center">
-                <button class="btn btn-outline-secondary" type="button" data-toggle="collapse" data-target="#collapse_notapproved" aria-expanded="false" aria-controls="collapseExample">
+                <button class="btn btn-outline-secondary" type="button" data-toggle="collapse" data-target="#collapse_approved" aria-expanded="false" aria-controls="collapseExample">
                     <h2 class="text-center pt-0 pb-0" style="font-family: 'Fredericka the Great', cursive">@lang('labels.approved recipes')</h2>
                 </button>
             </div>
