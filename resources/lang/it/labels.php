@@ -20,7 +20,7 @@ return [
     'recentlyAdded' => 'Aggiunti recentemente ',
     'logout' => 'Esci',
     'accountManagement' => 'Gestione utenti',
-    'loginButton' => 'Accedi / Registrati',
+    'loginButton' => 'Accedi',
     'homeTitle' => 'Tutte le ricette',
     'labelCardHome' => 'Creato da',
     'buttonGoto' => 'Vai alla ricetta',

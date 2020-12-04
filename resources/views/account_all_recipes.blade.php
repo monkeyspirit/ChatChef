@@ -108,10 +108,14 @@ foreach ($recipes_all as $recipe_ok) {
     <div class="container">
 
 
-        <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3">
+
             @if(($dl->getUserbyUsername($loggedName))->ban == 0)
                 @include('utils.card_view_insert_recipe')
             @endif
+
+
+
+        <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3">
             @foreach($recipes_user as $recipe)
                 @include('utils.card_view_recipe_account',['recipe'=>$recipe])
             @endforeach

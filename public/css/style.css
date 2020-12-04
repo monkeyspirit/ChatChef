@@ -404,9 +404,8 @@
     position: relative;
     z-index: 1;
     display: block;
-    background: #FFFFFF;
-
     min-width: 270px;
+    max-width: 700px;
     height: 470px;
     -webkit-box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.15);
     -moz-box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.15);
@@ -545,6 +544,7 @@
     -ms-flex-direction: column;
     flex-direction: column;
     min-width: 0;
+    max-width: 700px;
     word-wrap: break-word;
     margin: 0 auto;
 }
@@ -781,7 +781,7 @@ input[type=number]::-webkit-inner-spin-button {
 
 
 .progressbar-container {
-    width: 600px;
+    width: auto;
     height: 100px;
     margin: auto;
 }

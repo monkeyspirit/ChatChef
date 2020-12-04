@@ -21,7 +21,7 @@ $firstCover = $dl->getFirstCoverImage($recipe->id);
 
 
 
-<div class="col mb-3">
+<div class="col mb-3" onclick="window.location.href='{{route('recipe_view',['id'=>$recipe->id])}}'">
 
     <div  class="container-card">
         <div class="column" >

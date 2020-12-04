@@ -88,6 +88,7 @@ foreach ($recipes_all as $recipe_ok) {
             <a href='https://www.freepik.com/free-photos-vectors/cartoon'>Cartoon vector created by pch.vector - www.freepik.com</a><br/>
             <a href='https://www.freepik.com/free-photos-vectors/background'>Background photo created by freepik - www.freepik.com</a>
             <a href='https://www.freepik.com/vectors/people'>People vector created by pikisuperstar - www.freepik.com</a>
+            <a href='https://www.freepik.com/vectors/food'>Food vector created by freepik - www.freepik.com</a>
         </div>
 
 
