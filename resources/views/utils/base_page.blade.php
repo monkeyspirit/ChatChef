@@ -55,99 +55,109 @@ $dl = new \App\DataLayer();
 </head>
 <body >
 
-    <nav id="nav_parent" class="navbar navbar-expand-md navbar-light bg-light d-flex flex-column flex-md-row justify-content-md-between">
+    <nav class="navbar navbar-expand-md navbar-light bg-light" id="nav_parent">
 
-        <ul class="navbar-nav d-flex flex-row">
-            <a class="navbar-brand" href="{{route('home')}}">
-                <lottie-player id="nav-lottie"
-                               src="{{asset('/icons/maneki.json')}}"
-                               background="transparent"
-                               speed="1"
-                               style="width: 40px; height: 40px;">
-                </lottie-player>
+        <div class="row m-0 w-100">
+            <div class="col-6 col-md-3 order-1">
+                <a class="navbar-brand d-inline-flex align-items-center " href="{{route('home')}}">
+            <lottie-player id="nav-lottie"
+                           src="{{asset('/icons/maneki.json')}}"
+                           background="transparent"
+                           speed="1"
+                           style="width: 40px; height: 40px;">
+            </lottie-player>
+            @lang('labels.allRecipes')
 
-                <script>
-                    var nav_animation = document.getElementById("nav-lottie");
-                    $("#nav_parent").mouseover(function () {
-                        nav_animation.play();
-                    });
-                    $("#nav_parent").mouseleave(function () {
-                        nav_animation.stop();
-                    });
-                </script>
-            </a>
-            <li class="nav-item align-items-center">
-                <a class="nav-link active mt-2"  href="{{route('home')}}">@lang('labels.allRecipes')</a>
-            </li>
-        </ul>
-
-        <form class="form-inline my-2 my-md-0 w-100">
-            <div class="container px-md-5">
-                <div class="input-group w-100">
-                    <input class="searcher form-control" placeholder=@lang('labels.searchPlaceholder') aria-label="Search">
-
-                    <div class="input-group-append">
-                        <a class="btn btn-outline-secondary my-0" href="{{route('search')}}">@lang('labels.advancedsearch')</a>
-                    </div>
-                </div>
-
-                <div class="suggestions tendina" style="display: block;">
-                </div>
-            </div>
-            <script type="text/javascript">
-
-                var recipes = <?php echo json_encode($recipes) ?>;
-
-                const searchInput = document.querySelector('.searcher');
-                const suggestionPanel = document.querySelector('.suggestions');
-
-                searchInput.addEventListener("keyup", function () {
-                    const input = searchInput.value.toString().toUpperCase();
-
-                    suggestionPanel.innerHTML = '';
-                    const suggestions = recipes.filter(function (recipe) {
-                        return recipe.title.toUpperCase().includes(input);
-                    });
-                    suggestions.forEach(function (suggested) {
-                        const div = document.createElement('div');
-
-
-                        div.innerHTML = "<li class='pt-2 pb-2'><a href='/recipe_view/" + suggested.id + "'>" + suggested.title + "</a></li>";
-
-                        suggestionPanel.appendChild(div);
-                    });
-
-                    if (input == '') {
-                        suggestionPanel.innerHTML = '';
-                    }
-
+            <script>
+                var nav_animation = document.getElementById("nav-lottie");
+                $("#nav_parent").mouseover(function () {
+                    nav_animation.play();
+                });
+                $("#nav_parent").mouseleave(function () {
+                    nav_animation.stop();
                 });
             </script>
-        </form>
+        </a>
+            </div>
 
-        <ul class="navbar-nav d-flex flex-row">
-            @if($logged)
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="{{route('logout')}}">{{ $loggedName }}</a>
-                </li>
-                <li class="nav-item pr-2 pb-1">
-                </li>
-                <img style="height: 40px; width: 40px; border-radius: 100px; border-style: solid; border-width: thin"
-                     @if(($dl->getUserbyUsername($loggedName))->image_profile == NULL)
-                     src="{{asset('image/default_user/paw.jpg')}}"
-                     @else
-                     src ="{{asset(($dl->getUserbyUsername($loggedName))->image_profile)}}"
+            <div class="col-12 col-md-6 d-flex justify-content-center order-3 order-md-2">
+                <form class="form-inline flex-nowrap w-100">
+
+                    <div class="input-group w-100">
+                        <input class="searcher form-control " placeholder=@lang('labels.searchPlaceholder') aria-label="Search">
+
+                        <div class="input-group-append">
+                            <a class="btn btn-outline-secondary" href="{{route('search')}}" data-toggle="tooltip" data-placement="bottom" title="@lang('labels.advancedsearch')">
+                                {{--                            @lang('labels.advancedsearch')--}}
+                                <i class="fas fa-sliders-h"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <script>
+                        $(function () {
+                            $('[data-toggle="tooltip"]').tooltip()
+                        })
+                    </script>
+
+                    <div class="suggestions tendina" style="display: block;">
+                    </div>
+
+                    <script type="text/javascript">
+
+                        var recipes = <?php echo json_encode($recipes) ?>;
+
+                        const searchInput = document.querySelector('.searcher');
+                        const suggestionPanel = document.querySelector('.suggestions');
+
+                        searchInput.addEventListener("keyup", function () {
+                            const input = searchInput.value.toString().toUpperCase();
+
+                            suggestionPanel.innerHTML = '';
+                            const suggestions = recipes.filter(function (recipe) {
+                                return recipe.title.toUpperCase().includes(input);
+                            });
+                            suggestions.forEach(function (suggested) {
+                                const div = document.createElement('div');
+
+
+                                div.innerHTML = "<li class='pt-2 pb-2'><a href='/recipe_view/" + suggested.id + "'>" + suggested.title + "</a></li>";
+
+                                suggestionPanel.appendChild(div);
+                            });
+
+                            if (input == '') {
+                                suggestionPanel.innerHTML = '';
+                            }
+
+                        });
+                    </script>
+                </form>
+            </div>
+
+            <div class="col-6 col-md-3 d-flex justify-content-end align-items-center order-2 order-md-3">
+                <ul class="navbar-nav">
+                    @if($logged)
+                        <li class="nav-item">
+                            <a class="nav-link disabled" href="{{route('logout')}}">{{ $loggedName }}</a>
+                        </li>
+                        <img style="height: 40px; width: 40px; border-radius: 100px; border-style: solid; border-width: thin"
+                             @if(($dl->getUserbyUsername($loggedName))->image_profile == NULL)
+                             src="{{asset('image/default_user/paw.jpg')}}"
+                             @else
+                             src ="{{asset(($dl->getUserbyUsername($loggedName))->image_profile)}}"
+                            @endif
+                        >
+                    @else
+                        <li class="nav-item">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginRegModal">
+                                @lang('labels.loginButton')
+                            </button>
+                        </li>
                     @endif
-                >
-            @else
-                <li class="nav-item">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginRegModal">
-                        @lang('labels.loginButton')
-                    </button>
-                </li>
-            @endif
-            {{--            @yield('right_navbar')--}}
-        </ul>
+                    {{--            @yield('right_navbar')--}}
+                </ul>
+            </div>
+        </div>
 
     </nav>
 
@@ -483,7 +493,8 @@ $dl = new \App\DataLayer();
 
 
         <div class="container">
-            <div class="dropdown">
+
+            {{--<div class="dropdown">
             Lingua:
             @if(session()->has('language') && session('language') == "en")
                     <button class="btn btn-outline-secondary-my dropdown-toggle" type="button"
@@ -510,8 +521,7 @@ $dl = new \App\DataLayer();
 
                     </div>
                 @endif
-        </div>
-
+        </div>--}}
 
         </div>
 
