@@ -729,7 +729,7 @@
 }
 
 .carousel-control-prev:hover, .carousel-control-next:hover {
-    background-color: #ffa500;
+    background-color: orange;
 }
 
 .recipe-card:hover {
@@ -889,14 +889,14 @@ input[type=number]::-webkit-inner-spin-button {
 }
 
 input:checked + .slider {
-    background-color: #2196F3;
+    background-color: orange;
 }
 input:checked + .slider.bg-red {
     background-color: #ff3f4d;
 }
 
 input:focus + .slider {
-    box-shadow: 0 0 1px #2196F3;
+    box-shadow: 0 0 1px orange;
 }
 
 input:checked + .slider:before {
@@ -949,4 +949,85 @@ input:checked + .slider:before {
 .arrow.active span:last-of-type {
     -webkit-transform: rotate(45deg);
     transform: rotate(45deg);
+}
+
+/* Boostrap Override */
+
+
+.btn-outline-primary {
+    color: orange;
+    border-color: orange;
+}
+
+.btn-outline-primary:hover {
+    background-color: orange;
+    border-color: orange;
+}
+
+.btn-outline-primary:focus, .btn-outline-primary.focus {
+    box-shadow: 0 0 0 0.2rem rgba(255, 144, 0, 0.5);
+}
+
+.btn-outline-primary.disabled, .btn-outline-primary:disabled {
+    color: orange;
+}
+
+.btn-outline-primary:not(:disabled):not(.disabled):active, .btn-outline-primary:not(:disabled):not(.disabled).active,
+.show > .btn-outline-primary.dropdown-toggle {
+    background-color: darkorange;
+    border-color: orange;
+}
+
+.btn-outline-primary:not(:disabled):not(.disabled):active:focus, .btn-outline-primary:not(:disabled):not(.disabled).active:focus,
+.show > .btn-outline-primary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem rgba(255, 140, 0, 0.5);
+}
+
+.btn-primary {
+    background-color: orange;
+    border-color: orange;
+}
+
+.btn-primary:hover {
+    background-color: orange;
+    border-color: orange;
+}
+
+.btn-primary:focus, .btn-primary.focus {
+    background-color: darkorange;
+    border-color: orange;
+    box-shadow: 0 0 0 0.2rem rgba(255, 143, 0, 0.5);
+}
+
+.btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active,
+.show > .btn-primary.dropdown-toggle {
+    background-color: darkorange;
+    border-color: orange;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus,
+.show > .btn-primary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem rgba(155, 143, 0, 0.5);
+}
+
+.page-link {
+    color: orange;
+}
+
+.page-link:hover {
+    color: orangered;
+}
+
+
+.page-item.active .page-link {
+    background-color: orange;
+    border-color: orange;
+}
+
+a {
+    color: orange;
+}
+
+a:hover {
+    color: orangered;
 }

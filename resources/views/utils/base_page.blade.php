@@ -14,14 +14,14 @@ $dl = new \App\DataLayer();
 
     <!-- CSS -->
     <!-- style.css -->
-    <link href="{{url('/css/style.css')}}" rel="stylesheet" type="text/css" >
     <link href="{{url('/css/bootstrap.css')}}" rel="stylesheet" type="text/css" >
+    <link href="{{url('/css/style.css')}}" rel="stylesheet" type="text/css" >
 {{--    <link href="{{url('/Cirrus-0.6.0/dist/cirrus.css')}}" rel="stylesheet" type="text/css" >--}}
 
 
    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap" rel="stylesheet">
     <!-- bootstrap -->
-    <link rel="stylesheet" href="{{url('css/bootstrap.css')}}">
+{{--    <link rel="stylesheet" href="{{url('css/bootstrap.css')}}">--}}
     <!-- OwlCarousel -->
     <link rel="stylesheet" href="{{url('/OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css')}}">
     <link rel="stylesheet" href="{{url('/OwlCarousel2-2.3.4/dist/assets/owl.theme.default.min.css')}}">
@@ -88,18 +88,18 @@ $dl = new \App\DataLayer();
                         <input class="searcher form-control" name="text" placeholder=@lang('labels.searchPlaceholder') aria-label="Search">
 
                         <div class="input-group-append">
+                        </div>
+                        <div class="input-group-append">
                             <button type="submit" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="bottom" title="@lang('labels.searchPlaceholder')">
                                 {{--                            @lang('labels.advancedsearch')--}}
                                 <i class="fas fa-search"></i>
                             </button>
                         </div>
-                        <div class="input-group-append">
-                            <a class="btn btn-outline-secondary" href="{{route('search')}}" data-toggle="tooltip" data-placement="bottom" title="@lang('labels.advancedsearch')">
-{{--                                @lang('labels.advancedsearch')--}}
-                                <i class="fas fa-sliders-h"></i>
-                            </a>
-                        </div>
                     </div>
+                    <a class="btn btn-outline-secondary ml-1" href="{{route('search')}}" data-toggle="tooltip" data-placement="bottom" title="@lang('labels.advancedsearch')">
+                        {{--                                @lang('labels.advancedsearch')--}}
+                        <i class="fas fa-sliders-h"></i>
+                    </a>
                     <script>
                         $(function () {
                             $('[data-toggle="tooltip"]').tooltip()
