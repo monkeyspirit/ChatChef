@@ -91,7 +91,7 @@ $numRecipesPerPage = 3; // poi nella versione finale facciamo 6
                     $cover1 = $dl->getFirstCoverImage($recipes_carousel[0]->id)
                     ?>
                     <img class="d-block w-100 home-carousel-image" src="{{ asset($cover1) }}" alt="First slide" >
-                    <div class="carousel-caption d-block">
+                    <div class="carousel-caption d-block px-2" style="background: rgba(0, 0, 0, 0.3)">
                         <h2>{{ $recipes_carousel[0]->title }}</h2>
                         <p>{{ $recipes_carousel[0]->description }}</p>
                     </div>
@@ -101,7 +101,7 @@ $numRecipesPerPage = 3; // poi nella versione finale facciamo 6
                     $cover2 = $dl->getFirstCoverImage($recipes_carousel[1]->id)
                     ?>
                     <img class="d-block w-100 home-carousel-image" src="{{ asset($cover2) }}" alt="First slide" >
-                    <div class="carousel-caption d-block">
+                    <div class="carousel-caption d-block px-2" style="background: rgba(0, 0, 0, 0.3)">
                         <h2>{{ $recipes_carousel[1]->title }}</h2>
                         <p>{{ $recipes_carousel[1]->description }}</p>
                     </div>
@@ -111,7 +111,7 @@ $numRecipesPerPage = 3; // poi nella versione finale facciamo 6
                     $cover3 = $dl->getFirstCoverImage($recipes_carousel[2]->id)
                     ?>
                     <img class="d-block w-100 home-carousel-image" src="{{ asset($cover3) }}" alt="First slide" >
-                    <div class="carousel-caption d-block">
+                    <div class="carousel-caption d-block px-2" style="background: rgba(0, 0, 0, 0.3)">
                         <h2>{{ $recipes_carousel[2]->title }}</h2>
                         <p>{{ $recipes_carousel[2]->description }}</p>
                     </div>

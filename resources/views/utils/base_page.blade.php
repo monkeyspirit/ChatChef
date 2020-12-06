@@ -219,7 +219,7 @@ $dl = new \App\DataLayer();
                 <a class="nav-link" id="navbar2-settings" href="{{route('account_settings')}}">@lang('labels.settings')</a>
             </li>
             <li>
-                <a class="nav-link" id="navbar2-logout" href="{{route('logout')}}">@lang('labels.logout')</a>
+                <a class="nav-link btn btn-danger" id="navbar2-logout" href="{{route('logout')}}">@lang('labels.logout')</a>
             </li>
         </ul>
         </div>
