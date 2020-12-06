@@ -77,8 +77,10 @@ $numRecipesPerPage = 3; // poi nella versione finale facciamo 6
 @section('body')
 
     <div class="container text-center my-3">
-        <h1 class="h-title mt-5 mb-4">I consigli del giorno</h1>
-
+        <h1 class="h-title mt-5">I consigli del giorno</h1>
+        <div class="d-flex justify-content-center mb-4">
+            <img src="{{asset('image/doodle/doodle3.jpg')}}" width="400" height="60" alt="">
+        </div>
         <div id="carousel" class="carousel slide" data-ride="carousel" style="background-color: darkslategrey">
             {{-- <ol class="carousel-indicators">
                 <li data-target="#carousel" data-slide-to="0" class="active"></li>
@@ -213,6 +215,9 @@ $numRecipesPerPage = 3; // poi nella versione finale facciamo 6
         {{-- --}}
 
         <h1 class="h-title text-center mt-5 ">@lang('labels.homeTitle')</h1>
+        <div class="d-flex justify-content-center">
+        <img src="{{asset('image/doodle/doodle6.jpg')}}" width="250" height="60" alt="">
+        </div>
 
         <form class="form-inline d-flex justify-content-end">
             <div class="form-group ">

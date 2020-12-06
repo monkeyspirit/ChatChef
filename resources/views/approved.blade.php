@@ -91,7 +91,7 @@ foreach ($recipes_all as $recipe) {
 
     <!-- Header -->
     <div id="parent-setting" class="container text-center p-4">
-        <img src="{{asset('image/doodle/doodle1.jpg')}}" width="200" height="60" alt="">
+        {{--<img src="{{asset('image/doodle/doodle1.jpg')}}" width="200" height="60" alt="">--}}
 
         <div class="d-flex justify-content-center">
             {{--<div class="row  align-self-center pr-5">

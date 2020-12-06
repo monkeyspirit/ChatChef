@@ -114,7 +114,7 @@ foreach ($recipes_all as $recipe_ok) {
 --}}
             </div>
 
-       {{-- <img src="{{asset('image/doodle/doodle2.jpg')}}" width="200" height="60">--}}
+        <img src="{{asset('image/doodle/doodle2.jpg')}}" width="200" height="60">
         </div>
 
 
@@ -130,12 +130,13 @@ foreach ($recipes_all as $recipe_ok) {
         @if(($dl->getUserbyUsername($loggedName))->ban == 0)
             @include('utils.card_view_insert_recipe')
         @endif
-
+            <hr>
         <br>
         <div class="text-center">
-            <h2 class="text-center pt-0 pb-0" style="font-family: 'Fredericka the Great', cursive">@lang('labels.waiting recipes')</h2>
+            <h2 class="text-center pt-0 pb-0" style="font-size: 40px; font-family: 'Amatic SC', cursive"><i class="las la-hourglass-start"></i> @lang('labels.waiting recipes') <i class="las la-hourglass-end"></i></h2>
+            <img src="{{asset('image/doodle/doodle-divider.jpg')}}" width="300" height="60"> <br>
             <button value="0" onclick="change_arrow(this)" class="btn btn-outline-secondary" type="button" data-toggle="collapse" data-target="#collapse_waiting" aria-expanded="false" aria-controls="collapseExample">
-                <i class="las la-angle-down"></i>
+                Espandi <i class="las la-angle-down"></i>
             </button>
         </div>
         <br>
@@ -146,13 +147,14 @@ foreach ($recipes_all as $recipe_ok) {
                 @endforeach
             </div>
         </div>
-            <hr>
+
         <br>
             <div class="wrap"><span class="arrow"><span></span><span></span></span><span class="arrow--l-r right"><span></span><span></span><span></span><span></span><span></span></span></div>
             <div class="text-center">
-                <h2 class="text-center pt-0 pb-0" style="font-family: 'Fredericka the Great', cursive">@lang('labels.not approved recipes')</h2>
+                <h2 class="text-center pt-0 pb-0"  style="font-size: 40px; font-family: 'Amatic SC', cursive"><i class="las la-exclamation-triangle"></i> @lang('labels.not approved recipes') <i class="las la-times"></i></h2>
+                <img src="{{asset('image/doodle/doodle-divider.jpg')}}" width="300" height="60"> <br>
                 <button value="0" onclick="change_arrow(this)" class="btn btn-outline-secondary" type="button" data-toggle="collapse" data-target="#collapse_notapproved" aria-expanded="false" aria-controls="collapseExample">
-                    <i class="las la-angle-down"></i>
+                    Espandi <i class="las la-angle-down"></i>
                 </button>
             </div>
         <br>
@@ -165,11 +167,12 @@ foreach ($recipes_all as $recipe_ok) {
             </div>
         </div>
         <br>
-            <hr>
+
             <div class="text-center">
-                <h2 class="text-center pt-0 pb-0" style="font-family: 'Fredericka the Great', cursive">@lang('labels.approved recipes')</h2>
+                <h2 class="text-center pt-0 pb-0"  style="font-size: 40px; font-family: 'Amatic SC', cursive"><i class="las la-thumbs-up"></i> @lang('labels.approved recipes') <i class="las la-check-circle"></i></h2>
+                <img src="{{asset('image/doodle/doodle-divider.jpg')}}" width="300" height="60"> <br>
                 <button value="0" onclick="change_arrow(this)" class="btn btn-outline-secondary"  type="button" data-toggle="collapse" data-target="#collapse_approved" aria-expanded="false" aria-controls="collapseExample">
-                    <i class="las la-angle-down"></i>
+                    Espandi <i class="las la-angle-down"></i>
                 </button>
 
             </div>
@@ -188,10 +191,10 @@ foreach ($recipes_all as $recipe_ok) {
     <script>
         function change_arrow(btn){
             if (btn.value === "0") {
-                btn.innerHTML = "<i class=\"las la-angle-up\"></i>";
+                btn.innerHTML = "Restringi <i class=\"las la-angle-up\"></i>";
                 btn.value = "1";
             } else {
-                btn.innerHTML = "<i class=\"las la-angle-down\"></i>";
+                btn.innerHTML = "Espandi <i class=\"las la-angle-down\"></i>";
                 btn.value = "0";
             }
         }

@@ -632,6 +632,9 @@ foreach ($recipes_all as $recipe_ok) {
                             x[n-1].className += " active";
                             x[n].className += " focus";
                         }
+
+
+
                     </script>
                 </form>
 

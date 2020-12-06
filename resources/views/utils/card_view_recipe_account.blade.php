@@ -41,7 +41,7 @@ $firstCover = $dl->getFirstCoverImage($recipe->id);
                     </div>
 
                     <div class="d-flex justify-content-around">
-                        @if($recipe->approved!=0)
+                        {{--@if($recipe->approved!=0)--}}
                         <a id="delete{{$recipe->id}}" class="butt btn-my btn-outline-danger-my" href="{{route('delete',['id'=>$recipe->id])}}">
 
                             <div class="d-flex flex-column align-items-start flex-column bd-highlight mb-3 ">
@@ -105,7 +105,7 @@ $firstCover = $dl->getFirstCoverImage($recipe->id);
                             });
 
                         </script>
-                        @endif
+                       {{-- @endif--}}
 
                         <a id="view{{$recipe->id}}" class="butt btn-my btn-outline-secondary-my" href="{{route('recipe_view',['id'=>$recipe->id])}}">
 

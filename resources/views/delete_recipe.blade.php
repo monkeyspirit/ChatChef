@@ -53,7 +53,7 @@ foreach ($recipes_all as $recipe_ok) {
         <h1 class="h-title">
             @lang('labels.delteButtonMyRec')
         </h1>
-        {{--<img src="{{asset('image/doodle/square-line1.jpg')}}" width="450" height="40" alt="">--}}
+        <img src="{{asset('image/doodle/square-line1.jpg')}}" width="450" height="40" alt="">
     </div>
 
     <div class="container text-center">
@@ -63,7 +63,7 @@ foreach ($recipes_all as $recipe_ok) {
                     <h5 class="card-title">@lang('labels.delete1') <strong>{{$recipe->title}}</strong>?</h5>
                     <p class="card-text">@lang('labels.delete2')</p>
                     <div class="row justify-content-around">
-                        <a href="{{route('account_all_recipes')}}" class="btn btn-outline-primary">@lang('labels.cancel')</a>
+                        <a href="{{route('account_all_recipes')}}" class="btn btn-outline-secondary">@lang('labels.cancel')</a>
                         <a href="{{route('delete_recipe',['id'=>$recipe->id])}}" class="btn btn-danger">@lang('labels.delteButtonMyRec')</a>
                     </div>
                 </div>

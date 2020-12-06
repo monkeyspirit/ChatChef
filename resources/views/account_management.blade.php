@@ -51,9 +51,9 @@ $all_user = $dl->getAllUsername();
     </script>
 
     <!-- Header -->
-    {{--
+
     <div id="parent-setting" class="container text-center p-5">
-        <img src="{{asset('image/doodle/doodle1.jpg')}}" width="200" height="60" alt="">
+        {{--<img src="{{asset('image/doodle/doodle1.jpg')}}" width="200" height="60" alt="">
 
         <div class="d-flex justify-content-center">
             <div class="row  align-self-center pr-5">
@@ -76,9 +76,9 @@ $all_user = $dl->getAllUsername();
 
                 </script>
 
-            </div>
+            </div>--}}
             <h1 class="h-title">@lang('labels.accountManagement')</h1>
-            <div class="row align-self-center pl-5">
+            {{--<div class="row align-self-center pl-5">
                 <lottie-player id="secs-lottie"
                                src="{{asset('/icons/photo-gallery.json')}}"
                                background="transparent"
@@ -99,13 +99,11 @@ $all_user = $dl->getAllUsername();
                 </script>
 
             </div>
-        </div>
+        </div>--}}
 
         <img src="{{asset('image/doodle/doodle2.jpg')}}" width="200" height="60">
     </div>
-    --}}
 
-    <h1 class="h-title text-center mt-5 ">@lang('labels.accountManagement')</h1>
 
 
     <div class="container-lg">

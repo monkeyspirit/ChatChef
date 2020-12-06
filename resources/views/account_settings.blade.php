@@ -99,7 +99,7 @@ foreach ($recipes_all as $recipe_ok) {
             </div>--}}
         </div>
 
-        {{--<img src="{{asset('image/doodle/doodle2.jpg')}}" width="200" height="60">--}}
+        <img src="{{asset('image/doodle/doodle2.jpg')}}" width="200" height="60">
     </div>
 
 

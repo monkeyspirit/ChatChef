@@ -241,7 +241,7 @@ $dl = new \App\DataLayer();
             </li>
             <li>
 
-                <a class="nav-link btn btn-outline-danger" id="navbar2-logout" href="{{route('logout')}}">
+                <a class="nav-link btn btn-danger" id="navbar2-logout" style="color: white" href="{{route('logout')}}">
                     <i class="fas fa-sign-out-alt"></i>
                     @lang('labels.logout')
                 </a>
