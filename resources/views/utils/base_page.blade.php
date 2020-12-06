@@ -300,20 +300,20 @@ $dl = new \App\DataLayer();
                                         });
 
                                         if (auth != 1) {
-                                            @if(session()->has('language'))
+{{--                                            @if(session()->has('language'))--}}
 
-                                                @if(session('language') == "it")
-                                                    swal("C'è un errore!", "Il nome utente o la password sono sbagliati.", "error");
-                                                    return false;
-                                                @elseif (session('language') == "en")
-                                                    swal("There is an error!", "The username or the password is wrong.", "error");
-                                                    return false;
+{{--                                                @if(session('language') == "it")--}}
+{{--                                                    swal("C'è un errore!", "Il nome utente o la password sono sbagliati.", "error");--}}
+{{--                                                    return false;--}}
+{{--                                                @elseif (session('language') == "en")--}}
+{{--                                                    swal("There is an error!", "The username or the password is wrong.", "error");--}}
+{{--                                                    return false;--}}
 
-                                                @endif
-                                            @else
+{{--                                                @endif--}}
+{{--                                            @else--}}
                                                 swal("C'è un errore!", "Il nome utente o la password sono sbagliati.", "error");
-                                                    return false;
-                                            @endif
+                                                return false;
+{{--                                            @endif--}}
 
 
                                         }
@@ -395,38 +395,38 @@ $dl = new \App\DataLayer();
                                         });
 
                                         if (thereis == 1 ) {
-                                            @if(session()->has('language'))
+{{--                                            @if(session()->has('language'))--}}
 
-                                                @if(session('language') == "it")
-                                                    swal("Controlla il nome utente!", "Questo nome utente è già stato utilizzato.", "error");
-                                                    return false;
-                                                @elseif (session('language') == "en")
-                                                    swal("Check the username!", "This username was already taken.", "error");
-                                                    return false;
+{{--                                                @if(session('language') == "it")--}}
+{{--                                                    swal("Controlla il nome utente!", "Questo nome utente è già stato utilizzato.", "error");--}}
+{{--                                                    return false;--}}
+{{--                                                @elseif (session('language') == "en")--}}
+{{--                                                    swal("Check the username!", "This username was already taken.", "error");--}}
+{{--                                                    return false;--}}
 
-                                                @endif
-                                            @else
+{{--                                                @endif--}}
+{{--                                            @else--}}
                                                 swal("Controlla il nome utente!", "Questo nome utente è già stato utilizzato.", "error");
                                                     return false;
-                                            @endif
+{{--                                            @endif--}}
 
                                         }
 
 
                                         if (password !== confirmPassword) {
-                                            @if(session()->has('language'))
+{{--                                            @if(session()->has('language'))--}}
 
-                                                @if(session('language') == "it")
-                                                    swal("Controlla la password!", "Le password non coincidono.", "error");
-                                                    return false;
-                                                @elseif (session('language') == "en")
-                                                    swal("Check the password!", "Passwords do not match.", "error");
-                                                    return false;
-                                                @endif
-                                            @else
+{{--                                                @if(session('language') == "it")--}}
+{{--                                                    swal("Controlla la password!", "Le password non coincidono.", "error");--}}
+{{--                                                    return false;--}}
+{{--                                                @elseif (session('language') == "en")--}}
+{{--                                                    swal("Check the password!", "Passwords do not match.", "error");--}}
+{{--                                                    return false;--}}
+{{--                                                @endif--}}
+{{--                                            @else--}}
                                                 swal("Controlla la password!", "Le password non coincidono.", "error");
                                                     return false;
-                                            @endif
+{{--                                            @endif--}}
 
                                         }
                                         return true;
@@ -437,28 +437,29 @@ $dl = new \App\DataLayer();
                                 <form id="register_form" onsubmit="return validateForm()" action="{{route('register')}}"
                                       method="post">
                                     @csrf
+                                    <p style="color: grey">@lang('messages.asteriskIsMandatory')</p>
                                     <div class="form-group">
-                                        <label for="username">@lang('labels.modalLoginUsername')</label>
+                                        <label for="username">@lang('labels.modalLoginUsername')*</label>
                                         <input required type="text" class="form-control" name="username">
                                     </div>
                                     <div class="form-group">
-                                        <label for="firstname">@lang('labels.modalRegFirstname')</label>
+                                        <label for="firstname">@lang('labels.modalRegFirstname')*</label>
                                         <input required type="text" class="form-control" name="firstname">
                                     </div>
                                     <div class="form-group">
-                                        <label for="lastname">@lang('labels.modalRegLastname')</label>
+                                        <label for="lastname">@lang('labels.modalRegLastname')*</label>
                                         <input required type="text" class="form-control" name="lastname">
                                     </div>
                                     <div class="form-group">
                                         <label for="birthday">@lang('labels.modalRegBirthday')</label>
-                                        <input required type="date" class="form-control" name="birthday">
+                                        <input type="date" class="form-control" name="birthday">
                                     </div>
                                     <div class="form-group">
-                                        <label for="email">@lang('labels.modalRegEmail')</label>
+                                        <label for="email">@lang('labels.modalRegEmail')*</label>
                                         <input required type="email" class="form-control" name="email">
                                     </div>
                                     <div id="insert_password" class="form-group">
-                                        <label for="password">Password</label>
+                                        <label for="password">Password*</label>
                                         <div class="input-group" id="insert_password">
                                             <input required type="password" class="form-control" name="password">
                                             <div class="input-group-append">
@@ -484,7 +485,7 @@ $dl = new \App\DataLayer();
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="confirm-password">@lang('labels.modalRegConfimPassword')</label>
+                                        <label for="confirm-password">@lang('labels.modalRegConfimPassword')*</label>
                                         <div class="input-group" id="check_password">
                                             <input required type="password" class="form-control"
                                                    name="confirm-password">
