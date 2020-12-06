@@ -164,6 +164,120 @@ foreach ($recipes_all as $recipe_ok) {
             </h1>
             <img src="{{asset('image/doodle/doodle-divider.jpg')}}" width="300" height="60">
         </div>
+        @if($logged && ($recipe->approved == 1 || $recipe->approved == 3))
+            <div class="container pt-5">
+                <div class="justify-content-center">
+                    <div class="text-center pb-5">
+
+                        @if($isFav)
+                            <button id="nofav" class="butt-nofav btn-my btn-outline-my dislike">
+
+                                <div class="d-flex flex-column align-items-start flex-column bd-highlight mb-3 ">
+                                    <div class="row justify-content-center align-self-center">
+                                        @lang('labels.removeFav')
+                                    </div>
+                                    <div class="row justify-content-center align-self-center">
+                                        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+                                        <lottie-player id="nofav-lottie"
+                                                       src="{{asset('/icons/broken-heart.json')}}"
+                                                       background="transparent"
+                                                       speed="1"
+                                                       style="width: 30px; height: 30px;"
+                                                       hover
+                                        >
+                                        </lottie-player>
+                                    </div>
+                                </div>
+
+                            </button>
+                            <script>
+                                var nofavanim = document.getElementById("nofav-lottie");
+                                $("#nofav").mouseover(function(){
+                                    nofavanim.play();
+                                });
+
+                                $("#nofav").mouseleave(function(){
+                                    nofavanim.stop();
+                                });
+
+                            </script>
+                        @else
+                            <button id="fav" class="butt-fav btn-my btn-outline-my like">
+
+                                <div class="d-flex flex-column align-items-start flex-column bd-highlight mb-3 ">
+                                    <div class="row justify-content-center align-self-center">
+                                        @lang('labels.addFav')
+                                    </div>
+                                    <div class="row justify-content-center align-self-center">
+                                        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+                                        <lottie-player id="fav-lottie"
+                                                       src="{{asset('/icons/heart-with-arrow.json')}}"
+                                                       background="transparent"
+                                                       speed="1"
+                                                       style="width: 30px; height: 30px;"
+                                                       hover
+                                        >
+                                        </lottie-player>
+                                    </div>
+                                </div>
+
+                            </button>
+                            <script>
+                                var favanim = document.getElementById("fav-lottie");
+                                $("#fav").mouseover(function(){
+                                    favanim.play();
+                                });
+
+                                $("#fav").mouseleave(function(){
+                                    favanim.stop();
+                                });
+
+                            </script>
+
+
+
+                        @endif
+                            <script>
+                                $(".like").click(function (event) {
+                                    event.preventDefault();
+
+                                    $.ajax({
+                                        method: 'POST',
+                                        url: urlFavAdd,
+                                        data: {user_id: {{ $user_logged }}, recipe_id: {{$id}}, _token: token},
+                                        success: function(response){
+                                           window.location.reload();
+
+                                        }
+                                    })
+
+
+                                } );
+                                $(".dislike").click(function (event) {
+                                    event.preventDefault();
+                                    $.ajax({
+                                        method: 'POST',
+                                        url: urlFavRemove,
+                                        data: {user_id: {{ $user_logged }}, recipe_id: {{$id}}, _token: token},
+                                        success: function(response){
+                                            window.location.reload();
+
+
+                                        }
+                                    })
+                                } );
+
+
+                            </script>
+
+
+                    </div>
+
+                </div>
+
+
+            </div>
+        @endif
 
         @if($isRewier)
             <div class="container pb-5">
@@ -504,7 +618,7 @@ foreach ($recipes_all as $recipe_ok) {
                             </div>
                             <!--Informazioni ricetta -->
                             <p class="pl-5"><img src="{{asset('image/icons_View/recipe-book.png')}}" class="icon">  @lang('labels.difficult'):
-                                <strong>@if($recipe->difficult == 1)@lang('labels.easy')@elseif($recipe->difficult == 1)@lang('labels.mid')@else@lang('labels.expert') @endif</strong>
+                                <strong>@if($recipe->difficult == 1) @lang('labels.easy') @elseif($recipe->difficult == 1) @lang('labels.mid') @else @lang('labels.expert') @endif</strong>
                             </p>
                             <p class="pl-5"><img src="{{asset('image/icons_View/hand_kitchen_mixer_icon.png')}}" class="icon">  @lang('labels.preptime'):  <strong>{{$recipe->preparation_time}}</strong> min.</p>
                             <p class="pl-5"><img src="{{asset('image/icons_View/kitchen_pot_restaurant_icon.png')}}" class="icon">   @lang('labels.cookingtime'):   <strong>{{$recipe->cooking_time}}</strong> min.</p>
@@ -653,158 +767,6 @@ foreach ($recipes_all as $recipe_ok) {
 
     @endif
 
-    @if($logged && ($recipe->approved == 1 || $recipe->approved == 3))
-        <div class="container pt-5">
-        <div class="row">
-            <div class="col-md-6 text-center pb-5">
-
-                @if($isFav)
-                    <button id="nofav" class="butt-nofav btn-my btn-outline-my dislike">
-
-                        <div class="d-flex flex-column align-items-start flex-column bd-highlight mb-3 ">
-                            <div class="row justify-content-center align-self-center">
-                                @lang('labels.removeFav')
-                            </div>
-                            <div class="row justify-content-center align-self-center">
-                                <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-                                <lottie-player id="nofav-lottie"
-                                               src="{{asset('/icons/broken-heart.json')}}"
-                                               background="transparent"
-                                               speed="1"
-                                               style="width: 30px; height: 30px;"
-                                               hover
-                                >
-                                </lottie-player>
-                            </div>
-                        </div>
-
-                    </button>
-                    <script>
-                        var nofavanim = document.getElementById("nofav-lottie");
-                        $("#nofav").mouseover(function(){
-                            nofavanim.play();
-                        });
-
-                        $("#nofav").mouseleave(function(){
-                            nofavanim.stop();
-                        });
-
-                    </script>
-                @else
-                    <button id="fav" class="butt-fav btn-my btn-outline-my like">
-
-                        <div class="d-flex flex-column align-items-start flex-column bd-highlight mb-3 ">
-                            <div class="row justify-content-center align-self-center">
-                                @lang('labels.addFav')
-                            </div>
-                            <div class="row justify-content-center align-self-center">
-                                <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-                                <lottie-player id="fav-lottie"
-                                               src="{{asset('/icons/heart-with-arrow.json')}}"
-                                               background="transparent"
-                                               speed="1"
-                                               style="width: 30px; height: 30px;"
-                                               hover
-                                >
-                                </lottie-player>
-                            </div>
-                        </div>
-
-                    </button>
-                    <script>
-                        var favanim = document.getElementById("fav-lottie");
-                        $("#fav").mouseover(function(){
-                            favanim.play();
-                        });
-
-                        $("#fav").mouseleave(function(){
-                            favanim.stop();
-                        });
-
-                    </script>
-
-
-
-                @endif
-                    <script>
-                        $(".like").click(function (event) {
-                            event.preventDefault();
-
-                            $.ajax({
-                                method: 'POST',
-                                url: urlFavAdd,
-                                data: {user_id: {{ $user_logged }}, recipe_id: {{$id}}, _token: token},
-                                success: function(response){
-                                   window.location.reload();
-
-                                }
-                            })
-
-
-                        } );
-                        $(".dislike").click(function (event) {
-                            event.preventDefault();
-                            $.ajax({
-                                method: 'POST',
-                                url: urlFavRemove,
-                                data: {user_id: {{ $user_logged }}, recipe_id: {{$id}}, _token: token},
-                                success: function(response){
-                                    window.location.reload();
-
-
-                                }
-                            })
-                        } );
-
-
-                    </script>
-
-
-            </div>
-
-            @include('utils.modal_comment')
-            <div class="col-md-6 text-center pb-5">
-                @if(($dl->getUserbyUsername($loggedName))->ban == 0)
-                <button id="comment" class="butt-comment btn-my btn-outline-my"  data-toggle="modal" data-target="#commentmodal">
-
-                    <div class="d-flex flex-column align-items-start flex-column bd-highlight mb-3 ">
-                        <div class="row justify-content-center align-self-center">
-                            @lang('labels.addCommentRecipe')
-                        </div>
-                        <div class="row justify-content-center align-self-center">
-                            <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-                            <lottie-player id="comment-lottie"
-                                           src="{{asset('/icons/speech.json')}}"
-                                           background="transparent"
-                                           speed="1"
-                                           style="width: 30px; height: 30px;"
-                                           hover
-                            >
-                            </lottie-player>
-                        </div>
-                    </div>
-
-                </button>
-                <script>
-                    var commentanim = document.getElementById("comment-lottie");
-                    $("#comment").mouseover(function(){
-                        commentanim.play();
-                    });
-
-                    $("#comment").mouseleave(function(){
-                        commentanim.stop();
-                    });
-
-                </script>
-                @endif
-
-            </div>
-
-        </div>
-
-
-    </div>
-    @endif
 
 
 
@@ -815,6 +777,160 @@ foreach ($recipes_all as $recipe_ok) {
         </h3>
         <img  src="{{asset('image/doodle/doodle-comment.jpg')}}" width="250" height="60" alt="">
     </div>
+
+        @if($logged && ($recipe->approved == 1 || $recipe->approved == 3))
+            <div class="container pt-5">
+                <div class="justify-content-center">
+                    {{--<div class="col-md-6 text-center pb-5">
+
+                        @if($isFav)
+                            <button id="nofav" class="butt-nofav btn-my btn-outline-my dislike">
+
+                                <div class="d-flex flex-column align-items-start flex-column bd-highlight mb-3 ">
+                                    <div class="row justify-content-center align-self-center">
+                                        @lang('labels.removeFav')
+                                    </div>
+                                    <div class="row justify-content-center align-self-center">
+                                        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+                                        <lottie-player id="nofav-lottie"
+                                                       src="{{asset('/icons/broken-heart.json')}}"
+                                                       background="transparent"
+                                                       speed="1"
+                                                       style="width: 30px; height: 30px;"
+                                                       hover
+                                        >
+                                        </lottie-player>
+                                    </div>
+                                </div>
+
+                            </button>
+                            <script>
+                                var nofavanim = document.getElementById("nofav-lottie");
+                                $("#nofav").mouseover(function(){
+                                    nofavanim.play();
+                                });
+
+                                $("#nofav").mouseleave(function(){
+                                    nofavanim.stop();
+                                });
+
+                            </script>
+                        @else
+                            <button id="fav" class="butt-fav btn-my btn-outline-my like">
+
+                                <div class="d-flex flex-column align-items-start flex-column bd-highlight mb-3 ">
+                                    <div class="row justify-content-center align-self-center">
+                                        @lang('labels.addFav')
+                                    </div>
+                                    <div class="row justify-content-center align-self-center">
+                                        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+                                        <lottie-player id="fav-lottie"
+                                                       src="{{asset('/icons/heart-with-arrow.json')}}"
+                                                       background="transparent"
+                                                       speed="1"
+                                                       style="width: 30px; height: 30px;"
+                                                       hover
+                                        >
+                                        </lottie-player>
+                                    </div>
+                                </div>
+
+                            </button>
+                            <script>
+                                var favanim = document.getElementById("fav-lottie");
+                                $("#fav").mouseover(function(){
+                                    favanim.play();
+                                });
+
+                                $("#fav").mouseleave(function(){
+                                    favanim.stop();
+                                });
+
+                            </script>
+
+
+
+                        @endif
+                            <script>
+                                $(".like").click(function (event) {
+                                    event.preventDefault();
+
+                                    $.ajax({
+                                        method: 'POST',
+                                        url: urlFavAdd,
+                                        data: {user_id: {{ $user_logged }}, recipe_id: {{$id}}, _token: token},
+                                        success: function(response){
+                                           window.location.reload();
+
+                                        }
+                                    })
+
+
+                                } );
+                                $(".dislike").click(function (event) {
+                                    event.preventDefault();
+                                    $.ajax({
+                                        method: 'POST',
+                                        url: urlFavRemove,
+                                        data: {user_id: {{ $user_logged }}, recipe_id: {{$id}}, _token: token},
+                                        success: function(response){
+                                            window.location.reload();
+
+
+                                        }
+                                    })
+                                } );
+
+
+                            </script>
+
+
+                    </div>--}}
+
+                    @include('utils.modal_comment')
+                    <div class="text-center pb-5">
+                        @if(($dl->getUserbyUsername($loggedName))->ban == 0)
+                            <button id="comment" class="butt-comment btn-my btn-outline-my"  data-toggle="modal" data-target="#commentmodal">
+
+                                <div class="d-flex flex-column align-items-start flex-column bd-highlight mb-3 ">
+                                    <div class="row justify-content-center align-self-center">
+                                        @lang('labels.addCommentRecipe')
+                                    </div>
+                                    <div class="row justify-content-center align-self-center">
+                                        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+                                        <lottie-player id="comment-lottie"
+                                                       src="{{asset('/icons/speech.json')}}"
+                                                       background="transparent"
+                                                       speed="1"
+                                                       style="width: 30px; height: 30px;"
+                                                       hover
+                                        >
+                                        </lottie-player>
+                                    </div>
+                                </div>
+
+                            </button>
+                            <script>
+                                var commentanim = document.getElementById("comment-lottie");
+                                $("#comment").mouseover(function(){
+                                    commentanim.play();
+                                });
+
+                                $("#comment").mouseleave(function(){
+                                    commentanim.stop();
+                                });
+
+                            </script>
+                        @endif
+
+                    </div>
+
+                </div>
+
+
+            </div>
+    @endif
+
     <!-- Commenti -->
     <div class="container">
         <div class="row justify-content-center">

@@ -729,7 +729,7 @@
 }
 
 .carousel-control-prev:hover, .carousel-control-next:hover {
-    background-color: orange;
+    background-color: #ffa500;
 }
 
 .recipe-card:hover {
