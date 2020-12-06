@@ -365,7 +365,7 @@ foreach ($recipes_all as $recipe_ok) {
                     $.ajax({
                         method: 'POST',
                         url: urlAccept,
-                        data: {recipe_id: {{$id}}, comment: document.getElementById('comment').value , _token: token},
+                        data: {recipe_id: {{$id}}, comment: $('#comment').val(),  _token: token},
                         success: function(response){
                             window.location.href = "{{url('/approved')}}";
 

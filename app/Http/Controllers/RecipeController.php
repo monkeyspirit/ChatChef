@@ -678,7 +678,7 @@ class RecipeController extends Controller
 
     public function acceptRecipe(Request $request){
         $recipe_id = $request['recipe_id'];
-        $comment = $request->input('comment');
+        $comment = $request['comment'];
 
         session_start();
         $dl = new DataLayer();
