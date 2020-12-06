@@ -590,6 +590,9 @@
     background: #76757a;
 }
 
+.cursor-pointer:hover {
+    cursor: pointer;
+}
 
 /* Search box */
 

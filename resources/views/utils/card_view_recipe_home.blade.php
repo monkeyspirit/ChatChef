@@ -36,15 +36,15 @@ if(session()->has('language')){
     }
 }
 else {
-    $month = $array_month_en[$n_month];
-    $tag = $array_tag_en[$recipe->tags[1]];
+    $month = $array_month_it[$n_month];
+    $tag = $array_tag_it[$recipe->tags[1]];
 }
 
 
 ?>
 
 
-<div class="my-1 col" onclick="window.location.href='{{route('recipe_view',['id'=>$recipe->id])}}'">
+<div class="my-1 col cursor-pointer" onclick="window.location.href='{{route('recipe_view',['id'=>$recipe->id])}}'" >
 
     <div  class="container-card">
         <div class="column">

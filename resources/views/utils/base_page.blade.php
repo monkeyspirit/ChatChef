@@ -95,7 +95,7 @@ $dl = new \App\DataLayer();
                         </div>
                         <div class="input-group-append">
                             <a class="btn btn-outline-secondary" href="{{route('search')}}" data-toggle="tooltip" data-placement="bottom" title="@lang('labels.advancedsearch')">
-                                {{--                            @lang('labels.advancedsearch')--}}
+{{--                                @lang('labels.advancedsearch')--}}
                                 <i class="fas fa-sliders-h"></i>
                             </a>
                         </div>
@@ -194,32 +194,57 @@ $dl = new \App\DataLayer();
         <div class="collapse navbar-collapse" id="navbar2NavDropdown">
         <ul class="navbar-nav ml-sm-auto">
             <li class="nav-item">
-                <a class="nav-link" id="navbar2-myrecipes" href="{{route('account_all_recipes')}}">@lang('labels.recipeAll')</a>
+                <a class="nav-link" id="navbar2-myrecipes" href="{{route('account_all_recipes')}}">
+                    <i class="far fa-file-alt"></i>
+                    @lang('labels.recipeAll')
+                </a>
             </li>
+            <li class="nav-item border-left"></li>
             <li class="nav-item">
-                <a class="nav-link" id="navbar2-favorites" href="{{route('account_favorites')}}">@lang('labels.recipeFav')</a>
+                <a class="nav-link" id="navbar2-favorites" href="{{route('account_favorites')}}">
+                    <i class="far fa-heart"></i>
+                    @lang('labels.recipeFav')
+                </a>
             </li>
+            <li class="nav-item border-left"></li>
             <?php $user = ($dl->getUserbyUsername($loggedName)); ?>
             @if($user->isEditor)
                 <li class="nav-item">
-                    <a class="nav-link" id="navbar2-recentlyadded" href="{{route('review')}}">@lang('labels.recentlyAdded')</a>
+                    <a class="nav-link" id="navbar2-recentlyadded" href="{{route('review')}}">
+                        <i class="fas fa-history"></i>
+                        @lang('labels.recentlyAdded')
+                    </a>
                 </li>
             @endif
             @if($user->isModerator)
                 <li class="nav-item">
-                    <a class="nav-link" id="navbar2-revised" href="{{route('approved')}}">@lang('labels.revised')</a>
+                    <a class="nav-link" id="navbar2-revised" href="{{route('approved')}}">
+                        <i class="fas fa-tasks"></i>
+                        @lang('labels.revised')
+                    </a>
                 </li>
             @endif
             @if($user->isAdmin)
                 <li class="nav-item">
-                    <a class="nav-link" id="navbar2-accounts" href="{{route('account_management')}}">@lang('labels.accountManagement')</a>
+                    <a class="nav-link" id="navbar2-accounts" href="{{route('account_management')}}">
+                        <i class="fas fa-users"></i>
+                        @lang('labels.accountManagement')
+                    </a>
                 </li>
             @endif
+            <li class="nav-item border-left"></li>
             <li class="nav-item">
-                <a class="nav-link" id="navbar2-settings" href="{{route('account_settings')}}">@lang('labels.settings')</a>
+                <a class="nav-link" id="navbar2-settings" href="{{route('account_settings')}}">
+                    <i class="fas fa-cogs"></i>
+                    @lang('labels.settings')
+                </a>
             </li>
             <li>
-                <a class="nav-link btn btn-danger" id="navbar2-logout" href="{{route('logout')}}">@lang('labels.logout')</a>
+
+                <a class="nav-link btn btn-danger" id="navbar2-logout" href="{{route('logout')}}">
+                    <i class="fas fa-sign-out-alt"></i>
+                    @lang('labels.logout')
+                </a>
             </li>
         </ul>
         </div>
