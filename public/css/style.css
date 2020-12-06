@@ -1031,3 +1031,10 @@ a {
 a:hover {
     color: orangered;
 }
+
+#navbar2-logout {
+    color: #ff3f4d;
+}
+#navbar2-logout:hover {
+    color: rgba(255, 255, 255, 0.75);
+}

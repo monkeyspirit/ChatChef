@@ -180,9 +180,9 @@ $dl = new \App\DataLayer();
 
     </nav>
 
+    {{--    Barra di navigazione secondaria--}}
     @if($logged)
-{{--    Barra di navigazione secondaria--}}
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top align-content-center">
+    <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top align-content-center border-top border-bottom">
         <ul class="navbar-nav">
             <li class="navbar-text">
                 Il mio Account
@@ -241,7 +241,7 @@ $dl = new \App\DataLayer();
             </li>
             <li>
 
-                <a class="nav-link btn btn-danger" id="navbar2-logout" href="{{route('logout')}}">
+                <a class="nav-link btn btn-outline-danger" id="navbar2-logout" href="{{route('logout')}}">
                     <i class="fas fa-sign-out-alt"></i>
                     @lang('labels.logout')
                 </a>
