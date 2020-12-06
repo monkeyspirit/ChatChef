@@ -81,11 +81,18 @@ $dl = new \App\DataLayer();
             </div>
 
             <div class="col-12 col-md-6 d-flex justify-content-center order-3 order-md-2">
-                <form class="form-inline flex-nowrap w-100">
+                <form class="form-inline flex-nowrap w-100" action="{{ route('search_simple') }}" method="post">
+                    @csrf
 
                     <div class="input-group w-100">
-                        <input class="searcher form-control " placeholder=@lang('labels.searchPlaceholder') aria-label="Search">
+                        <input class="searcher form-control" name="text" placeholder=@lang('labels.searchPlaceholder') aria-label="Search">
 
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="bottom" title="@lang('labels.searchPlaceholder')">
+                                {{--                            @lang('labels.advancedsearch')--}}
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
                         <div class="input-group-append">
                             <a class="btn btn-outline-secondary" href="{{route('search')}}" data-toggle="tooltip" data-placement="bottom" title="@lang('labels.advancedsearch')">
                                 {{--                            @lang('labels.advancedsearch')--}}

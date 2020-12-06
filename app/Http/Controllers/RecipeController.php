@@ -640,6 +640,41 @@ class RecipeController extends Controller
 
     }
 
+    public function getSimpleSearchResult(Request $request){
+        session_start();
+        $dl = new DataLayer();
+
+        $id_recipes_ok = array();
+        $recipes_all = $dl->getAllRecipe();
+
+        $recipes = array();
+        foreach ($recipes_all as $recipe_ok) {
+            if($recipe_ok->approved == 1 || $recipe_ok->approved == 3){
+                array_push($recipes, $recipe_ok);
+            }
+        }
+
+        foreach ($recipes as $recipe) {
+
+            $toBeAdded = false;
+
+            if ( strpos($recipe->title, $request->get('text')) != false )
+                $toBeAdded = true;
+
+            if ($toBeAdded) {
+                array_push($id_recipes_ok, $recipe->id);
+            }
+
+        }
+
+        $unique = array_unique($id_recipes_ok);
+        $ordered = array_values($unique);
+
+
+        return Redirect::to(route('search_advanced_get',['array'=>json_encode($ordered)]));
+
+    }
+
 
     public function acceptRecipe(Request $request){
         $recipe_id = $request['recipe_id'];

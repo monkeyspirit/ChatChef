@@ -52,6 +52,7 @@ foreach ($id as $id_recipe) {
 
 @section('body')
 
+{{--
 
     <!-- Header -->
     <div id="parent-title" class="container text-center p-4">
@@ -106,8 +107,13 @@ foreach ($id as $id_recipe) {
 
         <img src="{{asset('image/doodle/doodle10.jpg')}}" width="350" height="60">
     </div>
+--}}
 
     <div class="container">
+        <h1 class="h-title text-center my-5">
+            @lang('labels.searchResults')
+        </h1>
+{{--
         <div class="row justify-content-around">
             <div class="pb-2 pr-5 pl-5">
                 <a href="{{route('search')}}" class="btn btn-outline-primary">@lang('labels.goBackSearch')</a>
@@ -115,8 +121,8 @@ foreach ($id as $id_recipe) {
             <div class=" pr-5 pl-5">
                 <a href="{{route('home')}}" class="btn btn-outline-primary">@lang('labels.goBackHome')</a>
             </div>
-
         </div>
+        --}}
     </div>
 
 

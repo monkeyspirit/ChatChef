@@ -82,6 +82,9 @@ Route::group(['middleware'=>['language']], function (){
     Route::get('/search_advanced',['as' => 'search_advanced', 'uses'=>'FrontController@error']);
     Route::post('/search_advanced',['as' => 'search_advanced', 'uses'=>'RecipeController@getSearchResult']);
 
+    Route::get('/search_simple',['as' => 'search_simple', 'uses'=>'FrontController@error']);
+    Route::post('/search_simple',['as' => 'search_simple', 'uses'=>'RecipeController@getSimpleSearchResult']);
+
     Route::get('/acceptRecipe', ['as'=>'acceptRecipe','uses'=>'FrontController@error']);
     Route::post('/acceptRecipe', ['as'=>'acceptRecipe','uses'=>'RecipeController@acceptRecipe']);
 

@@ -161,7 +161,7 @@ return [
     'not approved recipes' => 'Ricette non approvate',
     'waiting recipes' => 'Ricette in attesa di approvazione',
     'banned' => 'Bannato',
-    'unbanned' => 'Non Bannato'
-
+    'unbanned' => 'Non Bannato',
+    'searchResults' => 'Risultati di Ricerca'
 
 ];
