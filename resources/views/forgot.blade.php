@@ -152,7 +152,7 @@ foreach ($recipes_all as $recipe_ok) {
                                 <input required type="username" class="form-control" name="username">
                             </div>
                             <div class="text-center">
-                                <input style="width: 100px;" class="btn btn-primary" type="submit" value=@lang('labels.recovery')>
+                                <input style="width: 100px;" class="btn my-btn-primary" type="submit" value=@lang('labels.recovery')>
 
                             </div>
 

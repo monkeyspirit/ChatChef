@@ -10,8 +10,8 @@ $ingredients_q = explode("_",$ingredients_qu[0]);
 $ingredients_u = explode("_",$ingredients_qu[1]);
 $number_ing = count($ingredients_n);
 
-$array_ing_en=array("1"=>"ml","2"=>"g","3"=>"tbs","4"=>"u");
-$array_ing_it=array("1"=>"ml","2"=>"g","3"=>"cucc.","4"=>"u");
+$array_ing_en=array("1"=>"ml","2"=>"g","3"=>"tbs","4"=>"units", "5"=>"quanto basta");
+$array_ing_it=array("1"=>"ml","2"=>"g","3"=>"cucc.","4"=>"unità", "5"=>"quanto basta");
 
 for($i=1; $i<$number_ing; $i++) {
     if(session()->has('language')){
@@ -144,7 +144,7 @@ foreach ($recipes_all as $recipe_ok) {
     @else
 
         <li class="nav-item">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginRegModal">
+            <button type="button" class="btn my-btn-primary" data-toggle="modal" data-target="#loginRegModal">
                 @lang('labels.loginButton')
 
             </button>
@@ -661,7 +661,8 @@ foreach ($recipes_all as $recipe_ok) {
 
                             <p class="pl-5">
                                 @for($i=1; $i<$number_ing; $i++)
-                                    - {{$ingredients_q[$i]}} {{$ingredients_u[$i]}} @lang('labels.conj') {{$ingredients_n[$i]}} <br/>
+
+                                    - @if($ingredients_u[$i] != "quanto basta") {{$ingredients_q[$i]}} @endif {{$ingredients_u[$i]}} @lang('labels.conj') {{$ingredients_n[$i]}} <br/>
                                 @endfor
                             </p>
 

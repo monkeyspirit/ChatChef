@@ -265,6 +265,7 @@ foreach ($recipes_all as $recipe_ok) {
                                                 <option value="2">@lang('labels.g')</option>
                                                 <option value="3">@lang('labels.tablespoon')</option>
                                                 <option value="4">@lang('labels.littleunit')</option>
+                                                <option value="5">@lang('labels.qb')</option>
                                             </select>
                                         </div>
                                     </div>
@@ -313,6 +314,7 @@ foreach ($recipes_all as $recipe_ok) {
                                                         '                                            <option value="2">@lang('labels.g')</option>\n' +
                                                         '                                            <option value="3">@lang('labels.tablespoon')</option>\n'+
                                                         '                                            <option value="4">@lang('labels.littleunit')</option>'+
+                                                                                                    '<option value="5">@lang('labels.qb')</option>\n'+
                                                         '                                        </select></div>\n' +
                                                         '                                    <a href="#" class="delete pt-2 pl-1" style="color: #c72222"><i class="fas fa-minus-square"></i> @lang('labels.remove')</a></div>'); //add input box
 
@@ -508,7 +510,7 @@ foreach ($recipes_all as $recipe_ok) {
 
                                             <button type="button" class="btn btn-outline-secondary" id="prevBtn" onclick="nextPrev(-1)">@lang('labels.prev')</button>
 
-                                            <button type="button" class="btn btn-outline-primary" id="nextBtn" onclick="nextPrev(1)">@lang('labels.next')</button>
+                                            <button type="button" class="btn my-btn-outline-primary" id="nextBtn" onclick="nextPrev(1)">@lang('labels.next')</button>
 
 
                                     </div>

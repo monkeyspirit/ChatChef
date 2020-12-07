@@ -162,6 +162,7 @@ return [
     'waiting recipes' => 'Ricette in attesa di approvazione',
     'banned' => 'Bannato',
     'unbanned' => 'Non Bannato',
-    'searchResults' => 'Risultati di Ricerca'
+    'searchResults' => 'Risultati di Ricerca',
+    'qb' => 'quanto basta'
 
 ];

@@ -212,7 +212,7 @@ $all_user = $dl->getAllUsername();
                             </div>
 
                             <button name="{{$id}}"
-                                    class="btn btn-outline-primary change" {{ ($user_s->username == $user->username) ? 'disabled' : '' }}>
+                                    class="btn my-btn-outline-primary change" {{ ($user_s->username == $user->username) ? 'disabled' : '' }}>
                                 @lang('labels.save')
                             </button>
                         </div>

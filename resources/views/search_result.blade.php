@@ -43,7 +43,7 @@ foreach ($id as $id_recipe) {
         </li>
     @else
         <li class="nav-item">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginRegModal">
+            <button type="button" class="btn my-btn-primary" data-toggle="modal" data-target="#loginRegModal">
                 @lang('labels.loginButton')
             </button>
         </li>

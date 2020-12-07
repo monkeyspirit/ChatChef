@@ -148,5 +148,6 @@ return [
     'approved recipes' => '',
     'not approved recipes' => '',
     'waiting recipes' => '',
+    'qb' => 'qb'
 
 ];
