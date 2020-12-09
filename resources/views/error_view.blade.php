@@ -43,7 +43,7 @@ foreach ($recipes_all as $recipe_ok) {
         </li>
     @else
         <li class="nav-item">
-            <button type="button" class="btn my-btn-primary" data-toggle="modal" data-target="#loginRegModal">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginRegModal">
                 @lang('labels.loginButton')
             </button>
         </li>
@@ -61,7 +61,7 @@ foreach ($recipes_all as $recipe_ok) {
         {{--<img src="{{asset('image/doodle/doodle-error.jpg')}}" width="200" height="60" alt="">--}}
     </div>
     <div class="container text-center p-1">
-        <a href="{{route('home')}}" class="btn my-btn-outline-primary">@lang('labels.goBackHome')</a>
+        <a href="{{route('home')}}" class="btn btn-outline-primary">@lang('labels.goBackHome')</a>
     </div>
 
 

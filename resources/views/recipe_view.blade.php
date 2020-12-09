@@ -144,7 +144,7 @@ foreach ($recipes_all as $recipe_ok) {
     @else
 
         <li class="nav-item">
-            <button type="button" class="btn my-btn-primary" data-toggle="modal" data-target="#loginRegModal">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginRegModal">
                 @lang('labels.loginButton')
 
             </button>

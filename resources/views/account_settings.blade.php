@@ -199,7 +199,7 @@ foreach ($recipes_all as $recipe_ok) {
                                             <button type="button" class="btn btn-outline-danger" data-dismiss="modal">
                                                 @lang('labels.close')
                                             </button>
-                                            <input type="submit" class="btn my-btn-outline-primary save"
+                                            <input type="submit" class="btn btn-outline-primary save"
                                                    value=@lang('labels.save')>
                                         </div>
                                     </form>
@@ -264,7 +264,7 @@ foreach ($recipes_all as $recipe_ok) {
 
                             <div class="form-group">
                                 <div class="container text-center col-sm-4">
-                                    <input type="submit" class="form-control btn my-btn-outline-primary" value=@lang('labels.change')>
+                                    <input type="submit" class="form-control btn btn-outline-primary" value=@lang('labels.change')>
                                 </div>
                             </div>
 
@@ -400,7 +400,7 @@ foreach ($recipes_all as $recipe_ok) {
 
                         <div class="form-group">
                             <div class="container text-center col-sm-4">
-                                <input type="submit" class="form-control btn my-btn-outline-primary" value=@lang('labels.change')>
+                                <input type="submit" class="form-control btn btn-outline-primary" value=@lang('labels.change')>
                             </div>
                         </div>
 

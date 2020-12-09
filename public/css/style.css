@@ -955,77 +955,77 @@ input:checked + .slider:before {
 /* Boostrap Override */
 
 
-.my-btn-outline-primary {
+.btn-outline-primary {
     color: orange;
     border-color: orange;
 }
 
-.my-btn-outline-primary:hover {
+.btn-outline-primary:hover {
     color: #fff;
     background-color: orange;
     border-color: orange;
 }
 
-.my-btn-outline-primary:focus, .my-btn-outline-primary.focus {
+.btn-outline-primary:focus, .btn-outline-primary.focus {
     box-shadow: 0 0 0 0.2rem rgba(255, 144, 0, 0.5);
 }
 
-.my-btn-outline-primary.disabled, .my-btn-outline-primary:disabled {
+.btn-outline-primary.disabled, .btn-outline-primary:disabled {
     color: orange;
 }
 
-.my-btn-outline-primary:not(:disabled):not(.disabled):active, .my-btn-outline-primary:not(:disabled):not(.disabled).active,
-.show > .my-btn-outline-primary.dropdown-toggle {
+.btn-outline-primary:not(:disabled):not(.disabled):active, .btn-outline-primary:not(:disabled):not(.disabled).active,
+.show > .btn-outline-primary.dropdown-toggle {
     background-color: darkorange;
     border-color: orange;
 }
 
-.my-btn-outline-primary:not(:disabled):not(.disabled):active:focus, .my-btn-outline-primary:not(:disabled):not(.disabled).active:focus,
-.show > .my-btn-outline-primary.dropdown-toggle:focus {
+.btn-outline-primary:not(:disabled):not(.disabled):active:focus, .btn-outline-primary:not(:disabled):not(.disabled).active:focus,
+.show > .btn-outline-primary.dropdown-toggle:focus {
     box-shadow: 0 0 0 0.2rem rgba(255, 140, 0, 0.5);
 }
 
-.my-btn-primary {
+.btn-primary {
     color: #fff;
     background-color: orange;
     border-color: orange;
 }
 
-.my-btn-primary:hover {
+.btn-primary:hover {
     color: #fff;
     background-color: orange;
     border-color: orange;
 }
 
-.my-btn-primary:focus, .my-btn-primary.focus {
+.btn-primary:focus, .btn-primary.focus {
     color: #fff;
     background-color: darkorange;
     border-color: orange;
     box-shadow: 0 0 0 0.2rem rgba(255, 143, 0, 0.5);
 }
 
-.my-btn-primary:not(:disabled):not(.disabled):active, .my-btn-primary:not(:disabled):not(.disabled).active,
-.show > .my-btn-primary.dropdown-toggle {
+.btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active,
+.show > .btn-primary.dropdown-toggle {
     color: #fff;
     background-color: darkorange;
     border-color: orange;
 }
 
-.my-btn-primary:not(:disabled):not(.disabled):active:focus, .my-btn-primary:not(:disabled):not(.disabled).active:focus,
-.show > .my-btn-primary.dropdown-toggle:focus {
+.btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus,
+.show > .btn-primary.dropdown-toggle:focus {
     box-shadow: 0 0 0 0.2rem rgba(155, 143, 0, 0.5);
 }
 
-.my-page-link {
+.page-link {
     color: orange;
 }
 
-.my-page-link:hover {
+.page-link:hover {
     color: orangered;
 }
 
 
-.my-page-item.active .my-page-link {
+.page-item.active .page-link {
     background-color: orange;
     border-color: orange;
 }

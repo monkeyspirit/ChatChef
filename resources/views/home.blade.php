@@ -67,7 +67,7 @@ $numRecipesPerPage = 3; // poi nella versione finale facciamo 6
         </li>
     @else
         <li class="nav-item">
-            <button type="button" class="btn my-btn-primary" data-toggle="modal" data-target="#loginRegModal">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginRegModal">
                 @lang('labels.loginButton')
             </button>
         </li>
@@ -362,7 +362,7 @@ $numRecipesPerPage = 3; // poi nella versione finale facciamo 6
         <div class="container d-flex justify-content-end my-2">
             <nav aria-label="Page navigation example">
                 <ul id="pagination-menu" class="pagination">
-                    <li class="page-item" id="pag-prev"><a class="my-page-link" href="#this" onclick="prevPage()" aria-label="Previous">
+                    <li class="page-item" id="pag-prev"><a class="page-link" href="#this" onclick="prevPage()" aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                             <span class="sr-only">Previous</span>
                         </a></li>
@@ -371,7 +371,7 @@ $numRecipesPerPage = 3; // poi nella versione finale facciamo 6
                             echo '<li class="page-item" id="pag-' . $i . '"><a class="page-link" href="#this" onclick="changePage(' . $i . ')">'. ($i) .'</a></li>';
                         }
                     ?>
-                    <li class="page-item" id="pag-next"><a class="my-page-link" href="#this" onclick="nextPage()" aria-label="Next">
+                    <li class="page-item" id="pag-next"><a class="page-link" href="#this" onclick="nextPage()" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                             <span class="sr-only">Next</span>
                         </a></li>

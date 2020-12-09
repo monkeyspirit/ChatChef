@@ -4999,7 +4999,7 @@ input[type="button"].btn-block {
   border-radius: 0.25rem;
 }
 
-.my-page-link {
+.page-link {
   position: relative;
   display: block;
   padding: 0.5rem 0.75rem;
@@ -5010,7 +5010,7 @@ input[type="button"].btn-block {
   border: 1px solid #dee2e6;
 }
 
-.my-page-link:hover {
+.page-link:hover {
   z-index: 2;
   color: #0056b3;
   text-decoration: none;
@@ -5018,31 +5018,31 @@ input[type="button"].btn-block {
   border-color: #dee2e6;
 }
 
-.my-page-link:focus {
+.page-link:focus {
   z-index: 3;
   outline: 0;
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 
-.my-page-item:first-child .my-page-link {
+.page-item:first-child .page-link {
   margin-left: 0;
   border-top-left-radius: 0.25rem;
   border-bottom-left-radius: 0.25rem;
 }
 
-.my-page-item:last-child .my-page-link {
+.page-item:last-child .page-link {
   border-top-right-radius: 0.25rem;
   border-bottom-right-radius: 0.25rem;
 }
 
-.my-page-item.active .my-page-link {
+.page-item.active .page-link {
   z-index: 3;
   color: #fff;
   background-color: #007bff;
   border-color: #007bff;
 }
 
-.my-page-item.disabled .my-page-link {
+.page-item.disabled .page-link {
   color: #6c757d;
   pointer-events: none;
   cursor: auto;
@@ -5050,34 +5050,34 @@ input[type="button"].btn-block {
   border-color: #dee2e6;
 }
 
-.pagination-lg .my-page-link {
+.pagination-lg .page-link {
   padding: 0.75rem 1.5rem;
   font-size: 1.25rem;
   line-height: 1.5;
 }
 
-.pagination-lg .my-page-item:first-child .my-page-link {
+.pagination-lg .page-item:first-child .page-link {
   border-top-left-radius: 0.3rem;
   border-bottom-left-radius: 0.3rem;
 }
 
-.pagination-lg .my-page-item:last-child .my-page-link {
+.pagination-lg .page-item:last-child .page-link {
   border-top-right-radius: 0.3rem;
   border-bottom-right-radius: 0.3rem;
 }
 
-.pagination-sm .my-page-link {
+.pagination-sm .page-link {
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem;
   line-height: 1.5;
 }
 
-.pagination-sm .my-page-item:first-child .my-page-link {
+.pagination-sm .page-item:first-child .page-link {
   border-top-left-radius: 0.2rem;
   border-bottom-left-radius: 0.2rem;
 }
 
-.pagination-sm .my-page-item:last-child .my-page-link {
+.pagination-sm .page-item:last-child .page-link {
   border-top-right-radius: 0.2rem;
   border-bottom-right-radius: 0.2rem;
 }

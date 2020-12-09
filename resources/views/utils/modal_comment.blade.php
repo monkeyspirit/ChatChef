@@ -20,7 +20,7 @@
                             <button  type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close">@lang('labels.close')</button>
                         </div>
                         <div class="form-group mx-sm-3 mb-2">
-                            <input type="submit" name="comment_form" class="form-control btn my-btn-primary" value=@lang('labels.save')>
+                            <input type="submit" name="comment_form" class="form-control btn btn-primary" value=@lang('labels.save')>
                         </div>
                     </div>
 

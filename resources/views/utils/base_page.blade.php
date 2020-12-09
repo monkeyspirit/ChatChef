@@ -90,7 +90,7 @@ $dl = new \App\DataLayer();
                         <div class="input-group-append">
                         </div>
                         <div class="input-group-append">
-                            <button type="submit" class="btn my-btn-outline-primary" data-toggle="tooltip" data-placement="bottom" title="@lang('labels.searchPlaceholder')">
+                            <button type="submit" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="bottom" title="@lang('labels.searchPlaceholder')">
                                 {{--                            @lang('labels.advancedsearch')--}}
                                 <i class="fas fa-search"></i>
                             </button>
@@ -168,7 +168,7 @@ $dl = new \App\DataLayer();
                         >
                     @else
 
-                        <button type="button" class="btn my-btn-primary" data-toggle="modal" data-target="#loginRegModal">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginRegModal">
                             @lang('labels.loginButton')
                         </button>
 
@@ -358,7 +358,7 @@ $dl = new \App\DataLayer();
                                     <div class="form-group pt-2">
                                         <div class="container text-center col-sm-4">
                                             <input type="submit" name="login-submit"
-                                                   class="form-control btn my-btn-outline-primary" value=@lang('labels.loginButton')>
+                                                   class="form-control btn btn-outline-primary" value=@lang('labels.loginButton')>
                                         </div>
                                     </div>
 
@@ -514,7 +514,7 @@ $dl = new \App\DataLayer();
                                     <div class="form-group">
                                         <div class="container text-center col-sm-4">
                                             <input type="submit" name="register-submit"
-                                                   class="form-control btn my-btn-outline-primary" value=@lang('labels.registerModaltab')>
+                                                   class="form-control btn btn-outline-primary" value=@lang('labels.registerModaltab')>
                                         </div>
                                     </div>
                                 </form>

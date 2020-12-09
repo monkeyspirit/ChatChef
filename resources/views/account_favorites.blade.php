@@ -151,7 +151,7 @@ foreach ($recipes_all as $recipe_ok) {
                                         </div>
 
                                         <h2 class="sub_title">@lang('labels.labelCardHome') {{$author->firstname}} {{$author->lastname}}</h2>
-                                        <p style="height:140px; overflow-y: scroll;" class="description">{{$recipe->description}}<p class="description text-center"><a class="btn my-btn-outline-primary" href="{{route('recipe_view',['id'=>$recipe->id])}}">@lang('labels.buttonGoto')</a></p></p>
+                                        <p style="height:140px; overflow-y: scroll;" class="description">{{$recipe->description}}<p class="description text-center"><a class="btn btn-outline-primary" href="{{route('recipe_view',['id'=>$recipe->id])}}">@lang('labels.buttonGoto')</a></p></p>
 
                                         <!--<div class="post-meta"><span class="timestamp"><i class="fa fa-clock-">o</i> 6 mins ago</span><span
                                                 class="comments"><i class="fa fa-comments"></i><a href="#"> 39 comments</a></span></div>-->

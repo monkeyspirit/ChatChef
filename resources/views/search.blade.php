@@ -65,7 +65,7 @@ $users = $dl->getAllUsername();
         </li>
     @else
         <li class="nav-item">
-            <button type="button" class="btn my-btn-primary" data-toggle="modal" data-target="#loginRegModal">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginRegModal">
                 @lang('labels.loginButton')
             </button>
         </li>
@@ -348,7 +348,7 @@ $users = $dl->getAllUsername();
             </div>
 
             <div class="row justify-content-center my-4">
-                <button class="btn my-btn-outline-primary" style="min-width: 200px">@lang('labels.searchPlaceholder')</button>
+                <button class="btn btn-outline-primary" style="min-width: 200px">@lang('labels.searchPlaceholder')</button>
             </div>
         </form>
     </div>

@@ -134,7 +134,7 @@ foreach ($recipes_all as $recipe_ok) {
 
                                                     $(wrapper).append(' <div id="dynamicImage" class="input-group mb-3 pt-2">\n'+
                                                         '<div class="custom-file">\n'+
-                                                        '<input id="file_upload"  type="file" accept="image/png, image/jpeg" class="custom-file-input form-control" name="imageCover[]" aria-describedby="imageCover">\n'+
+                                                        '<input id="file_upload"  type="file" accept="image/*"  class="custom-file-input form-control" name="imageCover[]" aria-describedby="imageCover">\n'+
                                                         '<label class="custom-file-label" for="imageCover">@lang('labels.chooseFile')</label>\n'+
                                                         '</div>'+
                                                         '<a href="#" class="delete pt-2 pl-1" style="color: #c72222"><i class="fas fa-minus-square"></i> @lang('labels.remove')</a></div>'); //add input box
@@ -510,7 +510,7 @@ foreach ($recipes_all as $recipe_ok) {
 
                                             <button type="button" class="btn btn-outline-secondary" id="prevBtn" onclick="nextPrev(-1)">@lang('labels.prev')</button>
 
-                                            <button type="button" class="btn my-btn-outline-primary" id="nextBtn" onclick="nextPrev(1)">@lang('labels.next')</button>
+                                            <button type="button" class="btn btn-outline-primary" id="nextBtn" onclick="nextPrev(1)">@lang('labels.next')</button>
 
 
                                     </div>
