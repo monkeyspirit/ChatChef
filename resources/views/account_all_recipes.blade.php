@@ -133,9 +133,9 @@ foreach ($recipes_all as $recipe_ok) {
             <hr>
         <br>
         <div class="text-center">
-            <h2 class="text-center pt-0 pb-0" style="font-size: 40px; font-family: 'Amatic SC', cursive"><i class="las la-hourglass-start"></i> @lang('labels.waiting recipes') <i class="las la-hourglass-end"></i></h2>
+            <h2 class="text-center pt-0 pb-0" style="font-size: 40px; font-family: 'Amatic SC', cursive"><i class="las la-hourglass-start"></i> @lang('labels.waiting recipes') : <u>{{ count($recipe_waiting) }}</u> <i class="las la-hourglass-end"></i></h2>
             <img src="{{asset('image/doodle/doodle-divider.jpg')}}" width="300" height="60"> <br>
-            <button value="0" onclick="change_arrow(this)" class="btn btn-outline-secondary" type="button" data-toggle="collapse" data-target="#collapse_waiting" aria-expanded="false" aria-controls="collapseExample">
+            <button {{ count($recipe_waiting) == 0 ? 'disabled' : ''  }} value="0" onclick="change_arrow(this)" class="btn btn-outline-secondary" type="button" data-toggle="collapse" data-target="#collapse_waiting" aria-expanded="false" aria-controls="collapseExample">
                 Espandi <i class="las la-angle-down"></i>
             </button>
         </div>
@@ -151,9 +151,9 @@ foreach ($recipes_all as $recipe_ok) {
         <br>
             <div class="wrap"><span class="arrow"><span></span><span></span></span><span class="arrow--l-r right"><span></span><span></span><span></span><span></span><span></span></span></div>
             <div class="text-center">
-                <h2 class="text-center pt-0 pb-0"  style="font-size: 40px; font-family: 'Amatic SC', cursive"><i class="las la-exclamation-triangle"></i> @lang('labels.not approved recipes') <i class="las la-times"></i></h2>
+                <h2 class="text-center pt-0 pb-0"  style="font-size: 40px; font-family: 'Amatic SC', cursive"><i class="las la-exclamation-triangle"></i> @lang('labels.not approved recipes') : <u>{{ count($recipe_notapproved) }}</u> <i class="las la-times"></i></h2>
                 <img src="{{asset('image/doodle/doodle-divider.jpg')}}" width="300" height="60"> <br>
-                <button value="0" onclick="change_arrow(this)" class="btn btn-outline-secondary" type="button" data-toggle="collapse" data-target="#collapse_notapproved" aria-expanded="false" aria-controls="collapseExample">
+                <button {{ count($recipe_notapproved) == 0 ? 'disabled' : ''  }} value="0" onclick="change_arrow(this)" class="btn btn-outline-secondary" type="button" data-toggle="collapse" data-target="#collapse_notapproved" aria-expanded="false" aria-controls="collapseExample">
                     Espandi <i class="las la-angle-down"></i>
                 </button>
             </div>
@@ -169,9 +169,9 @@ foreach ($recipes_all as $recipe_ok) {
         <br>
 
             <div class="text-center">
-                <h2 class="text-center pt-0 pb-0"  style="font-size: 40px; font-family: 'Amatic SC', cursive"><i class="las la-thumbs-up"></i> @lang('labels.approved recipes') <i class="las la-check-circle"></i></h2>
+                <h2 class="text-center pt-0 pb-0"  style="font-size: 40px; font-family: 'Amatic SC', cursive"><i class="las la-thumbs-up"></i> @lang('labels.approved recipes') : <u>{{ count($recipe_appproved) }}</u> <i class="las la-check-circle"></i></h2>
                 <img src="{{asset('image/doodle/doodle-divider.jpg')}}" width="300" height="60"> <br>
-                <button value="0" onclick="change_arrow(this)" class="btn btn-outline-secondary"  type="button" data-toggle="collapse" data-target="#collapse_approved" aria-expanded="false" aria-controls="collapseExample">
+                <button {{ count($recipe_appproved) == 0 ? 'disabled' : ''  }} value="0" onclick="change_arrow(this)" class="btn btn-outline-secondary"  type="button" data-toggle="collapse" data-target="#collapse_approved" aria-expanded="false" aria-controls="collapseExample">
                     Espandi <i class="las la-angle-down"></i>
                 </button>
 
