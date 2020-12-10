@@ -34,7 +34,7 @@ $recipes_carousel[0] = $recipes[$rand1-1];
 $recipes_carousel[1] = $recipes[$rand2-1];
 $recipes_carousel[2] = $recipes[$rand3-1];
 
-$numRecipesPerPage = 3; // poi nella versione finale facciamo 6
+$numRecipesPerPage = 6; // poi nella versione finale facciamo 6
 
 ?>
 
