@@ -1031,7 +1031,7 @@ input:checked + .slider:before {
 }
 
 a {
-    color: orange;
+    color: #ffa500;
 }
 
 a:hover {
@@ -1043,4 +1043,8 @@ a:hover {
 }
 #navbar2-logout:hover {
     color: rgba(255, 255, 255, 0.75);
+}
+
+.like:hover, .dislike:hover {
+    /*background: rgba(255, 0, 0, 0.5);*/
 }

@@ -170,7 +170,7 @@ foreach ($recipes_all as $recipe_ok) {
                     <div class="text-center pb-5">
 
                         @if($isFav)
-                            <button id="nofav" class="butt-nofav btn-my btn-outline-my dislike">
+                            <button id="nofav" class="butt-nofav btn-my btn-outline-my dislike border">
 
                                 <div class="d-flex flex-column align-items-start flex-column bd-highlight mb-3 ">
                                     <div class="row justify-content-center align-self-center">
@@ -202,7 +202,7 @@ foreach ($recipes_all as $recipe_ok) {
 
                             </script>
                         @else
-                            <button id="fav" class="butt-fav btn-my btn-outline-my like">
+                            <button id="fav" class="butt-fav btn-my btn-outline-my like border">
 
                                 <div class="d-flex flex-column align-items-start flex-column bd-highlight mb-3 ">
                                     <div class="row justify-content-center align-self-center">
@@ -288,7 +288,7 @@ foreach ($recipes_all as $recipe_ok) {
                 </div>
                 <div class="pt-2 row justify-content-around">
 
-                        <button id="accept-button" class="butt-accept btn-my btn-outline-success-my accept">
+                        <button id="accept-button" class="butt-accept btn-my btn-outline-success-my accept border">
 
                             <div class="d-flex flex-column align-items-start flex-column bd-highlight mb-3 ">
                                 <div class="row justify-content-center align-self-center">
@@ -322,7 +322,7 @@ foreach ($recipes_all as $recipe_ok) {
 
 
 
-                        <button id="decline-button" class="butt-decline btn-my btn-outline-danger-my decline">
+                        <button id="decline-button" class="butt-decline btn-my btn-outline-danger-my decline border">
 
                             <div class="d-flex flex-column align-items-start flex-column bd-highlight mb-3 ">
                                 <div class="row justify-content-center align-self-center">
@@ -415,7 +415,7 @@ foreach ($recipes_all as $recipe_ok) {
                 <div class="row justify-content-center">
                     <div class="col-md-8 text-center pb-5">
                         @if($recipe->approved!=0)
-                        <a id="edit{{$recipe->id}}" class="butt-edit btn-my btn-outline-my"
+                        <a id="edit{{$recipe->id}}" class="butt-edit btn-my btn-outline-my border"
                            href="{{route('edit',['id'=>$recipe->id])}}">
 
                             <div class="d-flex flex-column align-items-start flex-column bd-highlight mb-3 ">
@@ -576,8 +576,9 @@ foreach ($recipes_all as $recipe_ok) {
                                     @endif
                                 >
                             </p>
-                            <p class="pl-5">{{$recipe->date}}</p>
+                            <p class="pl-5">in data {{$recipe->date}}</p>
                             <p class="pl-5">
+                                Etichette:<br>
                                 <?php
                                 for ($i = 1; $i < $number_tag; $i++) {
                                     echo '<strong>'.$tags[$i].'</strong><br/> ';
@@ -891,7 +892,7 @@ foreach ($recipes_all as $recipe_ok) {
                     @include('utils.modal_comment')
                     <div class="text-center pb-5">
                         @if(($dl->getUserbyUsername($loggedName))->ban == 0)
-                            <button id="comment" class="butt-comment btn-my btn-outline-my"  data-toggle="modal" data-target="#commentmodal">
+                            <button id="comment" class="butt-comment btn-my btn-outline-my border"  data-toggle="modal" data-target="#commentmodal">
 
                                 <div class="d-flex flex-column align-items-start flex-column bd-highlight mb-3 ">
                                     <div class="row justify-content-center align-self-center">
