@@ -581,5 +581,6 @@ $dl = new \App\DataLayer();
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
+    <script src="//cdn.loop11.com/embed.js" type="text/javascript" async="async"></script>
 </body>
 </html>

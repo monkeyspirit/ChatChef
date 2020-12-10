@@ -137,7 +137,7 @@ class RecipeController extends Controller
         if(isset($_SESSION['logged'])) {
 
             $user = $dl->getUserbyUsername($_SESSION['loggedName']);
-            if ($user->isModerator || $user->id == $rec->user_id) {
+            if ($user->isEditor || $user->id == $rec->user_id) {
                 if (isset($_POST['edit_form'])) {
 
 
