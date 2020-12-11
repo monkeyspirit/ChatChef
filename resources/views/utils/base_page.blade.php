@@ -84,8 +84,8 @@ $dl = new \App\DataLayer();
                 <form class="form-inline flex-nowrap w-100" action="{{ route('search_simple') }}" method="post">
                     @csrf
 
-                    <div class="input-group w-100">
-                        <input class="searcher form-control" name="text" placeholder=@lang('labels.searchPlaceholder') aria-label="Search">
+                    <div class="input-group flex-fill">
+                        <input class="searcher form-control" name="text" placeholder="@lang('labels.searchPlaceholder') una ricetta"  aria-label="Search">
 
                         <div class="input-group-append">
                         </div>
@@ -96,14 +96,15 @@ $dl = new \App\DataLayer();
                             </button>
                         </div>
                     </div>
-                    <a class="btn btn-outline-secondary ml-1" style="width: 220px" href="{{route('search')}}" data-toggle="tooltip" data-placement="bottom" title="@lang('labels.advancedsearch')">
-                        @lang('labels.advancedsearch') <i class="fas fa-sliders-h"></i>
+                    <a class="btn btn-outline-secondary ml-1" href="{{route('search')}}" data-toggle="tooltip" data-placement="bottom" title="@lang('labels.advancedsearch')">
+                        Ricerca Avanzata
+                        <i class="fas fa-sliders-h"></i>
                     </a>
-                   {{-- <script>
+                    <script>
                         $(function () {
                             $('[data-toggle="tooltip"]').tooltip()
                         })
-                    </script>--}}
+                    </script>
                 </form>
 
                 <div class="tendina w-100 px-4">

@@ -65,7 +65,8 @@ class RecipeController extends Controller
 
 
             $path='upload/'. $recipe_id.'/';
-            mkdir($path,0777,true);
+            if (!file_exists($path))
+                mkdir($path,0777,true);
             $step_images="";
 
             for($t=0; $t<$count_step; $t++){
@@ -99,7 +100,9 @@ class RecipeController extends Controller
             $imgCover = count($_FILES['imageCover']['name']);
 
             $pathCover = 'upload_cover/' . $recipe_id . '/';
-            mkdir($pathCover, 0777, true);
+
+            if (!file_exists($pathCover))
+                mkdir($pathCover, 0777, true);
 
             for ($t = 0; $t < $imgCover; $t++) {
 
@@ -641,37 +644,42 @@ class RecipeController extends Controller
     }
 
     public function getSimpleSearchResult(Request $request){
-        session_start();
-        $dl = new DataLayer();
+        if (strlen($request->get('text'))  <= 0)
+            return \redirect()->back();
+        else {
 
-        $id_recipes_ok = array();
-        $recipes_all = $dl->getAllRecipe();
+            session_start();
+            $dl = new DataLayer();
 
-        $recipes = array();
-        foreach ($recipes_all as $recipe_ok) {
-            if($recipe_ok->approved == 1 || $recipe_ok->approved == 3){
-                array_push($recipes, $recipe_ok);
-            }
-        }
+            $id_recipes_ok = array();
+            $recipes_all = $dl->getAllRecipe();
 
-        foreach ($recipes as $recipe) {
-
-            $toBeAdded = false;
-
-            if ( strpos($recipe->title, $request->get('text')) != false )
-                $toBeAdded = true;
-
-            if ($toBeAdded) {
-                array_push($id_recipes_ok, $recipe->id);
+            $recipes = array();
+            foreach ($recipes_all as $recipe_ok) {
+                if ($recipe_ok->approved == 1 || $recipe_ok->approved == 3) {
+                    array_push($recipes, $recipe_ok);
+                }
             }
 
+            foreach ($recipes as $recipe) {
+
+                $toBeAdded = false;
+
+                if (strpos($recipe->title, $request->get('text')) !== false )
+                    $toBeAdded = true;
+
+                if ($toBeAdded) {
+                    array_push($id_recipes_ok, $recipe->id);
+                }
+
+            }
+
+            $unique = array_unique($id_recipes_ok);
+            $ordered = array_values($unique);
+
+
+            return Redirect::to(route('search_advanced_get', ['array' => json_encode($ordered)]));
         }
-
-        $unique = array_unique($id_recipes_ok);
-        $ordered = array_values($unique);
-
-
-        return Redirect::to(route('search_advanced_get',['array'=>json_encode($ordered)]));
 
     }
 
