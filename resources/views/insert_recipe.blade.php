@@ -44,6 +44,9 @@ foreach ($recipes_all as $recipe_ok) {
 
 @section('body')
 
+    <script> // questo aggiunge la classe active all'elemento "le mie ricette" nel menu
+        $('#navbar2-insertrecipe').addClass('active');
+    </script>
 
     <div class="container text-center p-4">
         <h1 class="h-title">
@@ -362,7 +365,7 @@ foreach ($recipes_all as $recipe_ok) {
 
                                     <br/>
                                     <div class="text-center pb-2">
-                                        <button class="btn btn-outline-secondary " id="add_form_field3">@lang('labels.addField') &nbsp;
+                                        <button class="btn btn-outline-secondary " id="add_form_field3">@lang('labels.addStep') &nbsp;
                                             <span style="font-size:16px; font-weight:bold;">+ </span>
                                         </button>
 
@@ -432,7 +435,7 @@ foreach ($recipes_all as $recipe_ok) {
 
                                     <br/>
                                     <div class="text-center pb-2">
-                                        <button class="btn btn-outline-secondary " id="add_form_field4">@lang('labels.addField') &nbsp;
+                                        <button class="btn btn-outline-secondary " id="add_form_field4">@lang('labels.addTag') &nbsp;
                                             <span style="font-size:16px; font-weight:bold;">+ </span>
                                         </button>
 

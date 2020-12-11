@@ -519,7 +519,7 @@ foreach ($recipes_all as $recipe_ok) {
 
                             <br/>
                             <div class="text-center pb-2">
-                                <button class="btn btn-outline-secondary " id="add_edit_field3">@lang('labels.addField') &nbsp;
+                                <button class="btn btn-outline-secondary " id="add_edit_field3">@lang('labels.addStep') &nbsp;
                                     <span style="font-size:16px; font-weight:bold;">+ </span>
                                 </button>
 

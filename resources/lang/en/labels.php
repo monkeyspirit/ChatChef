@@ -148,6 +148,7 @@ return [
     'approved recipes' => '',
     'not approved recipes' => '',
     'waiting recipes' => '',
-    'qb' => 'qb'
+    'qb' => 'qb',
+    'addStep' => 'Aggiungi uno step',
 
 ];

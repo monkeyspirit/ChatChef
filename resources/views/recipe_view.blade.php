@@ -279,7 +279,7 @@ foreach ($recipes_all as $recipe_ok) {
             </div>
         @endif
 
-        @if($isRewier)
+    {{--    @if($isRewier)
             <div class="container pb-5">
                 <div class="text-center">
                     <label for="comment">@lang('labels.insertCommentAdmin')</label><br/>
@@ -390,8 +390,8 @@ foreach ($recipes_all as $recipe_ok) {
 
 
             </script>
-
-        @elseif($istheauthor || $isAEditor )
+--}}
+        @if($istheauthor || $isAEditor )
 
             @if($istheauthor &&  $recipe->approved==2)
                 <div class="container">
@@ -769,7 +769,125 @@ foreach ($recipes_all as $recipe_ok) {
 
     @endif
 
+        @if($isRewier)
+            <div class="container text-center pt-4 pb-4">
+                <h3 class="h-title" style="font-size: 50px">
+                    Approvazione e rifiuto
+                </h3>
+                <img src="{{asset('image/doodle/doodle6.jpg')}}" width="250" height="60" alt="">
+            </div>
+            <div class="container pb-5">
+                <div class="text-center">
+                    <label for="comment">@lang('labels.insertCommentAdmin')</label><br/>
+                    <textarea rows="3" class="col-md-6" name="comment" id="comment"></textarea>
 
+                </div>
+                <div class="pt-2 row justify-content-around">
+
+                    <button id="accept-button" class="butt-accept btn-my btn-outline-success-my accept border">
+
+                        <div class="d-flex flex-column align-items-start flex-column bd-highlight mb-3 ">
+                            <div class="row justify-content-center align-self-center">
+                                @lang('labels.accept')
+                            </div>
+                            <div class="row justify-content-center align-self-center">
+                                <lottie-player id="accept-lottie"
+                                               src="{{asset('/icons/edit-ok.json')}}"
+                                               background="transparent"
+                                               speed="1"
+                                               style="width: 30px; height: 30px;"
+                                               hover
+                                >
+                                </lottie-player>
+                            </div>
+                        </div>
+
+                    </button>
+                    <script>
+                        var acceptanimation = document.getElementById("accept-lottie");
+
+                        $("#accept-button").mouseover(function () {
+                            acceptanimation.play();
+                        });
+                        $("#accept-button").mouseleave(function () {
+                            acceptanimation.stop();
+                        });
+
+
+                    </script>
+
+
+
+                    <button id="decline-button" class="butt-decline btn-my btn-outline-danger-my decline border">
+
+                        <div class="d-flex flex-column align-items-start flex-column bd-highlight mb-3 ">
+                            <div class="row justify-content-center align-self-center">
+                                @lang('labels.decline')
+                            </div>
+                            <div class="row justify-content-center align-self-center">
+                                <lottie-player id="decline-lottie"
+                                               src="{{asset('/icons/edit-cancel.json')}}"
+                                               background="transparent"
+                                               speed="1"
+                                               style="width: 30px; height: 30px;"
+                                               hover
+                                >
+                                </lottie-player>
+                            </div>
+                        </div>
+
+                    </button>
+                    <script>
+                        var declineanimation = document.getElementById("decline-lottie");
+
+                        $("#decline-button").mouseover(function () {
+                            declineanimation.play();
+                        });
+                        $("#decline-button").mouseleave(function () {
+                            declineanimation.stop();
+                        });
+
+
+                    </script>
+
+
+                </div>
+
+            </div>
+            <script>
+                $(".accept").click(function (event) {
+                    event.preventDefault();
+
+                    $.ajax({
+                        method: 'POST',
+                        url: urlAccept,
+                        data: {recipe_id: {{$id}}, comment: $('#comment').val(),  _token: token},
+                        success: function(response){
+                            window.location.href = "{{url('/approved')}}";
+
+                        }
+                    })
+
+
+                } );
+                $(".decline").click(function (event) {
+                    event.preventDefault();
+                    $.ajax({
+                        method: 'POST',
+                        url: urlDecline,
+                        data: {recipe_id: {{$id}},  comment: document.getElementById('comment').value , _token: token},
+                        success: function(response){
+                            window.location.href = "{{url('/approved')}}";
+
+
+                        }
+                    })
+                } );
+
+
+            </script>
+
+        @endif
 
 
 
@@ -779,6 +897,8 @@ foreach ($recipes_all as $recipe_ok) {
         </h3>
         <img  src="{{asset('image/doodle/doodle-comment.jpg')}}" width="250" height="60" alt="">
     </div>
+
+
 
         @if($logged && ($recipe->approved == 1 || $recipe->approved == 3))
             <div class="container pt-5">

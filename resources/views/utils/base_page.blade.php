@@ -96,15 +96,14 @@ $dl = new \App\DataLayer();
                             </button>
                         </div>
                     </div>
-                    <a class="btn btn-outline-secondary ml-1" href="{{route('search')}}" data-toggle="tooltip" data-placement="bottom" title="@lang('labels.advancedsearch')">
-                        {{--                                @lang('labels.advancedsearch')--}}
-                        <i class="fas fa-sliders-h"></i>
+                    <a class="btn btn-outline-secondary ml-1" style="width: 220px" href="{{route('search')}}" data-toggle="tooltip" data-placement="bottom" title="@lang('labels.advancedsearch')">
+                        @lang('labels.advancedsearch') <i class="fas fa-sliders-h"></i>
                     </a>
-                    <script>
+                   {{-- <script>
                         $(function () {
                             $('[data-toggle="tooltip"]').tooltip()
                         })
-                    </script>
+                    </script>--}}
                 </form>
 
                 <div class="tendina w-100 px-4">
@@ -193,6 +192,13 @@ $dl = new \App\DataLayer();
         </button>
         <div class="collapse navbar-collapse" id="navbar2NavDropdown">
         <ul class="navbar-nav ml-sm-auto">
+            <li class="nav-item">
+                <a class="nav-link" id="navbar2-insertrecipe" href="{{route('insert')}}">
+                    <i class="fas fa-feather-alt"></i>
+                    Inserisci una ricetta
+                </a>
+            </li>
+            <li class="nav-item border-left"></li>
             <li class="nav-item">
                 <a class="nav-link" id="navbar2-myrecipes" href="{{route('account_all_recipes')}}">
                     <i class="far fa-file-alt"></i>
