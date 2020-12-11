@@ -665,7 +665,7 @@ class RecipeController extends Controller
 
                 $toBeAdded = false;
 
-                if (strpos($recipe->title, $request->get('text')) !== false )
+                if (strpos(strtoupper($recipe->title), strtoupper($request->get('text'))) !== false )
                     $toBeAdded = true;
 
                 if ($toBeAdded) {
