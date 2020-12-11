@@ -297,14 +297,14 @@ foreach ($recipes_all as $recipe_ok) {
                                                         '                                            <span style="color: darkred"><strong>*</strong></span>\n' +
                                                         '                                        </div>' +
                                                     '                                        <div class="col">\n' +
-                                                        '                                        <input oninput="this.className = \'\'" type="text" class="form-control" placeholder=@lang('labels.ingredients') name="ingredients[]">\n' +
+                                                        '                                        <input type="text" class="form-control" placeholder=@lang('labels.ingredients') name="ingredients[]">\n' +
                                                         '                                    </div>\n' +
                                                         '\n' +
                                                         '                                    <!-- Quantity -->\n' +
                                                         '                                    <div class="col-auto">\n' +
                                                         '                                            <span style="color: darkred"><strong>*</strong></span>\n' +
                                                         '                                        </div><div class="col">\n' +
-                                                        '                                        <input oninput="this.className = \'\'" type="number" step="0.01" min="0" class="form-control" placeholder=@lang('labels.quantity') name="quantities[]">\n' +
+                                                        '                                        <input type="number" step="0.01" min="0" class="form-control" placeholder=@lang('labels.quantity') name="quantities[]">\n' +
                                                         '                                    </div>\n' +
                                                         '\n' +
                                                         '                                    <!-- Unit -->\n' +
